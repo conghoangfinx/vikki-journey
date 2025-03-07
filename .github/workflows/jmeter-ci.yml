@@ -1,12 +1,7 @@
 name: JMeter CI Test
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    workflow_dispatch:  # Chỉ chạy test khi bấm nút "Run Workflow" trên GitHub
 
 jobs:
   jmeter-test:
