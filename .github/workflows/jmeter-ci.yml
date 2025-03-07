@@ -41,8 +41,9 @@ jobs:
           rm -rf report results.jtl jmeter.log
           mkdir -p report  # Đảm bảo thư mục report luôn tồn tại nhưng rỗng
           export JVM_ARGS="-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dhttps.protocols=TLSv1.2,TLSv1.3"
-          gtimeout 300 jmeter -n -t backup-vikki-journey.jmx -l results.jtl -j jmeter.log -e -o report | tee jmeter-live.log
-          if [ -f "jmeter.log" ]; then tail -f jmeter.log; else echo "❌ jmeter.log not found!"; fi
+          gtimeout 300 jmeter -n -t backup-vikki-journey.jmx -l results.jtl -j jmeter.log -e -o report 2>&1 | tee jmeter-live.log
+          echo "📌 Displaying JMeter Logs in GitHub Actions:"
+          cat jmeter.log || echo "❌ jmeter.log not found!"
 
       - name: Upload JMeter Report
         uses: actions/upload-artifact@v4
