@@ -147,7 +147,7 @@
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tìm Lead và Xóa" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tìm Lead và Xóa">
             <stringProp name="HTTPSampler.domain">113.161.76.226</stringProp>
             <stringProp name="HTTPSampler.port">8087</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -284,7 +284,7 @@ if (jsonResponse?.leads?.size() &gt; 0) {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -363,7 +363,7 @@ if (jsonResponse?.way4Clients?.size() &gt; 0) {
 }</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">x-api-key</stringProp>
@@ -380,7 +380,7 @@ if (jsonResponse?.way4Clients?.size() &gt; 0) {
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Check ID Number Prospect" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Check ID Number Prospect">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v2/prospect/internal/lookup</stringProp>
@@ -415,7 +415,7 @@ if (jsonResponse?.way4Clients?.size() &gt; 0) {
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -464,7 +464,7 @@ if (phoneNumberOldFromIdNumberProspect) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Check ID Number Party" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Check ID Number Party">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/party-service/v2/admin/parties/lookup</stringProp>
@@ -770,7 +770,7 @@ if (prospectIdPhoneNumberProspect) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.6 Check Prospect from Phone Number and clear">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.6 Check Prospect from Phone Number and clear" enabled="true">
             <stringProp name="IfController.condition">${__groovy(vars.get(&quot;prospectIdPhoneNumberProspect&quot;) != null )}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
@@ -1064,13 +1064,13 @@ log.info(&quot;✅ Clear cifNumber of Phone Number in Party Success!&quot;);</st
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account" enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Register Phone" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Register Phone">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/mobile/verify</stringProp>
@@ -1417,7 +1417,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1542,7 +1542,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
                                             &quot;idNumber&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;001098034158&quot;,&#xd;
+                                                &quot;value&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2107,7 +2107,7 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2125,7 +2125,7 @@ if (idHyperVergeOCR) {
     &quot;name&quot;: &quot;jmeter-hdb-biometric-conghoang-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
-        &quot;url&quot;: &quot;/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}}&quot;,&#xd;
+        &quot;url&quot;: &quot;/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}&quot;,&#xd;
         &quot;method&quot;: &quot;GET&quot;&#xd;
     },&#xd;
     &quot;response&quot;: {&#xd;
@@ -2305,7 +2305,7 @@ if (hdbBiometricMockingId) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 Pre check KYC" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 Pre check KYC">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/kyc/pre-check-kyc</stringProp>
@@ -2405,7 +2405,7 @@ log.info(&quot;✅ Precheck KYC thành công! Response: &quot; + jsonResponse);<
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.7 Submit info" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.7 Submit info">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/kyc/submit-info</stringProp>
@@ -2521,7 +2521,7 @@ log.info(&quot;✅ Submit Info thành công! Response: &quot; + jsonResponse);</
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.8 Create Password" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.8 Create Password">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/accountCreation/credential</stringProp>
@@ -3865,7 +3865,7 @@ vars.put(&quot;signature&quot;, signature)
           </hashTree>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
