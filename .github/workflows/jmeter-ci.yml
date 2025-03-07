@@ -1,7 +1,7 @@
 name: JMeter CI Test (Manual)
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Chạy test thủ công từ GitHub Actions
 
 jobs:
   jmeter-test:
@@ -13,6 +13,9 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Set Git Safe Directory
+        run: git config --global --add safe.directory '*'
 
       - name: Install JMeter
         run: |
@@ -26,8 +29,10 @@ jobs:
       - name: Verify JMeter Installation
         run: jmeter -v  # Kiểm tra JMeter đã cài đặt thành công chưa
 
-      - name: Run JMeter Test
-        run: jmeter -n -t backup-vikki-journey.jmx -l results.jtl -e -o report
+      - name: Run JMeter Test (With Timeout & Real-Time Logs)
+        run: |
+          timeout 300 jmeter -n -t backup-vikki-journey.jmx -l results.jtl -j jmeter.log -e -o report &
+          tail -f jmeter.log  # Hiển thị log liên tục
 
       - name: Upload JMeter Report
         uses: actions/upload-artifact@v4
@@ -40,3 +45,9 @@ jobs:
         with:
           name: jmeter-results
           path: results.jtl
+
+      - name: Upload JMeter Logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-logs
+          path: jmeter.log
