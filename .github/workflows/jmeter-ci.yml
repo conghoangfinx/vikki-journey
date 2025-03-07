@@ -11,11 +11,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # ⚠️ Tránh lỗi credential khi cleanup
-          fetch-depth: 0  # ⚠️ Lấy toàn bộ lịch sử commit tránh lỗi Git
-
-      - name: Set Git Safe Directory
-        run: git config --global --add safe.directory '*'
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Install JMeter
         run: |
@@ -23,11 +20,14 @@ jobs:
           sudo apt install -y openjdk-11-jdk
           wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
           tar -xvzf apache-jmeter-5.6.3.tgz
-          export PATH=$PATH:$(pwd)/apache-jmeter-5.6.3/bin
+          mv apache-jmeter-5.6.3 jmeter
+          echo "$(pwd)/jmeter/bin" >> $GITHUB_PATH
+
+      - name: Verify JMeter Installation
+        run: jmeter -v  # Kiểm tra JMeter đã cài đặt thành công chưa
 
       - name: Run JMeter Test
-        run: |
-          jmeter -n -t backup-vikki-journey.jmx -l results.jtl -e -o report
+        run: jmeter -n -t backup-vikki-journey.jmx -l results.jtl -e -o report
 
       - name: Upload JMeter Report
         uses: actions/upload-artifact@v4
