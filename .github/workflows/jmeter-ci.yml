@@ -29,10 +29,11 @@ jobs:
       - name: Verify JMeter Installation
         run: jmeter -v  # Kiểm tra JMeter đã cài đặt thành công chưa
 
-      - name: Import API SSL Certificate (If Needed)
+      - name: Import API SSL Certificate (With Timeout)
+        continue-on-error: true  # ⚠️ Nếu lỗi thì bỏ qua để workflow không bị dừng
         run: |
-          openssl s_client -showcerts -connect ingress-int.uat.galaxyfinx.in:443 </dev/null 2>/dev/null | openssl x509 -outform PEM > api_cert.pem
-          sudo keytool -import -trustcacerts -keystore /etc/ssl/certs/java/cacerts -storepass changeit -noprompt -alias api_cert -file api_cert.pem
+          timeout 15 openssl s_client -showcerts -connect ingress-int.uat.galaxyfinx.in:443 -connect-timeout 10 </dev/null 2>/dev/null | openssl x509 -outform PEM > api_cert.pem
+          sudo keytool -import -trustcacerts -keystore /etc/ssl/certs/java/cacerts -storepass changeit -noprompt -alias api_cert -file api_cert.pem || echo "⚠️ Import SSL certificate failed, continuing..."
 
       - name: Run JMeter Test (With SSL Fix & Timeout)
         run: |
