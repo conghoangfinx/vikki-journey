@@ -1,57 +1,32 @@
 name: JMeter CI Test (Manual)
 
 on:
-  workflow_dispatch:  # Chạy test thủ công từ GitHub Actions
+  workflow_dispatch:
 
 jobs:
   jmeter-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # Chạy trên máy cá nhân có VPN
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Set Git Safe Directory
-        run: git config --global --add safe.directory '*'
 
       - name: Install JMeter
         run: |
-          sudo apt update
-          sudo apt install -y openjdk-11-jdk
-          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
-          tar -xvzf apache-jmeter-5.6.3.tgz
-          mv apache-jmeter-5.6.3 jmeter
-          echo "$(pwd)/jmeter/bin" >> $GITHUB_PATH
+          brew install jmeter  # Cài JMeter trên macOS
+          echo "$(brew --prefix jmeter)/bin" >> $GITHUB_PATH
 
-      - name: Verify JMeter Installation
-        run: jmeter -v  # Kiểm tra JMeter đã cài đặt thành công chưa
-
-      - name: Import API SSL Certificate (With Timeout)
-        continue-on-error: true  # ⚠️ Nếu lỗi thì bỏ qua để workflow không bị dừng
-        run: |
-          timeout 15 openssl s_client -showcerts -connect https://ingress-int.uat.galaxyfinx.in -connect-timeout 10 </dev/null 2>/dev/null | openssl x509 -outform PEM > api_cert.pem
-          sudo keytool -import -trustcacerts -keystore /etc/ssl/certs/java/cacerts -storepass changeit -noprompt -alias api_cert -file api_cert.pem || echo "⚠️ Import SSL certificate failed, continuing..."
-
-      - name: Run JMeter Test (With SSL Fix & Timeout)
+      - name: Run JMeter Test
         run: |
           export JVM_ARGS="-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dhttps.protocols=TLSv1.2,TLSv1.3"
           timeout 300 jmeter -n -t backup-vikki-journey.jmx -l results.jtl -j jmeter.log -e -o report &
-          tail -f jmeter.log  # Hiển thị log liên tục trong GitHub Actions
+          tail -f jmeter.log  # Hiển thị log liên tục
 
       - name: Upload JMeter Report
         uses: actions/upload-artifact@v4
         with:
           name: jmeter-report
           path: report/
-
-      - name: Upload JMeter Raw Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: jmeter-results
-          path: results.jtl
 
       - name: Upload JMeter Logs
         uses: actions/upload-artifact@v4
