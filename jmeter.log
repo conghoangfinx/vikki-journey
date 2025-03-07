@@ -1,0 +1,349 @@
+2025-03-07 11:05:11,358 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-03-07 11:05:11,372 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2025-03-07 11:05:11,372 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2025-03-07 11:05:11,375 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-03-07 11:05:11,375 INFO o.a.j.JMeter: Version 5.6.3
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: java.version=21.0.5
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: os.name=Mac OS X
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: os.arch=aarch64
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: os.version=15.3.1
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: java.awt.headless=null
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-03-07 11:05:11,376 INFO o.a.j.JMeter: Available Processors =10
+2025-03-07 11:05:11,382 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-03-07 11:05:11,382 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-03-07 11:05:11,382 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2025-03-07 11:05:11,382 INFO o.a.j.JMeter: user.dir  =/Users/conghoang/Desktop/vikki-journey
+2025-03-07 11:05:11,383 INFO o.a.j.JMeter: PWD       =/Users/conghoang/Desktop/vikki-journey
+2025-03-07 11:05:11,437 INFO o.a.j.JMeter: IP: 172.16.3.62 Name: ip-172-16-3-62.ap-southeast-1.compute.internal FullName: ip-172-16-3-62.ap-southeast-1.compute.internal
+2025-03-07 11:05:11,445 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2025-03-07 11:05:11,749 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2025-03-07 11:05:12,730 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:05:12,796 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:05:12,870 INFO o.j.r.JARSourceHTTP: Found cached repo
+2025-03-07 11:05:12,955 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.9, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2025-03-07 11:05:12,955 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]
+2025-03-07 11:05:17,662 INFO o.a.j.s.FileServer: Default base='/Users/conghoang/Desktop/vikki-journey'
+2025-03-07 11:05:17,663 INFO o.a.j.g.a.Load: Loading file: /Users/conghoang/Desktop/vikki-journey/backup-vikki-journey.jmx
+2025-03-07 11:05:17,663 INFO o.a.j.s.FileServer: Set new base='/Users/conghoang/Desktop/vikki-journey'
+2025-03-07 11:05:17,759 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-03-07 11:05:17,763 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-03-07 11:05:17,764 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-03-07 11:05:17,764 INFO o.a.j.s.SaveService: Loading file: /Users/conghoang/Desktop/vikki-journey/backup-vikki-journey.jmx
+2025-03-07 11:05:17,845 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-03-07 11:05:17,845 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-03-07 11:05:17,845 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-03-07 11:05:17,845 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-03-07 11:05:17,845 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-03-07 11:05:17,845 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-03-07 11:05:18,318 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-03-07 11:05:18,318 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-03-07 11:05:18,318 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-03-07 11:05:18,318 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-03-07 11:05:18,371 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:05:18,382 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:05:18,408 INFO o.a.j.s.FileServer: Set new base='/Users/conghoang/Desktop/vikki-journey'
+2025-03-07 11:07:17,437 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-03-07 11:07:17,438 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-03-07 11:07:17,438 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-03-07 11:07:17,438 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2025-03-07 11:07:17,438 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2025-03-07 11:07:17,453 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:07:17,477 INFO o.a.j.t.TestPlan: added ./lib to classpath
+2025-03-07 11:07:17,479 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-03-07 11:07:17,518 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Onboarding
+2025-03-07 11:07:17,518 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Onboarding.
+2025-03-07 11:07:17,518 INFO o.a.j.e.StandardJMeterEngine: Test will stop abruptly on error
+2025-03-07 11:07:17,518 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-03-07 11:07:17,520 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-03-07 11:07:17,520 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-03-07 11:07:17,521 INFO o.a.j.t.JMeterThread: Thread started: Onboarding 1-1
+2025-03-07 11:07:17,830 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = ip-172-16-3-62.ap-southeast-1.compute.internal
+2025-03-07 11:07:17,834 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2025-03-07 11:07:17,921 INFO o.a.j.p.h.s.h.LazyLayeredConnectionSocketFactory: Setting up HTTPS TrustAll Socket Factory
+2025-03-07 11:07:17,922 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
+2025-03-07 11:07:17,923 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
+2025-03-07 11:07:17,977 INFO o.a.j.u.SSLManager: JmeterKeyStore Location:  type JKS
+2025-03-07 11:07:17,977 INFO o.a.j.u.SSLManager: KeyStore created OK
+2025-03-07 11:07:17,977 WARN o.a.j.u.SSLManager: Keystore file not found, loading empty keystore
+2025-03-07 11:07:18,734 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK ID NUMBER PROSPECT ----------
+2025-03-07 11:07:18,744 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/prospect/internal/lookup | Time: 791
+2025-03-07 11:07:18,755 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Prospect phone number found: +84990010130
+2025-03-07 11:07:18,877 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK ID NUMBER PARTY ----------
+2025-03-07 11:07:18,877 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/lookup | Time: 104
+2025-03-07 11:07:18,877 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Status Account: Active
+2025-03-07 11:07:18,878 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ CIF Account Old: 44356422
+2025-03-07 11:07:18,878 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ ID Number Party found successfully!
+2025-03-07 11:07:19,173 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CLEAR PARTY FROM ID NUMBER PARTY ----------
+2025-03-07 11:07:19,173 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/deactivate-customer | Time: 279
+2025-03-07 11:07:19,173 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Clear cifNumber of ID Number in Party Success!
+2025-03-07 11:07:19,372 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK PHONE NUMBER PROSPECT ----------
+2025-03-07 11:07:19,372 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/prospect | Time: 184
+2025-03-07 11:07:19,372 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Prospect ID extracted from phone number: 1347416875181830144
+2025-03-07 11:07:19,485 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CLEAR PROSPECT FROM PHONE NUMBER PROSPECT ----------
+2025-03-07 11:07:19,486 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/onboarding/admin/prospect/1347416875181830144/clean-prospect | Time: 102
+2025-03-07 11:07:19,486 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Clear Prospect from Phone Number Prospect Success!
+2025-03-07 11:07:19,580 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK PHONE NUMBER PARTY ----------
+2025-03-07 11:07:19,580 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/lookup | Time: 83
+2025-03-07 11:07:19,581 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Status Account: Closed
+2025-03-07 11:07:19,581 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ CIF Account Old: 44356422
+2025-03-07 11:07:19,581 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Phone Number Party found successfully!
+2025-03-07 11:07:19,598 INFO o.a.j.m.J.JSR223 PreProcessor:  
+ ------------> Device ID: 812644f3-6c02-4d30-affd-b33a8f08d61c
+2025-03-07 11:07:21,187 INFO o.a.j.e.J.Set Onboarding ID:  
+ ---------- REGISTER PHONE ----------
+2025-03-07 11:07:21,187 INFO o.a.j.e.J.Set Onboarding ID: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/mobile/verify | Time: 1564
+2025-03-07 11:07:21,188 INFO o.a.j.e.J.Set Onboarding ID: ✅ Onboarding thành công! ID: 1347420327352213504
+2025-03-07 11:07:21,476 INFO o.a.j.e.J.Logging Verify OTP:  
+ ---------- VERIFY OTP ----------
+2025-03-07 11:07:21,477 INFO o.a.j.e.J.Logging Verify OTP: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/mobile/1347420327352213504/otp/verify | Time: 259
+2025-03-07 11:07:21,477 INFO o.a.j.e.J.Logging Verify OTP: ✅ OTP xác minh thành công!
+2025-03-07 11:07:21,556 INFO o.a.j.e.J.Logging Resume point:  
+ ---------- SET RESUME POINT ----------
+2025-03-07 11:07:21,556 INFO o.a.j.e.J.Logging Resume point: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/set-resume-point | Time: 70
+2025-03-07 11:07:21,557 INFO o.a.j.e.J.Logging Resume point: ✅ Resume Point xử lý thành công!
+2025-03-07 11:07:21,561 INFO o.a.j.m.J.JSR223 PreProcessor: -----[MOCK] Hyperverge OCR-----
+2025-03-07 11:07:21,952 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- [MOCK] HYPERVEGER OCR ----------
+2025-03-07 11:07:21,953 INFO o.a.j.e.J.JSR223 PostProcessor: https://wiremock.sit.galaxyfinx.in/__admin/mappings/825cace7-8678-41c3-bc8a-7303c5260bd6 | Time: 375
+2025-03-07 11:07:21,954 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ idHyperVergeOCR Extracted: 825cace7-8678-41c3-bc8a-7303c5260bd6
+2025-03-07 11:07:22,015 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- [MOCK] HDB BIOMETRIC ----------
+2025-03-07 11:07:22,015 INFO o.a.j.e.J.JSR223 PostProcessor: https://wiremock.sit.galaxyfinx.in/__admin/mappings/bf3e65fb-4fc0-4cea-bccc-d4c906744ea3 | Time: 51
+2025-03-07 11:07:22,016 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ HDB Biometric Mock ID Extracted: bf3e65fb-4fc0-4cea-bccc-d4c906744ea3
+2025-03-07 11:07:25,537 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- PRECHECK KYC ----------
+2025-03-07 11:07:25,538 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/pre-check-kyc | Time: 3504
+2025-03-07 11:07:25,539 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Precheck KYC thành công! Response: [status:[code:SUCCESS, message:null, errors:null], payload:[nfcStatus:ERROR, nfcInfo:null], meta:[requestId:229ee632-2f7e-4f17-9ca8-21eacfba40af, nextCursor:null], success:true]
+2025-03-07 11:07:27,808 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- SUBMIT INFO ----------
+2025-03-07 11:07:27,808 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/submit-info | Time: 2245
+2025-03-07 11:07:27,809 ERROR o.a.j.e.J.JSR223 PostProcessor: ❌ API Lỗi! Response Code: 400 | Message: Bad Request
+2025-03-07 11:07:27,809 ERROR o.a.j.e.J.JSR223 PostProcessor:  Full Response: 
+{"status":{"code":"GET_NFC_INFO_FAILED","message":"Get NFC info failed","errors":[]},"payload":null,"meta":{"requestId":"bdaeeaf7-1b24-4ae9-8223-7e6cedd4e03f","nextCursor":null},"success":false}
+2025-03-07 11:07:27,809 INFO o.a.j.t.JMeterThread: Stop Test Now detected by thread: Onboarding 1-1
+2025-03-07 11:07:27,810 INFO o.a.j.t.JMeterThread: Thread finished: Onboarding 1-1
+2025-03-07 11:07:27,811 INFO o.a.j.t.JMeterThread: Stopping: Onboarding 1-1
+2025-03-07 11:07:27,812 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-03-07 11:07:27,815 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-03-07 11:08:14,453 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-03-07 11:08:14,454 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-03-07 11:08:14,460 INFO o.a.j.t.TestPlan: added ./lib to classpath
+2025-03-07 11:08:14,460 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-03-07 11:08:14,518 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Onboarding
+2025-03-07 11:08:14,518 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Onboarding.
+2025-03-07 11:08:14,518 INFO o.a.j.e.StandardJMeterEngine: Test will stop abruptly on error
+2025-03-07 11:08:14,518 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-03-07 11:08:14,519 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-03-07 11:08:14,519 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-03-07 11:08:14,520 INFO o.a.j.t.JMeterThread: Thread started: Onboarding 1-1
+2025-03-07 11:08:14,919 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK ID NUMBER PROSPECT ----------
+2025-03-07 11:08:14,920 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/prospect/internal/lookup | Time: 382
+2025-03-07 11:08:14,920 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ ID Number prospect not found.
+2025-03-07 11:08:15,017 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK ID NUMBER PARTY ----------
+2025-03-07 11:08:15,017 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/lookup | Time: 88
+2025-03-07 11:08:15,018 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Status Account: Closed
+2025-03-07 11:08:15,018 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ CIF Account Old: 44356422
+2025-03-07 11:08:15,018 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ ID Number Party found successfully!
+2025-03-07 11:08:15,085 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK PHONE NUMBER PROSPECT ----------
+2025-03-07 11:08:15,085 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/prospect | Time: 56
+2025-03-07 11:08:15,086 WARN o.a.j.e.J.JSR223 PostProcessor: ⚠️ Not Found Prospect from Phone Number Prospect (Response 400).
+2025-03-07 11:08:15,161 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK PHONE NUMBER PARTY ----------
+2025-03-07 11:08:15,162 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/lookup | Time: 64
+2025-03-07 11:08:15,162 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Status Account: Closed
+2025-03-07 11:08:15,162 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ CIF Account Old: 44356422
+2025-03-07 11:08:15,162 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Phone Number Party found successfully!
+2025-03-07 11:08:15,173 INFO o.a.j.m.J.JSR223 PreProcessor:  
+ ------------> Device ID: 74b0caf7-cac9-4ded-b319-21327079e6f0
+2025-03-07 11:08:15,398 INFO o.a.j.e.J.Set Onboarding ID:  
+ ---------- REGISTER PHONE ----------
+2025-03-07 11:08:15,399 INFO o.a.j.e.J.Set Onboarding ID: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/mobile/verify | Time: 218
+2025-03-07 11:08:15,399 INFO o.a.j.e.J.Set Onboarding ID: ✅ Onboarding thành công! ID: 1347420560259575808
+2025-03-07 11:08:15,529 INFO o.a.j.e.J.Logging Verify OTP:  
+ ---------- VERIFY OTP ----------
+2025-03-07 11:08:15,529 INFO o.a.j.e.J.Logging Verify OTP: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/mobile/1347420560259575808/otp/verify | Time: 122
+2025-03-07 11:08:15,529 INFO o.a.j.e.J.Logging Verify OTP: ✅ OTP xác minh thành công!
+2025-03-07 11:08:15,597 INFO o.a.j.e.J.Logging Resume point:  
+ ---------- SET RESUME POINT ----------
+2025-03-07 11:08:15,597 INFO o.a.j.e.J.Logging Resume point: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/set-resume-point | Time: 62
+2025-03-07 11:08:15,597 INFO o.a.j.e.J.Logging Resume point: ✅ Resume Point xử lý thành công!
+2025-03-07 11:08:15,600 INFO o.a.j.m.J.JSR223 PreProcessor: -----[MOCK] Hyperverge OCR-----
+2025-03-07 11:08:15,949 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- [MOCK] HYPERVEGER OCR ----------
+2025-03-07 11:08:15,949 INFO o.a.j.e.J.JSR223 PostProcessor: https://wiremock.sit.galaxyfinx.in/__admin/mappings/825cace7-8678-41c3-bc8a-7303c5260bd6 | Time: 342
+2025-03-07 11:08:15,950 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ idHyperVergeOCR Extracted: 825cace7-8678-41c3-bc8a-7303c5260bd6
+2025-03-07 11:08:16,017 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- [MOCK] HDB BIOMETRIC ----------
+2025-03-07 11:08:16,018 INFO o.a.j.e.J.JSR223 PostProcessor: https://wiremock.sit.galaxyfinx.in/__admin/mappings/bf3e65fb-4fc0-4cea-bccc-d4c906744ea3 | Time: 60
+2025-03-07 11:08:16,018 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ HDB Biometric Mock ID Extracted: bf3e65fb-4fc0-4cea-bccc-d4c906744ea3
+2025-03-07 11:08:19,052 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- PRECHECK KYC ----------
+2025-03-07 11:08:19,052 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/pre-check-kyc | Time: 3023
+2025-03-07 11:08:19,052 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Precheck KYC thành công! Response: [status:[code:SUCCESS, message:null, errors:null], payload:[nfcStatus:ERROR, nfcInfo:null], meta:[requestId:39d19719-acd9-4dc1-9f2b-9ad401a6f301, nextCursor:null], success:true]
+2025-03-07 11:08:19,572 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- SUBMIT INFO ----------
+2025-03-07 11:08:19,572 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/submit-info | Time: 513
+2025-03-07 11:08:19,572 ERROR o.a.j.e.J.JSR223 PostProcessor: ❌ API Lỗi! Response Code: 400 | Message: Bad Request
+2025-03-07 11:08:19,572 ERROR o.a.j.e.J.JSR223 PostProcessor:  Full Response: 
+{"status":{"code":"GET_NFC_INFO_FAILED","message":"Get NFC info failed","errors":[]},"payload":null,"meta":{"requestId":"a18bbb6d-31d2-4cad-b8ec-584bef0cce2d","nextCursor":null},"success":false}
+2025-03-07 11:08:19,573 INFO o.a.j.t.JMeterThread: Stop Test Now detected by thread: Onboarding 1-1
+2025-03-07 11:08:19,573 INFO o.a.j.t.JMeterThread: Thread finished: Onboarding 1-1
+2025-03-07 11:08:19,573 INFO o.a.j.t.JMeterThread: Stopping: Onboarding 1-1
+2025-03-07 11:08:19,573 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-03-07 11:08:19,573 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2025-03-07 11:08:41,979 INFO o.a.j.g.a.Load: Loading file: /Users/conghoang/actions-runner/_work/vikki-journey/vikki-journey/backup-vikki-journey.jmx
+2025-03-07 11:08:41,979 INFO o.a.j.s.FileServer: Set new base='/Users/conghoang/actions-runner/_work/vikki-journey/vikki-journey'
+2025-03-07 11:08:41,980 INFO o.a.j.s.SaveService: Loading file: /Users/conghoang/actions-runner/_work/vikki-journey/vikki-journey/backup-vikki-journey.jmx
+2025-03-07 11:08:42,245 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:08:42,255 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-03-07 11:08:42,275 INFO o.a.j.s.FileServer: Set new base='/Users/conghoang/actions-runner/_work/vikki-journey/vikki-journey'
+2025-03-07 11:08:45,004 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-03-07 11:08:45,005 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-03-07 11:08:45,010 INFO o.a.j.t.TestPlan: added ./lib to classpath
+2025-03-07 11:08:45,010 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2025-03-07 11:08:45,044 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Onboarding
+2025-03-07 11:08:45,045 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Onboarding.
+2025-03-07 11:08:45,045 INFO o.a.j.e.StandardJMeterEngine: Test will stop abruptly on error
+2025-03-07 11:08:45,045 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-03-07 11:08:45,046 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-03-07 11:08:45,046 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-03-07 11:08:45,046 INFO o.a.j.t.JMeterThread: Thread started: Onboarding 1-1
+2025-03-07 11:08:45,333 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- SEARCH CARD LEAD AND DELETE ----------
+2025-03-07 11:08:45,333 INFO o.a.j.e.J.JSR223 PostProcessor: http://113.161.76.226:8087/hdb-lead-card-management/api/lead/find_lead | Time: 223
+2025-03-07 11:08:45,333 WARN o.a.j.e.J.JSR223 PostProcessor: ✅ Không có lead nào được tìm thấy!
+2025-03-07 11:08:45,391 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- SEARCH CARD WAY4 AND DELETE ----------
+2025-03-07 11:08:45,391 INFO o.a.j.e.J.JSR223 PostProcessor: http://113.161.76.226:8087/hdb-lead-card-management/api/client/get_client_by_identity_card_number?idCard=001098034130 | Time: 44
+2025-03-07 11:08:45,396 WARN o.a.j.e.J.JSR223 PostProcessor: ✅ Không có client-ID nào trong way4Clients!
+2025-03-07 11:08:45,738 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK ID NUMBER PROSPECT ----------
+2025-03-07 11:08:45,738 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/prospect/internal/lookup | Time: 330
+2025-03-07 11:08:45,738 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ ID Number prospect not found.
+2025-03-07 11:08:45,883 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK ID NUMBER PARTY ----------
+2025-03-07 11:08:45,884 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/lookup | Time: 136
+2025-03-07 11:08:45,884 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Status Account: Closed
+2025-03-07 11:08:45,884 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ CIF Account Old: 44356422
+2025-03-07 11:08:45,884 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ ID Number Party found successfully!
+2025-03-07 11:08:45,951 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK PHONE NUMBER PROSPECT ----------
+2025-03-07 11:08:45,951 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v2/prospect | Time: 56
+2025-03-07 11:08:45,951 WARN o.a.j.e.J.JSR223 PostProcessor: ⚠️ Not Found Prospect from Phone Number Prospect (Response 400).
+2025-03-07 11:08:46,023 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CHECK PHONE NUMBER PARTY ----------
+2025-03-07 11:08:46,023 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/api/party-service/v2/admin/parties/lookup | Time: 63
+2025-03-07 11:08:46,024 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Status Account: Closed
+2025-03-07 11:08:46,024 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ CIF Account Old: 44356422
+2025-03-07 11:08:46,024 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Phone Number Party found successfully!
+2025-03-07 11:08:46,033 INFO o.a.j.m.J.JSR223 PreProcessor:  
+ ------------> Device ID: bcc7bb35-0fda-4057-8237-b7e9ed0f3bec
+2025-03-07 11:08:46,240 INFO o.a.j.e.J.Set Onboarding ID:  
+ ---------- REGISTER PHONE ----------
+2025-03-07 11:08:46,240 INFO o.a.j.e.J.Set Onboarding ID: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/mobile/verify | Time: 198
+2025-03-07 11:08:46,240 INFO o.a.j.e.J.Set Onboarding ID: ✅ Onboarding thành công! ID: 1347420689664581632
+2025-03-07 11:08:46,358 INFO o.a.j.e.J.Logging Verify OTP:  
+ ---------- VERIFY OTP ----------
+2025-03-07 11:08:46,358 INFO o.a.j.e.J.Logging Verify OTP: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/mobile/1347420689664581632/otp/verify | Time: 111
+2025-03-07 11:08:46,358 INFO o.a.j.e.J.Logging Verify OTP: ✅ OTP xác minh thành công!
+2025-03-07 11:08:46,439 INFO o.a.j.e.J.Logging Resume point:  
+ ---------- SET RESUME POINT ----------
+2025-03-07 11:08:46,440 INFO o.a.j.e.J.Logging Resume point: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/set-resume-point | Time: 76
+2025-03-07 11:08:46,440 INFO o.a.j.e.J.Logging Resume point: ✅ Resume Point xử lý thành công!
+2025-03-07 11:08:46,443 INFO o.a.j.m.J.JSR223 PreProcessor: -----[MOCK] Hyperverge OCR-----
+2025-03-07 11:08:46,877 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- [MOCK] HYPERVEGER OCR ----------
+2025-03-07 11:08:46,877 INFO o.a.j.e.J.JSR223 PostProcessor: https://wiremock.sit.galaxyfinx.in/__admin/mappings/825cace7-8678-41c3-bc8a-7303c5260bd6 | Time: 426
+2025-03-07 11:08:46,877 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ idHyperVergeOCR Extracted: 825cace7-8678-41c3-bc8a-7303c5260bd6
+2025-03-07 11:08:46,955 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- [MOCK] HDB BIOMETRIC ----------
+2025-03-07 11:08:46,955 INFO o.a.j.e.J.JSR223 PostProcessor: https://wiremock.sit.galaxyfinx.in/__admin/mappings/bf3e65fb-4fc0-4cea-bccc-d4c906744ea3 | Time: 71
+2025-03-07 11:08:46,955 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ HDB Biometric Mock ID Extracted: bf3e65fb-4fc0-4cea-bccc-d4c906744ea3
+2025-03-07 11:08:50,468 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- PRECHECK KYC ----------
+2025-03-07 11:08:50,469 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/pre-check-kyc | Time: 3495
+2025-03-07 11:08:50,469 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Precheck KYC thành công! Response: [status:[code:SUCCESS, message:null, errors:null], payload:[nfcStatus:ERROR, nfcInfo:[number:001098034130, issueDate:03-07-2023, expiredDate:20-10-2038, issuePlace:null, fullName:Hoàng Chí Công, dob:20-10-1998, hometown:Xuy Xá, Mỹ Đức, Hà Nội, address:Đội 9, Thôn Nghĩa, Xuy Xá, Mỹ Đức, Hà Nội, gender:M, nationality:Việt Nam, oldId:017446254, religion:Công giáo, features:Nốt ruồi C: 2cm dưới sau mép phải]], meta:[requestId:e3eee61a-0717-488a-8418-a196d965db51, nextCursor:null], success:true]
+2025-03-07 11:08:50,575 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- SUBMIT INFO ----------
+2025-03-07 11:08:50,575 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/kyc/submit-info | Time: 88
+2025-03-07 11:08:50,575 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Submit Info thành công! Response: [status:[code:SUCCESS, message:null, errors:null], payload:N_A, meta:[requestId:5138f341-49d5-4b07-87d8-d54c134477dd, nextCursor:null], success:true]
+2025-03-07 11:08:53,684 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- CREATE PASSWORD ----------
+2025-03-07 11:08:53,684 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v4/onboarding/accountCreation/credential | Time: 3089
+2025-03-07 11:08:53,684 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Tạo mật khẩu thành công! CIF Number: 44356416
+2025-03-07 11:08:57,234 INFO o.a.j.e.J.JSR223 PostProcessor:  
+ ---------- TRIGGER FACEDEDUP ----------
+2025-03-07 11:08:57,234 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/kyc/check-face-dedup | Time: 3540
+2025-03-07 11:08:57,234 INFO o.a.j.e.J.JSR223 PostProcessor: ✅ Facededup Trigger thành công! Response: [status:[code:SUCCESS, message:null, errors:null], payload:null, meta:[requestId:d501ac48-4470-48c3-94e4-b1aebd5064d9, nextCursor:null], success:true]
+2025-03-07 11:08:57,322 INFO o.a.j.e.J.JSR223 PostProcessor: 
+---------- CHECKING KYC STATUS ----------
+2025-03-07 11:08:57,322 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/kyc/kyc-status-with-details | Time: 59ms
+2025-03-07 11:08:57,323 INFO o.a.j.e.J.JSR223 PostProcessor:  Payload: [kycStatus:N_A, needsReviewCheck:[], declinedCheck:[]]
+2025-03-07 11:08:57,323 WARN o.a.j.e.J.JSR223 PostProcessor: ️ KYC Status: N_A - Continuing review process.
+2025-03-07 11:08:57,332 INFO o.a.j.e.J.JSR223 PostProcessor:  KYC Check Attempt: 1
+2025-03-07 11:08:59,654 INFO o.a.j.e.J.JSR223 PostProcessor: 
+---------- CHECKING KYC STATUS ----------
+2025-03-07 11:08:59,654 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/kyc/kyc-status-with-details | Time: 78ms
+2025-03-07 11:08:59,654 INFO o.a.j.e.J.JSR223 PostProcessor:  Payload: [kycStatus:N_A, needsReviewCheck:[], declinedCheck:[]]
+2025-03-07 11:08:59,654 WARN o.a.j.e.J.JSR223 PostProcessor: ️ KYC Status: N_A - Continuing review process.
+2025-03-07 11:08:59,654 INFO o.a.j.e.J.JSR223 PostProcessor:  KYC Check Attempt: 2
+2025-03-07 11:09:01,975 INFO o.a.j.e.J.JSR223 PostProcessor: 
+---------- CHECKING KYC STATUS ----------
+2025-03-07 11:09:01,975 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/kyc/kyc-status-with-details | Time: 91ms
+2025-03-07 11:09:01,976 INFO o.a.j.e.J.JSR223 PostProcessor:  Payload: [kycStatus:N_A, needsReviewCheck:[], declinedCheck:[]]
+2025-03-07 11:09:01,976 WARN o.a.j.e.J.JSR223 PostProcessor: ️ KYC Status: N_A - Continuing review process.
+2025-03-07 11:09:01,976 INFO o.a.j.e.J.JSR223 PostProcessor:  KYC Check Attempt: 3
+2025-03-07 11:09:04,270 INFO o.a.j.e.J.JSR223 PostProcessor: 
+---------- CHECKING KYC STATUS ----------
+2025-03-07 11:09:04,271 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/kyc/kyc-status-with-details | Time: 63ms
+2025-03-07 11:09:04,271 INFO o.a.j.e.J.JSR223 PostProcessor:  Payload: [kycStatus:N_A, needsReviewCheck:[], declinedCheck:[]]
+2025-03-07 11:09:04,271 WARN o.a.j.e.J.JSR223 PostProcessor: ️ KYC Status: N_A - Continuing review process.
+2025-03-07 11:09:04,271 INFO o.a.j.e.J.JSR223 PostProcessor:  KYC Check Attempt: 4
+2025-03-07 11:09:06,672 INFO o.a.j.e.J.JSR223 PostProcessor: 
+---------- CHECKING KYC STATUS ----------
+2025-03-07 11:09:06,673 INFO o.a.j.e.J.JSR223 PostProcessor: https://ingress-int.uat.galaxyfinx.in/v3/onboarding/kyc/kyc-status-with-details | Time: 168ms
+2025-03-07 11:09:06,673 INFO o.a.j.e.J.JSR223 PostProcessor:  Payload: [kycStatus:N_A, needsReviewCheck:[], declinedCheck:[]]
+2025-03-07 11:09:06,673 WARN o.a.j.e.J.JSR223 PostProcessor: ️ KYC Status: N_A - Continuing review process.
+2025-03-07 11:09:06,674 INFO o.a.j.e.J.JSR223 PostProcessor:  KYC Check Attempt: 5
+2025-03-07 11:09:07,002 INFO o.a.j.g.a.Start: Stopping test
+2025-03-07 11:09:07,018 INFO o.a.j.t.JMeterThread: Stopping: Onboarding 1-1
+2025-03-07 11:09:07,019 ERROR o.a.j.e.JSR223PostProcessor: Problem in JSR223 script, JSR223 PostProcessor
+javax.script.ScriptException: java.lang.InterruptedException: sleep interrupted
+	at org.codehaus.groovy.jsr223.GroovyScriptEngineImpl.eval(GroovyScriptEngineImpl.java:320) ~[groovy-jsr223-3.0.20.jar:3.0.20]
+	at org.codehaus.groovy.jsr223.GroovyCompiledScript.eval(GroovyCompiledScript.java:71) ~[groovy-jsr223-3.0.20.jar:3.0.20]
+	at java.scripting/javax.script.CompiledScript.eval(CompiledScript.java:93) ~[java.scripting:?]
+	at org.apache.jmeter.util.JSR223TestElement.processFileOrScript(JSR223TestElement.java:230) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.extractor.JSR223PostProcessor.process(JSR223PostProcessor.java:45) ~[ApacheJMeter_components.jar:5.6.3]
+	at org.apache.jmeter.threads.JMeterThread.runPostProcessors(JMeterThread.java:973) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:585) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:501) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:268) ~[ApacheJMeter_core.jar:5.6.3]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep0(Native Method) ~[?:?]
+	at java.base/java.lang.Thread.sleep(Thread.java:509) [?:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107) ~[groovy-3.0.20.jar:3.0.20]
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323) ~[groovy-3.0.20.jar:3.0.20]
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite$StaticMetaMethodSiteNoUnwrap.invoke(StaticMetaMethodSite.java:131) ~[groovy-3.0.20.jar:3.0.20]
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.call(StaticMetaMethodSite.java:89) ~[groovy-3.0.20.jar:3.0.20]
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139) ~[groovy-3.0.20.jar:3.0.20]
+	at Script62.run(Script62.groovy:78) ~[?:?]
+	at org.codehaus.groovy.jsr223.GroovyScriptEngineImpl.eval(GroovyScriptEngineImpl.java:317) ~[groovy-jsr223-3.0.20.jar:3.0.20]
+	... 9 more
+2025-03-07 11:09:07,024 INFO o.a.j.t.JMeterThread: Thread finished: Onboarding 1-1
+2025-03-07 11:09:07,024 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-03-07 11:09:07,025 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
