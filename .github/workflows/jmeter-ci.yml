@@ -1,7 +1,7 @@
 name: JMeter CI Test (Manual)
 
 on:
-  workflow_dispatch:  # Chạy test thủ công từ GitHub Actions
+  workflow_dispatch:
 
 jobs:
   jmeter-test:
@@ -11,7 +11,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # ⚠️ Thêm dòng này để tránh lỗi unset Git credentials
+          persist-credentials: false  # ⚠️ Tránh lỗi credential khi cleanup
+          fetch-depth: 0  # ⚠️ Lấy toàn bộ lịch sử commit tránh lỗi Git
+
+      - name: Set Git Safe Directory
+        run: git config --global --add safe.directory '*'
 
       - name: Install JMeter
         run: |
