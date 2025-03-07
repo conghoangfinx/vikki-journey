@@ -1,7 +1,7 @@
-name: JMeter CI Test
+name: JMeter CI Test (Manual)
 
 on:
-    workflow_dispatch:  # Chỉ chạy test khi bấm nút "Run Workflow" trên GitHub
+  workflow_dispatch:  # Chạy test thủ công từ GitHub Actions
 
 jobs:
   jmeter-test:
@@ -24,23 +24,13 @@ jobs:
           jmeter -n -t backup-vikki-journey.jmx -l results.jtl -e -o report
 
       - name: Upload JMeter Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Fix lỗi dùng v4 thay vì v3
         with:
           name: jmeter-report
           path: report/
 
-      - name: Notify Slack
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "✅ JMeter Test Completed! Check results at https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-            "attachments": [
-              {
-                "text": "Results Summary",
-                "fields": [
-                  { "title": "Test Plan", "value": "backup-vikki-journey.jmx", "short": true },
-                  { "title": "Status", "value": "Completed", "short": true }
-                ]
-              }
-            ]
-          }' ${{ secrets.SLACK_WEBHOOK_URL }}
-
+      - name: Upload JMeter Raw Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-results
+          path: results.jtl
