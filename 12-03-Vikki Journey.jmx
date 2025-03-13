@@ -10,7 +10,7 @@
       <stringProp name="TestPlan.user_define_classpath">./lib</stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - UAT">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -52,19 +52,20 @@
           </elementProp>
           <elementProp name="phoneNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">phoneNumberOnboard</stringProp>
-            <stringProp name="Argument.value">990010130</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc"></stringProp>
+            <stringProp name="Argument.desc">990010199</stringProp>
           </elementProp>
           <elementProp name="idNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">idNumberOnboard</stringProp>
-            <stringProp name="Argument.value">001098034130</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">001098034158</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - SIT" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -106,19 +107,24 @@
           </elementProp>
           <elementProp name="phoneNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">phoneNumberOnboard</stringProp>
-            <stringProp name="Argument.value">990010199</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc"></stringProp>
           </elementProp>
           <elementProp name="idNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">idNumberOnboard</stringProp>
-            <stringProp name="Argument.value">001098034158</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="idHyperVergeOCRNew" elementType="Argument">
+            <stringProp name="Argument.name">idHyperVergeOCRNew</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
         <stringProp name="HTTPSampler.domain">${host}</stringProp>
         <stringProp name="HTTPSampler.port">443</stringProp>
         <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -128,9 +134,9 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding" enabled="true">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding">
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,1)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(rampups, 30)}</stringProp>
         <stringProp name="ThreadGroup.duration">${__P(durations,600)}</stringProp>
         <longProp name="ThreadGroup.delay">5</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
@@ -141,7 +147,51 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="0. Clear Card" enabled="true">
+        <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="false">
+          <stringProp name="ConstantTimer.delay">200</stringProp>
+          <stringProp name="RandomTimer.range">500</stringProp>
+        </UniformRandomTimer>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.text.SimpleDateFormat
+import java.util.Random
+
+//log.info(&quot;\n---------- GENERATE PHONE AND ID NUMBER ----------&quot;)
+
+// ✅ Lấy biến __threadNum, đảm bảo giá trị không null và kiểu số nguyên
+def threadNum = ${__threadNum}  // Tránh null, đảm bảo số nguyên
+def lastDigitThead = threadNum % 10  // Lấy số cuối cùng của threadNum
+
+// ✅ Lấy thời gian hiện tại với các định dạng mong muốn
+def currentDate = new Date()
+def dateFormatddMMyyHHmm = new SimpleDateFormat(&quot;ddMMyyHHmm&quot;)  // Định dạng ddMMyyHHmm
+def dateFormatHHmm = new SimpleDateFormat(&quot;HHmm&quot;)  // Định dạng HHmm (giờ, phút)
+def formattedDate = dateFormatddMMyyHHmm.format(currentDate)  // Ngày tháng năm giờ phút
+def formattedTime = dateFormatHHmm.format(currentDate)  // Giờ phút hiện tại
+
+// ✅ Sinh ra 2 số ngẫu nhiên cho idNumberOnboard
+Random rand = new Random()
+def randomPart = String.format(&quot;%02d&quot;, rand.nextInt(100))  // 2 số ngẫu nhiên từ 00 - 99
+
+// ✅ Kiểm tra và tạo số điện thoại nếu chưa có giá trị
+def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;9900&quot; + lastDigitThead + formattedTime
+//def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;9900&quot; + threadNum + formattedTime
+
+// ✅ Kiểm tra và tạo số căn cước nếu chưa có giá trị
+def idNumberOnboard = vars.get(&quot;idNumberOnboard&quot;) ?: String.format(&quot;%02d&quot;, threadNum) + formattedDate
+
+// ✅ Gán lại giá trị vào biến JMeter
+vars.put(&quot;phoneNumberOnboard&quot;, phoneNumberOnboard)
+vars.put(&quot;idNumberOnboard&quot;, idNumberOnboard)
+
+</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="0. Clear Card">
           <stringProp name="IfController.condition">true</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -204,7 +254,7 @@ def responseTime = prev.getTime(); // Response time in milliseconds
 def requestUrl = prev.getURL().toString(); // Lấy URL của request
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 // ✅ Lấy response JSON từ request trước đó
 def response = prev.getResponseDataAsString().trim();
@@ -304,7 +354,7 @@ def responseTime = prev.getTime(); // Response time in milliseconds
 def requestUrl = prev.getURL().toString(); // Lấy URL của request
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 // ✅ Lấy response JSON từ request trước đó
 def response = prev.getResponseDataAsString().trim();
@@ -380,7 +430,7 @@ if (jsonResponse?.way4Clients?.size() &gt; 0) {
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Check ID Number Prospect" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 NID - Get Prospect" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v2/prospect/internal/lookup</stringProp>
@@ -420,51 +470,159 @@ if (jsonResponse?.way4Clients?.size() &gt; 0) {
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">import groovy.json.JsonSlurper;
+              <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CHECK ID NUMBER PROSPECT ----------&quot;);
+log.info(&quot;\n\n=============== !!! CHECK AND CLEAR ACCOUNT !!! ===============\n\n&quot;);
+log.info(&quot;\n 1.1 ---------- NID - GET PROSPECT ----------&quot;)
 
 // ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
-def response = prev.getResponseDataAsString().trim();
+def response = prev.getResponseDataAsString().trim()
+def responseCode = prev.getResponseCode().toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản về request
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
 
-
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra response code và log lỗi nếu không phải 200
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
 // ✅ Parse JSON an toàn
-def jsonResponse;
+def jsonResponse
 try {
-    jsonResponse = new JsonSlurper().parseText(response);
+    jsonResponse = new JsonSlurper().parseText(response)
 } catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage(), e);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ Error parsing JSON: ${e.message}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
-// ✅ Trích xuất phoneNumber từ payload
-def phoneNumberOldFromIdNumberProspect = jsonResponse?.payload?.phoneNumber ?: null
+// ✅ Trích xuất và log thông tin cần thiết
+def phoneNumber = jsonResponse?.payload?.phoneNumber
+def prospectId = jsonResponse?.payload?.idCardFront?.imageName?.split(&apos;_&apos;)?.first()
 
-if (phoneNumberOldFromIdNumberProspect) {
-    vars.put(&quot;phoneNumberOldFromIdNumberProspect&quot;, phoneNumberOldFromIdNumberProspect.toString());
-    log.info(&quot;✅ Prospect phone number found: &quot; + phoneNumberOldFromIdNumberProspect);
+// Log Prospect ID nếu tìm thấy
+if (prospectId) {
+    vars.put(&quot;prospectIdOfNID&quot;, prospectId)
+//    log.info(&quot;✅ ProspectID of NID: ${prospectId}&quot;)
 } else {
-    log.info(&quot;✅ ID Number prospect not found.&quot;);
-}</stringProp>
+    log.warn(&quot;✅ Prospect ID not found!&quot;)
+}
+
+// Log phoneNumber nếu tìm thấy
+if (phoneNumber) {
+    vars.put(&quot;phoneNumberOfNIDOld&quot;, phoneNumber.toString())
+    log.info(&quot;✅ Phone of NID: ${phoneNumber}&quot;)
+} else {
+    log.warn(&quot;✅ Phone number not found in NID prospect&quot;)
+}
+</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 Check ID Number Party" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.2 NID - Clear Prospect" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(
+    def prospectIdOfNID = vars.get(&quot;prospectIdOfNID&quot;)
+    if (prospectIdOfNID != null) {
+        return true
+    } else {
+        return false
+    }
+)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Clear Prospect of NID" enabled="true">
+              <stringProp name="HTTPSampler.path">/v2/onboarding/admin/prospect/${prospectIdOfNID}/clean-prospect</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;removeAllFaces&quot;: true&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">X-KEY</stringProp>
+                    <stringProp name="Header.value">${adminKey}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">secret-key</stringProp>
+                    <stringProp name="Header.value">izyMW6MEhhjN0KQfjyb11DwM9XuJyYU6</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">import groovy.json.JsonSlurper
+
+log.info(&quot;\n 1.2 ---------- NID - CLEAR PROSPECT ----------&quot;)
+
+// ✅ Lấy thông tin từ request trước đó
+def response = prev.getResponseDataAsString().trim()
+def responseCode = prev.getResponseCode().toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
+
+// ✅ Log thông tin cơ bản
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
+
+// ✅ Kiểm tra và log nếu response code là 400 (Prospect not found)
+if (responseCode == &quot;400&quot;) {
+    def jsonResponse = new JsonSlurper().parseText(response)
+    log.warn(&quot;❌ Prospect of NID not found!&quot;)
+    return false // Dừng nếu không tìm thấy prospect
+}
+
+// ✅ Kiểm tra và log nếu response code là 200 (Clear Success)
+if (responseCode == &quot;200&quot;) {
+    def jsonResponse = new JsonSlurper().parseText(response)
+    if (jsonResponse.success == true) {
+        log.info(&quot;✅ Prospect of NID has been successfully cleared!&quot;)
+    } else {
+        log.warn(&quot;❌ Clear Prospect of NID failed! Response Message: ${jsonResponse.status.message}&quot;)
+    }
+    return true // Thành công
+}
+
+// ✅ Kiểm tra và log các lỗi khác (500, 502, etc.)
+if (responseCode != &quot;200&quot; &amp;&amp; responseCode != &quot;400&quot;) {
+    log.error(&quot;❌ Unexpected Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return false // Dừng nếu có lỗi khác
+}
+
+return true // Đảm bảo trả về true nếu không có lỗi nào
+</stringProp>
+              </JSR223PostProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 NID - Get CIF" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/party-service/v2/admin/parties/lookup</stringProp>
@@ -541,69 +699,64 @@ if (phoneNumberOldFromIdNumberProspect) {
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">import groovy.json.JsonSlurper;
+              <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CHECK ID NUMBER PARTY ----------&quot;);
+log.info(&quot;\n 1.3 ---------- NID - GET CIF ----------&quot;)
 
-// ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
-def response = prev.getResponseDataAsString().trim();
+// ✅ Lấy thông tin từ response trước đó
+def response = prev.getResponseDataAsString()?.trim() // Kiểm tra null tránh lỗi
+def responseCode = prev.getResponseCode()?.toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
 
-
-// ✅ Nếu response code là 400, đánh dấu request thành công và log cảnh báo
+// ✅ Kiểm tra nếu response code là 400 (Not Found)
 if (responseCode == &quot;400&quot;) {
-    prev.setResponseOK(); // Đánh dấu request thành công
-    log.warn(&quot;⚠️ Not Found ID Number Party (Response 400).&quot;);
-    return;
+    prev.setResponseOK() // Đánh dấu request thành công dù không tìm thấy dữ liệu
+    log.warn(&quot;✅ Not Found ID Number Party.&quot;)
+    return
 }
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra và log nếu response code khác 200 (lỗi ngoài mong đợi)
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
 // ✅ Parse JSON an toàn
-def jsonResponse;
+def jsonResponse
 try {
-    jsonResponse = new JsonSlurper().parseText(response);
+    jsonResponse = new JsonSlurper().parseText(response) // Parse response JSON
 } catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage(), e);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ JSON Parsing Error: ${e.message}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
-// ✅ Trích xuất trạng thái tài khoản và CIF từ payload
-try {
-    def statusAccount = jsonResponse?.payload?.status ?: &quot;UNKNOWN&quot;;
-    vars.put(&quot;statusAccount&quot;, statusAccount);
-    log.info(&quot;✅ Status Account: &quot; + statusAccount);
+// ✅ Trích xuất thông tin tài khoản
+def statusAccount = jsonResponse?.payload?.status ?: &quot;UNKNOWN&quot; // Mặc định &quot;UNKNOWN&quot;
+def cifNumberOfNID = jsonResponse?.payload?.cif ?: &quot;N/A&quot; // Mặc định &quot;N/A&quot;
 
-    def cifNumberOld = jsonResponse?.payload?.cif ?: &quot;N/A&quot;;
-    vars.put(&quot;cifNumberOld&quot;, cifNumberOld);
-    log.info(&quot;✅ CIF Account Old: &quot; + cifNumberOld);
+// ✅ Lưu giá trị vào biến JMeter
+vars.put(&quot;cifNumberOfNID&quot;, cifNumberOfNID) 
+vars.put(&quot;statusAccount&quot;, statusAccount)
 
-    log.info(&quot;✅ ID Number Party found successfully!&quot;);
-} catch (Exception e) {
-    log.warn(&quot;⚠️ Not Found ID Number Party: &quot; + e.getMessage());
-}</stringProp>
+
+// ✅ Log thông tin tài khoản
+log.info(&quot;✅ CIF of NID: ${cifNumberOfNID} | Status: ${statusAccount}&quot;)</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.4 Check Status Account from ID Number  Party" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.4 NID - Clear CIF" enabled="true">
             <stringProp name="IfController.condition">${__groovy(vars.get(&apos;statusAccount&apos;) == &apos;Active&apos;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4.1 Clear Party from ID Number  Party" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 Clear CIF of NID" enabled="true">
               <stringProp name="HTTPSampler.path">/api/party-service/v2/admin/parties/deactivate-customer</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">PATCH</stringProp>
@@ -614,7 +767,7 @@ try {
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">{&#xd;
-    &quot;customerCifNumber&quot;: &quot;${cifNumberOld}&quot;&#xd;
+    &quot;customerCifNumber&quot;: &quot;${cifNumberOfNID}&quot;&#xd;
 }</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
@@ -644,39 +797,40 @@ try {
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">import groovy.json.JsonSlurper;
+                <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CLEAR PARTY FROM ID NUMBER PARTY ----------&quot;);
+log.info(&quot;\n 1.4 ---------- NID - CLEAR CIF ----------&quot;)
 
-// ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
+// ✅ Lấy thông tin từ response trước đó
+def responseCode = prev.getResponseCode()?.toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
+def requestUrl = prev.getURL().toString()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;${requestUrl} | Response Time: ${responseTime}ms&quot;)
 
-// ✅ Nếu response code là 400, đánh dấu request thành công và log cảnh báo
+// ✅ Kiểm tra nếu response code là 400 (Not Found)
 if (responseCode == &quot;400&quot;) {
-    prev.setResponseOK(); // Đánh dấu request thành công
-    log.warn(&quot;⚠️ Not Found ID Number Party (Response 400).&quot;);
-    return;
+    prev.setResponseOK() // Đánh dấu request thành công dù không tìm thấy dữ liệu
+    log.warn(&quot;❌️ Not Found ID Number Party.&quot;)
+    return
 }
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra và log nếu response code khác 200 (lỗi ngoài mong đợi)
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    return
 }
 
-// ✅ Nếu API thành công, chỉ log kết quả mà không cần hiển thị response đầy đủ
-log.info(&quot;✅ Clear cifNumber of ID Number in Party Success!&quot;);</stringProp>
+// ✅ Nếu API thành công, log xác nhận đã xoá CIF thành công
+log.info(&quot;✅ Clear cifNumber of ID Number in Party Success!&quot;)
+</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.5 Check Phone Number Prospect" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.5 Phone - Get Prospect" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v2/prospect</stringProp>
@@ -719,65 +873,61 @@ log.info(&quot;✅ Clear cifNumber of ID Number in Party Success!&quot;);</strin
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">import groovy.json.JsonSlurper;
+              <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CHECK PHONE NUMBER PROSPECT ----------&quot;);
+log.info(&quot;\n 1.5 ---------- PHONE - GET PROSPECT ----------&quot;)
 
-// ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
-def response = prev.getResponseDataAsString().trim();
+// ✅ Lấy thông tin từ response trước đó
+def response = prev.getResponseDataAsString()?.trim()
+def responseCode = prev.getResponseCode()?.toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
 
-
-// ✅ Nếu response code là 400, đánh dấu request thành công và log cảnh báo
+// ✅ Kiểm tra nếu response code là 400 (Không tìm thấy prospect)
 if (responseCode == &quot;400&quot;) {
-    prev.setResponseOK(); // Đánh dấu request thành công
-    log.warn(&quot;⚠️ Not Found Prospect from Phone Number Prospect (Response 400).&quot;);
-    return;
+    prev.setResponseOK() // Đánh dấu request thành công dù không tìm thấy dữ liệu
+    log.warn(&quot;✅ Not Found Prospect from Phone Number.&quot;)
+    return
 }
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra và log nếu response code khác 200 (lỗi ngoài mong đợi)
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
 // ✅ Parse JSON an toàn
-def jsonResponse;
+def jsonResponse
 try {
-    jsonResponse = new JsonSlurper().parseText(response);
+    jsonResponse = new JsonSlurper().parseText(response)
 } catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage(), e);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ JSON Parsing Error: ${e.message}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
 // ✅ Trích xuất prospectId từ payload
-def prospectIdPhoneNumberProspect = jsonResponse?.payload?.prospectId ?: null;
+def prospectIdPhone = jsonResponse?.payload?.prospectId ?: null
 
-if (prospectIdPhoneNumberProspect) {
-    vars.put(&quot;prospectIdPhoneNumberProspect&quot;, prospectIdPhoneNumberProspect.toString());
-    log.info(&quot;✅ Prospect ID extracted from phone number: &quot; + prospectIdPhoneNumberProspect);
-} else {
-    log.warn(&quot;✅️ Not Found Prospect from Phone Number Prospect.&quot;);
+if (prospectIdPhone) {
+    vars.put(&quot;prospectIdOfPhone&quot;, prospectIdPhone.toString())
+    log.info(&quot;✅ ProspectID of Phone: ${prospectIdPhone}&quot;)
 }</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.6 Check Prospect from Phone Number and clear" enabled="true">
-            <stringProp name="IfController.condition">${__groovy(vars.get(&quot;prospectIdPhoneNumberProspect&quot;) != null )}</stringProp>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.6 Phone - Clear Prospect" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&quot;prospectIdOfPhone&quot;) != null )}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.6.1 Clear Prospect  from Phone Number Prospect" enabled="true">
-              <stringProp name="HTTPSampler.path">/v2/onboarding/admin/prospect/${prospectIdPhoneNumberProspect}/clean-prospect</stringProp>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname=" 1.6 Clear Prospect of Phone" enabled="true">
+              <stringProp name="HTTPSampler.path">/v2/onboarding/admin/prospect/${prospectIdOfPhone}/clean-prospect</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -817,40 +967,39 @@ if (prospectIdPhoneNumberProspect) {
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">import groovy.json.JsonSlurper;
+                <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CLEAR PROSPECT FROM PHONE NUMBER PROSPECT ----------&quot;);
+log.info(&quot;\n 1.6 ---------- CLEAR PROSPECT OF PHONE ----------&quot;)
 
-// ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
+// ✅ Lấy thông tin từ response trước đó
+def response = prev.getResponseDataAsString()?.trim()
+def responseCode = prev.getResponseCode()?.toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
 
-
-// ✅ Nếu response code là 400, đánh dấu request thành công và log cảnh báo
+// ✅ Kiểm tra nếu response code là 400 (Không tìm thấy prospect)
 if (responseCode == &quot;400&quot;) {
-    prev.setResponseOK(); // Đánh dấu request thành công
-    log.warn(&quot;⚠️ Not Found Prospect from Phone Number Prospect (Response 400).&quot;);
-    return;
+    prev.setResponseOK() // Đánh dấu request thành công dù không tìm thấy dữ liệu
+    log.warn(&quot;⚠️ Not Found Prospect from Phone Number (Response 400).&quot;)
+    return
 }
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra và log nếu response code khác 200 (lỗi ngoài mong đợi)
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    return
 }
 
-// ✅ Nếu API thành công, chỉ log kết quả mà không cần hiển thị response đầy đủ
-log.info(&quot;✅ Clear Prospect from Phone Number Prospect Success!&quot;);</stringProp>
+// ✅ Nếu API thành công, log kết quả
+log.info(&quot;✅ Clear Prospect of Phone Success!&quot;)</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.7 Check Phone Number Party" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.7 Phone - Get CIF" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/party-service/v2/admin/parties/lookup</stringProp>
@@ -927,69 +1076,64 @@ log.info(&quot;✅ Clear Prospect from Phone Number Prospect Success!&quot;);</s
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">import groovy.json.JsonSlurper;
+              <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CHECK PHONE NUMBER PARTY ----------&quot;);
+log.info(&quot;\n 1.7 ---------- PHONE - GET CIF ----------&quot;)
 
-// ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
-def response = prev.getResponseDataAsString().trim();
+// ✅ Lấy thông tin từ response trước đó
+def response = prev.getResponseDataAsString()?.trim() // Kiểm tra null tránh lỗi
+def responseCode = prev.getResponseCode()?.toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
 
-
-// ✅ Nếu response code là 400, đánh dấu request thành công và log cảnh báo
+// ✅ Kiểm tra nếu response code là 400 (Không tìm thấy Phone Number Party)
 if (responseCode == &quot;400&quot;) {
-    prev.setResponseOK(); // Đánh dấu request thành công
-    log.warn(&quot;⚠️ Not Found Phone Number Party (Response 400).&quot;);
-    return;
+    prev.setResponseOK() // Đánh dấu request thành công dù không tìm thấy dữ liệu
+    log.warn(&quot;✅ Not Found Phone Number Party.&quot;)
+    return
 }
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra và log nếu response code khác 200 (lỗi ngoài mong đợi)
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
 // ✅ Parse JSON an toàn
-def jsonResponse;
+def jsonResponse
 try {
-    jsonResponse = new JsonSlurper().parseText(response);
+    jsonResponse = new JsonSlurper().parseText(response) // Parse response JSON
 } catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage(), e);
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
+    log.error(&quot;❌ JSON Parsing Error: ${e.message}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
-// ✅ Trích xuất trạng thái tài khoản và CIF từ payload
-try {
-    def statusAccount = jsonResponse?.payload?.status ?: &quot;UNKNOWN&quot;;
-    vars.put(&quot;statusAccount&quot;, statusAccount);
-    log.info(&quot;✅ Status Account: &quot; + statusAccount);
+// ✅ Trích xuất thông tin tài khoản
+def statusAccount = jsonResponse?.payload?.status ?: &quot;UNKNOWN&quot; // Mặc định &quot;UNKNOWN&quot;
+def cifNumberOld = jsonResponse?.payload?.cif ?: &quot;N/A&quot; // Mặc định &quot;N/A&quot;
 
-    def cifNumberOld = jsonResponse?.payload?.cif ?: &quot;N/A&quot;;
-    vars.put(&quot;cifNumberOld&quot;, cifNumberOld);
-    log.info(&quot;✅ CIF Account Old: &quot; + cifNumberOld);
+// ✅ Lưu giá trị vào biến JMeter
+vars.put(&quot;statusAccount&quot;, statusAccount)
+vars.put(&quot;cifNumberOld&quot;, cifNumberOld)
 
-    log.info(&quot;✅ Phone Number Party found successfully!&quot;);
-} catch (Exception e) {
-    log.warn(&quot;⚠️ Not Found Phone Number Party: &quot; + e.getMessage());
-}</stringProp>
+// ✅ Log thông tin tài khoản
+log.info(&quot;✅ CIF Account Old: ${cifNumberOld} | Status: ${statusAccount}&quot;)
+</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.8 Check Status Account from Phone Number  Party" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.8 Phone - Clear CIF" enabled="true">
             <stringProp name="IfController.condition">${__groovy(vars.get(&apos;statusAccount&apos;) == &apos;Active&apos;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.8.1 Clear Party from Phone Number Party" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.8 Clear CIF of Phone" enabled="true">
               <stringProp name="HTTPSampler.path">/api/party-service/v2/admin/parties/deactivate-customer</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">PATCH</stringProp>
@@ -1030,35 +1174,36 @@ try {
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">import groovy.json.JsonSlurper;
+                <stringProp name="script">import groovy.json.JsonSlurper
 
-log.info(&quot; \n ---------- CLEAR PARTY FROM PHONE NUMBER PARTY ----------&quot;);
+log.info(&quot;\n 1.8 ---------- PHONE - CLEAR CIF ----------&quot;)
 
 // ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
+def response = prev.getResponseDataAsString()?.trim() // Kiểm tra null tránh lỗi
+def responseCode = prev.getResponseCode()?.toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
 
-
-// ✅ Nếu response code là 400, đánh dấu request thành công và log cảnh báo
+// ✅ Kiểm tra nếu response code là 400 (Không tìm thấy Phone Number Party)
 if (responseCode == &quot;400&quot;) {
-    prev.setResponseOK(); // Đánh dấu request thành công
-    log.warn(&quot;⚠️ Not Found Phone Number Party (Response 400).&quot;);
-    return;
+    prev.setResponseOK()  // Đánh dấu request thành công dù không tìm thấy dữ liệu
+    log.warn(&quot;⚠️ Not Found Phone Number Party (Response 400).&quot;)
+    return  // Dừng lại nếu không tìm thấy Phone Number Party
 }
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Kiểm tra và log nếu response code khác 200 (lỗi ngoài mong đợi)
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    return;
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return  // Dừng nếu có lỗi ngoài mong đợi
 }
 
-// ✅ Nếu API thành công, chỉ log kết quả mà không cần hiển thị response đầy đủ
-log.info(&quot;✅ Clear cifNumber of Phone Number in Party Success!&quot;);</stringProp>
+// ✅ Nếu API thành công, log kết quả mà không cần hiển thị response đầy đủ
+log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
+</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
@@ -1154,7 +1299,9 @@ log.info(&quot;✅ Clear cifNumber of Phone Number in Party Success!&quot;);</st
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- REGISTER PHONE ----------&quot;);
+log.info(&quot;\n\n=============== !!! START ONBOARD NEW ACCOUNT !!! ===============\n\n&quot;);
+
+log.info(&quot; \n 2.1 ---------- REGISTER PHONE ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -1164,7 +1311,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
 if (responseCode != &quot;200&quot;) {
@@ -1189,7 +1336,7 @@ def onboardingId = jsonResponse?.payload?.onboardingId ?: null
 // ✅ Kiểm tra Onboarding ID
 if (onboardingId) {
     vars.put(&quot;onboardingId&quot;, onboardingId);
-    log.info(&quot;✅ Onboarding thành công! ID: &quot; + onboardingId);
+    log.info(&quot;✅ Onboard ID: &quot; + onboardingId);
 } else {
     log.error(&quot;❌ Onboarding ID not found!&quot;);
 }</stringProp>
@@ -1202,7 +1349,13 @@ if (onboardingId) {
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">def verCode = UUID.randomUUID().toString()
 vars.put(&quot;deviceId&quot;, verCode)
-log.info(&quot; \n ------------&gt; Device ID: &quot; + verCode)
+
+log.info(&quot;\n---------- GENERATE DATA ----------\n&quot;)
+
+// ✅ Log thông tin số điện thoại và số căn cước đã tạo (Fix lỗi)
+log.info(&quot;Generated Phone Number: +84${phoneNumberOnboard}&quot;)
+log.info(&quot;Generated ID Number: ${idNumberOnboard}&quot;)
+log.info(&quot;Generated Device ID: ${verCode}&quot;)
 </stringProp>
             </JSR223PreProcessor>
             <hashTree/>
@@ -1272,7 +1425,7 @@ log.info(&quot; \n ------------&gt; Device ID: &quot; + verCode)
               <stringProp name="parameters"></stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- VERIFY OTP ----------&quot;);
+log.info(&quot; \n 2.2 ---------- VERIFY OTP ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -1282,7 +1435,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -1392,7 +1545,7 @@ if (accessToken) {
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- SET RESUME POINT ----------&quot;);
+log.info(&quot; \n 2.3 ---------- SET RESUME POINT ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -1402,7 +1555,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -1417,7 +1570,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1542,7 +1695,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
                                             &quot;idNumber&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
+                                                &quot;value&quot;: &quot;001098034158&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2004,7 +2157,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">log.info(&quot;-----[MOCK] Hyperverge OCR-----&quot;);
+              <stringProp name="script">//log.info(&quot;-----[MOCK] Hyperverge OCR-----&quot;);
 
 //def digits = Long.toString(${phoneNumberOnboard});
 //def CCCD = &quot;044091&quot; + digits[-6..-1]
@@ -2064,7 +2217,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- [MOCK] HYPERVEGER OCR ----------&quot;);
+log.info(&quot; \n 2.4 ---------- [MOCK] HYPERVEGER OCR - UPDATE ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2074,7 +2227,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -2107,7 +2260,697 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create">
+            <intProp name="HTTPSampler.concurrentPool">6</intProp>
+            <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">__admin/mappings</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-conghoang-qa&quot;,&#xd;
+    &quot;persistent&quot;: true,&#xd;
+    &quot;request&quot;: {&#xd;
+        &quot;urlPath&quot;: &quot;/hyperverge/v1/link-kyc/results&quot;,&#xd;
+        &quot;method&quot;: &quot;POST&quot;,&#xd;
+        &quot;bodyPatterns&quot;: [&#xd;
+            {&#xd;
+                &quot;matchesJsonPath&quot;: &quot;$[?(@.transactionId == &apos;${onboardingId}&apos;)]&quot;&#xd;
+            }&#xd;
+        ]&#xd;
+    },&#xd;
+    &quot;response&quot;: {&#xd;
+        &quot;status&quot;: 200,&#xd;
+        &quot;jsonBody&quot;: {&#xd;
+            &quot;status&quot;: &quot;success&quot;,&#xd;
+            &quot;statusCode&quot;: 200,&#xd;
+            &quot;metadata&quot;: {&#xd;
+                &quot;requestId&quot;: &quot;1741245835967-bd36928e-163a-4a1d-b726-596bbb137aa9&quot;,&#xd;
+                &quot;transactionId&quot;: &quot;1347105916872294400&quot;&#xd;
+            },&#xd;
+            &quot;result&quot;: {&#xd;
+                &quot;workflowDetails&quot;: {&#xd;
+                    &quot;workflowId&quot;: &quot;document_verification&quot;,&#xd;
+                    &quot;version&quot;: 1&#xd;
+                },&#xd;
+                &quot;applicationStatus&quot;: &quot;auto_approved&quot;,&#xd;
+                &quot;results&quot;: [&#xd;
+                    {&#xd;
+                        &quot;module&quot;: &quot;&quot;,&#xd;
+                        &quot;countrySelected&quot;: &quot;vnm&quot;,&#xd;
+                        &quot;documentSelected&quot;: &quot;id&quot;,&#xd;
+                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
+                        &quot;expectedDocumentSide&quot;: &quot;front&quot;,&#xd;
+                        &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-font.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-font.png&quot;,&#xd;
+                        &quot;apiResponse&quot;: {&#xd;
+                            &quot;status&quot;: &quot;success&quot;,&#xd;
+                            &quot;statusCode&quot;: 200,&#xd;
+                            &quot;metadata&quot;: {&#xd;
+                                &quot;requestId&quot;: &quot;1741245508225-f5875b2d-8bd3-4b20-ae37-d24fd49835bb&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1347105916872294400&quot;&#xd;
+                            },&#xd;
+                            &quot;result&quot;: {&#xd;
+                                &quot;details&quot;: [&#xd;
+                                    {&#xd;
+                                        &quot;idType&quot;: &quot;cccd_chip_front&quot;,&#xd;
+                                        &quot;fieldsExtracted&quot;: {&#xd;
+                                            &quot;firstName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;middleName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;lastName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;fullName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;HOÀNG CHÍ CÔNG&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;dateOfBirth&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;20-10-1998&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;dateOfIssue&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;dateOfExpiry&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;20-10-2038&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;countryCode&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;type&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;address&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;Đội 9, Thôn Nghĩa Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100,&#xd;
+                                                &quot;additionalInfo&quot;: &quot;thn ngha xuy x m c h ni&quot;,&#xd;
+                                                &quot;street&quot;: &quot;ĐỘI 9&quot;,&#xd;
+                                                &quot;houseNumber&quot;: &quot;&quot;,&#xd;
+                                                &quot;district&quot;: &quot;HUYỆN MỸ ĐỨC&quot;,&#xd;
+                                                &quot;province&quot;: &quot;THÀNH PHỐ HÀ NỘI&quot;,&#xd;
+                                                &quot;zipCode&quot;: &quot;&quot;&#xd;
+                                            },&#xd;
+                                            &quot;gender&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;M&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;idNumber&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;001098034158&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;placeOfBirth&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;placeOfIssue&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;yearOfBirth&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;1998&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;age&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;fatherName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;motherName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;husbandName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;spouseName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;nationality&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;Việt Nam&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;mrzString&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;&quot;,&#xd;
+                                                &quot;fullName&quot;: &quot;&quot;,&#xd;
+                                                &quot;gender&quot;: &quot;&quot;,&#xd;
+                                                &quot;dateOfBirth&quot;: &quot;&quot;,&#xd;
+                                                &quot;dateOfExpiry&quot;: &quot;&quot;,&#xd;
+                                                &quot;nationality&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;homeTown&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            }&#xd;
+                                        },&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-font.png&quot;,&#xd;
+                                        &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
+                                        &quot;qualityChecks&quot;: {&#xd;
+                                            &quot;blur&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 100,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;glare&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 10,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;blackAndWhite&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 100,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;partialId&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 97,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;faceNotDetected&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 99,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            }&#xd;
+                                        },&#xd;
+                                        &quot;tamperChecks&quot;: {&#xd;
+                                            &quot;photoTampered&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            }&#xd;
+                                        },&#xd;
+                                        &quot;ruleChecks&quot;: {&#xd;
+                                            &quot;idNumberLengthMismatch&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;expiredID&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;idProvinceCodeInvalid&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;idDOBGenderCodeInvalid&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            }&#xd;
+                                        }&#xd;
+                                    }&#xd;
+                                ],&#xd;
+                                &quot;summary&quot;: {&#xd;
+                                    &quot;action&quot;: &quot;pass&quot;,&#xd;
+                                    &quot;details&quot;: []&#xd;
+                                }&#xd;
+                            }&#xd;
+                        },&#xd;
+                        &quot;previousAttempts&quot;: []&#xd;
+                    },&#xd;
+                    {&#xd;
+                        &quot;module&quot;: &quot;&quot;,&#xd;
+                        &quot;countrySelected&quot;: &quot;vnm&quot;,&#xd;
+                        &quot;documentSelected&quot;: &quot;id&quot;,&#xd;
+                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
+                        &quot;expectedDocumentSide&quot;: &quot;back&quot;,&#xd;
+                        &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                        &quot;apiResponse&quot;: {&#xd;
+                            &quot;status&quot;: &quot;success&quot;,&#xd;
+                            &quot;statusCode&quot;: 200,&#xd;
+                            &quot;metadata&quot;: {&#xd;
+                                &quot;requestId&quot;: &quot;1741245516494-7669c7ce-5ecf-4753-9037-a4d1f117d069&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1347105916872294400&quot;&#xd;
+                            },&#xd;
+                            &quot;result&quot;: {&#xd;
+                                &quot;details&quot;: [&#xd;
+                                    {&#xd;
+                                        &quot;idType&quot;: &quot;cccd_chip_back&quot;,&#xd;
+                                        &quot;fieldsExtracted&quot;: {&#xd;
+                                            &quot;firstName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;middleName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;lastName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;fullName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;dateOfBirth&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;dateOfIssue&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;03-07-2023&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100&#xd;
+                                            },&#xd;
+                                            &quot;dateOfExpiry&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;countryCode&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;type&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;address&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;additionalInfo&quot;: &quot;&quot;,&#xd;
+                                                &quot;street&quot;: &quot;&quot;,&#xd;
+                                                &quot;houseNumber&quot;: &quot;&quot;,&#xd;
+                                                &quot;district&quot;: &quot;&quot;,&#xd;
+                                                &quot;province&quot;: &quot;&quot;,&#xd;
+                                                &quot;zipCode&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;gender&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;idNumber&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;placeOfBirth&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;placeOfIssue&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 95&#xd;
+                                            },&#xd;
+                                            &quot;yearOfBirth&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;age&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;fatherName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;motherName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;husbandName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;spouseName&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;nationality&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;mrzString&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;IDVNM0980341588001098034158&lt;&lt;99810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                                &quot;score&quot;: 100,&#xd;
+                                                &quot;idNumber&quot;: &quot;001098034158&quot;,&#xd;
+                                                &quot;fullName&quot;: &quot;HOANG CHI CONG&quot;,&#xd;
+                                                &quot;gender&quot;: &quot;M&quot;,&#xd;
+                                                &quot;dateOfBirth&quot;: &quot;20-10-1998&quot;,&#xd;
+                                                &quot;dateOfExpiry&quot;: &quot;20-10-2038&quot;,&#xd;
+                                                &quot;nationality&quot;: &quot;VNM&quot;&#xd;
+                                            },&#xd;
+                                            &quot;homeTown&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            }&#xd;
+                                        },&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                                        &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
+                                        &quot;qualityChecks&quot;: {&#xd;
+                                            &quot;blur&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 100,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;glare&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 10,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;blackAndWhite&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 100,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            },&#xd;
+                                            &quot;partialId&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 97,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            }&#xd;
+                                        },&#xd;
+                                        &quot;ruleChecks&quot;: {&#xd;
+                                            &quot;mrzTampered&quot;: {&#xd;
+                                                &quot;value&quot;: &quot;no&quot;,&#xd;
+                                                &quot;score&quot;: 0,&#xd;
+                                                &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                            }&#xd;
+                                        }&#xd;
+                                    }&#xd;
+                                ],&#xd;
+                                &quot;summary&quot;: {&#xd;
+                                    &quot;action&quot;: &quot;pass&quot;,&#xd;
+                                    &quot;details&quot;: []&#xd;
+                                }&#xd;
+                            }&#xd;
+                        },&#xd;
+                        &quot;previousAttempts&quot;: []&#xd;
+                    },&#xd;
+                    {&#xd;
+                        &quot;module&quot;: &quot;&quot;,&#xd;
+                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
+                        &quot;moduleId&quot;: &quot;module_selfie&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
+                        &quot;apiResponse&quot;: {&#xd;
+                            &quot;status&quot;: &quot;success&quot;,&#xd;
+                            &quot;statusCode&quot;: 200,&#xd;
+                            &quot;metadata&quot;: {&#xd;
+                                &quot;requestId&quot;: &quot;1741245530617-3d74f53e-bd43-4f3c-940a-a248ee29e92f&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1347105916872294400&quot;&#xd;
+                            },&#xd;
+                            &quot;result&quot;: {&#xd;
+                                &quot;details&quot;: {&#xd;
+                                    &quot;liveFace&quot;: {&#xd;
+                                        &quot;value&quot;: &quot;yes&quot;,&#xd;
+                                        &quot;confidence&quot;: &quot;high&quot;,&#xd;
+                                        &quot;score&quot;: 100&#xd;
+                                    },&#xd;
+                                    &quot;qualityChecks&quot;: {&#xd;
+                                        &quot;blur&quot;: {&#xd;
+                                            &quot;score&quot;: 94,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;eyesClosed&quot;: {&#xd;
+                                            &quot;score&quot;: 0,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;eyewear&quot;: {&#xd;
+                                            &quot;score&quot;: 0,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;faceOccluded&quot;: {&#xd;
+                                            &quot;score&quot;: 0,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;hat&quot;: {&#xd;
+                                            &quot;score&quot;: 99,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;headTurned&quot;: {&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;score&quot;: 0,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;maskPresent&quot;: {&#xd;
+                                            &quot;score&quot;: 0,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;multipleFaces&quot;: {&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;score&quot;: 0,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        },&#xd;
+                                        &quot;nudity&quot;: {&#xd;
+                                            &quot;score&quot;: 100,&#xd;
+                                            &quot;value&quot;: &quot;no&quot;,&#xd;
+                                            &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                        }&#xd;
+                                    }&#xd;
+                                },&#xd;
+                                &quot;summary&quot;: {&#xd;
+                                    &quot;action&quot;: &quot;pass&quot;,&#xd;
+                                    &quot;details&quot;: []&#xd;
+                                }&#xd;
+                            }&#xd;
+                        },&#xd;
+                        &quot;previousAttempts&quot;: []&#xd;
+                    },&#xd;
+                    {&#xd;
+                        &quot;module&quot;: &quot;&quot;,&#xd;
+                        &quot;moduleId&quot;: &quot;module_facematch&quot;,&#xd;
+                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-font.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
+                        &quot;apiResponse&quot;: {&#xd;
+                            &quot;status&quot;: &quot;success&quot;,&#xd;
+                            &quot;statusCode&quot;: 200,&#xd;
+                            &quot;metadata&quot;: {&#xd;
+                                &quot;requestId&quot;: &quot;1741245532444-3dc2f35a-094d-42bc-a00d-09535c09f1d5&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1347105916872294400&quot;&#xd;
+                            },&#xd;
+                            &quot;result&quot;: {&#xd;
+                                &quot;details&quot;: {&#xd;
+                                    &quot;match&quot;: {&#xd;
+                                        &quot;value&quot;: &quot;yes&quot;,&#xd;
+                                        &quot;score&quot;: 99,&#xd;
+                                        &quot;confidence&quot;: &quot;high&quot;&#xd;
+                                    }&#xd;
+                                },&#xd;
+                                &quot;summary&quot;: {&#xd;
+                                    &quot;action&quot;: &quot;pass&quot;,&#xd;
+                                    &quot;details&quot;: []&#xd;
+                                }&#xd;
+                            }&#xd;
+                        },&#xd;
+                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
+                        &quot;previousAttempts&quot;: []&#xd;
+                    }&#xd;
+                ],&#xd;
+                &quot;userDetails&quot;: {&#xd;
+                    &quot;facematchAction&quot;: &quot;pass&quot;,&#xd;
+                    &quot;selfieRequestId&quot;: &quot;1741245530617-3d74f53e-bd43-4f3c-940a-a248ee29e92f&quot;,&#xd;
+                    &quot;facematchRequestId&quot;: &quot;1741245532444-3dc2f35a-094d-42bc-a00d-09535c09f1d5&quot;,&#xd;
+                    &quot;selfieAction&quot;: &quot;pass&quot;&#xd;
+                }&#xd;
+            }&#xd;
+        },&#xd;
+        &quot;headers&quot;: {&#xd;
+            &quot;Content-Type&quot;: &quot;application/json&quot;&#xd;
+        },&#xd;
+        &quot;transformers&quot;: [&#xd;
+            &quot;response-template&quot;&#xd;
+        ]&#xd;
+    },&#xd;
+    &quot;priority&quot;: 2,&#xd;
+    &quot;metadata&quot;: {&#xd;
+        &quot;wiremock-gui&quot;: {&#xd;
+            &quot;folder&quot;: &quot;/mappings/hyperverge/jmeter&quot;&#xd;
+        }&#xd;
+    }&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">//log.info(&quot;-----[MOCK] Hyperverge OCR-----&quot;);
+
+//def digits = Long.toString(${phoneNumberOnboard});
+//def CCCD = &quot;044091&quot; + digits[-6..-1]
+//vars.put(&quot;idNumber&quot;, CCCD)
+//log.info(&quot; \n ------------------&gt; id number: &quot; + CCCD);</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="x-request-id" elementType="Header">
+                  <stringProp name="Header.name">x-request-id</stringProp>
+                  <stringProp name="Header.value">bdb97a68-7821-4c9a-8f91-a01c23459d6c</stringProp>
+                </elementProp>
+                <elementProp name="gtw-authorization" elementType="Header">
+                  <stringProp name="Header.name">gtw-authorization</stringProp>
+                  <stringProp name="Header.value">Bearer ${access_token}</stringProp>
+                </elementProp>
+                <elementProp name="x-open-id" elementType="Header">
+                  <stringProp name="Header.name">x-open-id</stringProp>
+                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">OBD-Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer ${accessToken}</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">X-KEY</stringProp>
+                  <stringProp name="Header.value">${publicKey}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper;
+
+log.info(&quot; \n 2.4 ---------- [MOCK] HYPERVEGER OCR - CREATE ----------&quot;);
+
+// ✅ Lấy thông tin từ request trước đó
+def responseCode = prev.getResponseCode();
+def responseMessage = prev.getResponseMessage();
+def responseTime = prev.getTime(); // Response time in milliseconds
+def requestUrl = prev.getURL().toString(); // Lấy URL của request
+def response = prev.getResponseDataAsString().trim();
+
+// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
+
+
+// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+if (responseCode != &quot;201&quot;) {
+    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+// ✅ Parse JSON an toàn
+def jsonResponse;
+try {
+    jsonResponse = new JsonSlurper().parseText(response);
+} catch (Exception e) {
+    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+// ✅ Trích xuất `idHyperVergeOCR`
+def idHyperVergeOCRNew = jsonResponse?.id ?: null
+
+// ✅ Kiểm tra idHyperVergeOCR
+if (idHyperVergeOCRNew) {
+    vars.put(&quot;idHyperVergeOCRNew&quot;, idHyperVergeOCRNew);
+    log.info(&quot;✅ idHyperVergeOCR Extracted: &quot; + idHyperVergeOCRNew);
+} else {
+    log.error(&quot;❌ idHyperVergeOCR not found!&quot;);
+}</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2122,87 +2965,87 @@ if (idHyperVergeOCR) {
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hdb-biometric-conghoang-qa&quot;,&#xd;
-    &quot;persistent&quot;: true,&#xd;
-    &quot;request&quot;: {&#xd;
-        &quot;url&quot;: &quot;/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}&quot;,&#xd;
-        &quot;method&quot;: &quot;GET&quot;&#xd;
-    },&#xd;
-    &quot;response&quot;: {&#xd;
-        &quot;status&quot;: 200,&#xd;
-        &quot;jsonBody&quot;: {&#xd;
-            &quot;transaction_id&quot;: &quot;8d9a9001-ef40-42d0-8b23-18b78480aedc&quot;,&#xd;
-            &quot;log_id&quot;: &quot;d01993c9-e531-11ef-bed5-f7acacfcb782-c067f8e2-apigateway-service-84d657594f-6q4gb&quot;,&#xd;
-            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6IjhkOWE5MDAxLWVmNDAtNDJkMC04YjIzLTE4Yjc4NDgwYWVkYyIsImxvZ19pZCI6ImQwMTk5M2M5LWU1MzEtMTFlZi1iZWQ1LWY3YWNhY2ZjYjc4Mi1jMDY3ZjhlMi1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi02cTRnYiIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAxMjMvOTFkODc3MWUtZDk3OC0xMWVmLTk3ZDAtMjllZTFjNzAxODg0LmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMjMvMDEvMjAyNSAxNzo1NTo0MSIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMTIzLzkyY2VlNTBmLWQ5NzgtMTFlZi05N2QwLWM1ZTNlZDEyMmM0NS5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIyMy8wMS8yMDI1IDE3OjU1OjQxIiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiI5M2UwOWE3OC0yYzc0LTRiNjktYmM5YS04MDVjNmJlYWM3MmUiLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiWHV5IFjDoSwgTeG7uSDEkOG7qWMsIEjDoCBO4buZaSIsInJlY2VudF9sb2NhdGlvbiI6IsSQ4buZaSA5LCBUaMO0biBOZ2jEqWEsIFh1eSBYw6EsIE3hu7kgxJDhu6ljLCBIw6AgTuG7mWkiLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTmFtIiwiZGFkX25hbWUiOiJIb8OgbmcgVsSDbiBDaGnhur9uIiwicmVzdWx0X2MwNiI6eyJzaWduYXR1cmUiOiJLbzI3bE9wdFRZdThUTzZJVlpyUndMZVRiUEpRbzBqZG5jYnFHS05TQnk4aG9Ta1lkM0h5NnV4NVRSK00ycUVZc3lZT2ZNYmlwTTZ0NC9EMlNsK3FxazhGVEJTWGdOQ1ZrTFFiTDNhcFZySld4Ukc0K29TMTRDcXZZOG1lV0RpSmh0Rk8rTmdZSXljb0xTWUkxQ2cxbmJyMnd4MHdOU0lpYWRyY0ZnWUtBeEIzTmw3dHBlQ1NuTXlCS0tVZjZEaXR0U3N6cGlrZkxvK29EbXYvZTFST3VkVlNDRW9nOStTV2YzenJFNnFmRVprSzRld2UydDhiQlFHUzRpYWlGRWp4YXpqbzg5cnBhZDY4WlVIbmhDQXNmQy9XdGlwUW5MeExBMksrUlZ5bFJEQitNNkkrYSs2aFJRbWFmRXYzNHBKVkd4QU9FM2t1aFpwamp5UEppdEFMbXc9PSIsInJlc3BvbmRzIjp7InJlc3VsdCI6dHJ1ZSwicmVzcG9uc2VfaWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCIsImV4aXRjb2RlIjowLCJ0aW1lIjowLCJtZXNzYWdlIjoidmFsaWQgaWRjYXJkIiwicmVzcG9uc2VJZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIn19LCJyZWxpZ2lvbiI6IkPDtG5nIGdpw6FvIiwiYmlydGhfZGF5IjoiMjAvMTAvMTk5OCIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIEM6IDJjbSBkxrDhu5tpIHNhdSBtw6lwIHBo4bqjaSIsInZhbGlkX2RhdGUiOiIyMC8xMC8yMDM4Iiwic3BvdXNlX25hbWUiOiIiLCJtcnoiOiJbSURWTk0wOTgwMzQxNTg4MDAxMDk4MDM0MTU4PDw5LCA5ODEwMjA0TTM4MTAyMDJWTk08PDw8PDw8PDw8PDgsIEhPQU5HPDxDSEk8Q09ORzw8PDw8PDw8PDw8PDw8PF0iLCJuYXRpb25hbGl0eSI6IlZp4buHdCBOYW0iLCJpc3N1ZV9kYXRlIjoiMDMvMDcvMjAyMyIsIm5hbWUiOiJIb8OgbmcgQ2jDrSBDw7RuZyIsIm9sZF9pZCI6IjAxNzQ0NjI1NCIsImlkIjoiMDAxMDk4MDM0MTU4IiwibW9tX25hbWUiOiJOZ3V54buFbiBUaOG7iyBTb24ifV19fQ==&quot;,&#xd;
-            &quot;data_sign&quot;: &quot;N9A2BpKHpiqvQbDuz2Al2yHcDy+oT/QzBf8LEPMUBrxCdyYtEIZag6mChzcDbon+i1SOgdFj4YOgieWEpyDu/fPdbRJlmcbLjJGjHG3fhlytX/a3JHPA92huwcNbh4EPhangaq0udoaLJKzfqzT73tcWxxjIB2RAqNfDYt+0L+KtX94WpwNyu3kQ+g1OUGtwLUcmHulTTa8p3dpRuzV217Viqccapx2bPDp3XReIjOl1+QWNekvIHbcZFpXPkVrJWH1w6KcB1p3DHtlot3+U0w+V/DWLuaUHg2FZB7CHHsPU/U3BAxwEkHt6IS4bm0i/rxI//h3hJkzQmVSgrhkgGw==&quot;,&#xd;
-            &quot;message&quot;: &quot;IDG-00000000&quot;,&#xd;
-            &quot;object&quot;: {&#xd;
-                &quot;customer_faces&quot;: [&#xd;
-                    {&#xd;
-                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250123/91d8771e-d978-11ef-97d0-29ee1c701884.jpeg&quot;,&#xd;
-                        &quot;group_customer&quot;: &quot;Face selfie&quot;,&#xd;
-                        &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
-                        &quot;verify_status&quot;: 0,&#xd;
-                        &quot;created_date&quot;: &quot;23/01/2025 17:55:41&quot;,&#xd;
-                        &quot;status&quot;: 0&#xd;
-                    },&#xd;
-                    {&#xd;
-                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250123/92cee50f-d978-11ef-97d0-c5e3ed122c45.jpeg&quot;,&#xd;
-                        &quot;group_customer&quot;: &quot;Face chip&quot;,&#xd;
-                        &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
-                        &quot;verify_status&quot;: 1,&#xd;
-                        &quot;created_date&quot;: &quot;23/01/2025 17:55:41&quot;,&#xd;
-                        &quot;status&quot;: 1&#xd;
-                    }&#xd;
-                ],&#xd;
-                &quot;uuid_customer&quot;: &quot;c163b1a4-e376-46fe-8535-af146e33a118&quot;,&#xd;
-                &quot;customer_cards&quot;: [&#xd;
-                    {&#xd;
-                        &quot;origin_location&quot;: &quot;Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
-                        &quot;recent_location&quot;: &quot;Đội 9, Thôn Nghĩa, Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
-                        &quot;ethnic&quot;: &quot;Kinh&quot;,&#xd;
-                        &quot;gender&quot;: &quot;Nam&quot;,&#xd;
-                        &quot;dad_name&quot;: &quot;Hoàng Văn Chiến&quot;,&#xd;
-                        &quot;result_c06&quot;: {&#xd;
-                            &quot;signature&quot;: &quot;Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==&quot;,&#xd;
-                            &quot;responds&quot;: {&#xd;
-                                &quot;result&quot;: true,&#xd;
-                                &quot;response_id&quot;: &quot;vnpt-00000000-0000-0000-0000-000000000000&quot;,&#xd;
-                                &quot;exitcode&quot;: 0,&#xd;
-                                &quot;time&quot;: 0,&#xd;
-                                &quot;message&quot;: &quot;valid idcard&quot;,&#xd;
-                                &quot;responseId&quot;: &quot;vnpt-00000000-0000-0000-0000-000000000000&quot;&#xd;
-                            }&#xd;
-                        },&#xd;
-                        &quot;religion&quot;: &quot;Công giáo&quot;,&#xd;
-                        &quot;birth_day&quot;: &quot;20/10/1998&quot;,&#xd;
-                        &quot;features&quot;: &quot;Nốt ruồi C: 2cm dưới sau mép phải&quot;,&#xd;
-                        &quot;valid_date&quot;: &quot;20/10/2038&quot;,&#xd;
-                        &quot;spouse_name&quot;: &quot;&quot;,&#xd;
-                        &quot;mrz&quot;: &quot;[IDVNM0980341588001098034158&lt;&lt;9, 9810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8, HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;]&quot;,&#xd;
-                        &quot;nationality&quot;: &quot;Việt Nam&quot;,&#xd;
-                        &quot;issue_date&quot;: &quot;03/07/2023&quot;,&#xd;
-                        &quot;name&quot;: &quot;Hoàng Chí Công&quot;,&#xd;
-                        &quot;old_id&quot;: &quot;017446254&quot;,&#xd;
-                        &quot;id&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
-                        &quot;mom_name&quot;: &quot;Nguyễn Thị Son&quot;&#xd;
-                    }&#xd;
-                ]&#xd;
-            }&#xd;
-        },&#xd;
-        &quot;headers&quot;: {&#xd;
-            &quot;Content-Type&quot;: &quot;application/json&quot;&#xd;
-        },&#xd;
-        &quot;transformers&quot;: [&#xd;
-            &quot;response-template&quot;&#xd;
+  &quot;name&quot;: &quot;jmeter-hdb-biometric-conghoang-qa&quot;,&#xd;
+  &quot;persistent&quot;: true,&#xd;
+  &quot;request&quot;: {&#xd;
+    &quot;url&quot;: &quot;/hdb-biometric/face-service/v1/customer/list-filter?card_id=001098034158&quot;,&#xd;
+    &quot;method&quot;: &quot;GET&quot;&#xd;
+  },&#xd;
+  &quot;response&quot;: {&#xd;
+    &quot;status&quot;: 200,&#xd;
+    &quot;jsonBody&quot;: {&#xd;
+      &quot;transaction_id&quot;: &quot;dfe3f9ac-0a95-4ed5-9415-81a085187de8&quot;,&#xd;
+      &quot;log_id&quot;: &quot;043f154f-fb16-11ef-9ba6-713bdff7a2c1-24d14cd4-apigateway-service-84d657594f-svzwm&quot;,&#xd;
+      &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6ImRmZTNmOWFjLTBhOTUtNGVkNS05NDE1LTgxYTA4NTE4N2RlOCIsImxvZ19pZCI6IjA0M2YxNTRmLWZiMTYtMTFlZi05YmE2LTcxM2JkZmY3YTJjMS0yNGQxNGNkNC1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMDYvNTk0OTdjOGYtZmE1Zi0xMWVmLWFlMGItZDViN2Q1ZjE1NjVhLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMDYvMDMvMjAyNSAxNDo0ODoxNSIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzA2LzVhMTcyY2QwLWZhNWYtMTFlZi1hZTBiLWM5MWY3MDkyOWY4My5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIwNi8wMy8yMDI1IDE0OjQ4OjE1Iiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiJhZDAyNjRlNi1kNzFlLTQ2YWItOTJkZC00OTRjYmIwYWY4NTkiLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiWHV5IFjDoSwgTeG7uSDEkOG7qWMsIEjDoCBO4buZaSIsInJlY2VudF9sb2NhdGlvbiI6IsSQ4buZaSA5LCBUaMO0biBOZ2jEqWEsIFh1eSBYw6EsIE3hu7kgxJDhu6ljLCBIw6AgTuG7mWkiLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTmFtIiwiZGFkX25hbWUiOiJIb8OgbmcgVsSDbiBDaGnhur9uIiwicmVzdWx0X2MwNiI6eyJzaWduYXR1cmUiOiJLbzI3bE9wdFRZdThUTzZJVlpyUndMZVRiUEpRbzBqZG5jYnFHS05TQnk4aG9Ta1lkM0h5NnV4NVRSK00ycUVZc3lZT2ZNYmlwTTZ0NC9EMlNsK3FxazhGVEJTWGdOQ1ZrTFFiTDNhcFZySld4Ukc0K29TMTRDcXZZOG1lV0RpSmh0Rk8rTmdZSXljb0xTWUkxQ2cxbmJyMnd4MHdOU0lpYWRyY0ZnWUtBeEIzTmw3dHBlQ1NuTXlCS0tVZjZEaXR0U3N6cGlrZkxvK29EbXYvZTFST3VkVlNDRW9nOStTV2YzenJFNnFmRVprSzRld2UydDhiQlFHUzRpYWlGRWp4YXpqbzg5cnBhZDY4WlVIbmhDQXNmQy9XdGlwUW5MeExBMksrUlZ5bFJEQitNNkkrYSs2aFJRbWFmRXYzNHBKVkd4QU9FM2t1aFpwamp5UEppdEFMbXc9PSIsInJlc3BvbmRzIjp7InJlc3VsdCI6dHJ1ZSwicmVzcG9uc2VfaWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCIsImV4aXRjb2RlIjowLCJ0aW1lIjowLCJtZXNzYWdlIjoidmFsaWQgaWRjYXJkIiwicmVzcG9uc2VJZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIn19LCJyZWxpZ2lvbiI6IkPDtG5nIGdpw6FvIiwiYmlydGhfZGF5IjoiMjAvMTAvMTk5OCIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIEM6IDJjbSBkxrDhu5tpIHNhdSBtw6lwIHBo4bqjaSIsInZhbGlkX2RhdGUiOiIyMC8xMC8yMDM4Iiwic3BvdXNlX25hbWUiOiIiLCJtcnoiOiJbSURWTk0wOTgwMzQxNTg4MDAxMDk4MDM0MTU4PDw5LCA5ODEwMjA0TTM4MTAyMDJWTk08PDw8PDw8PDw8PDgsIEhPQU5HPDxDSEk8Q09ORzw8PDw8PDw8PDw8PDw8PF0iLCJuYXRpb25hbGl0eSI6IlZp4buHdCBOYW0iLCJpc3N1ZV9kYXRlIjoiMDMvMDcvMjAyMyIsIm5hbWUiOiJIb8OgbmcgQ2jDrSBDw7RuZyIsIm9sZF9pZCI6IjAxNzQ0NjI1NCIsImlkIjoiMDAxMDk4MDM0MTU4IiwibW9tX25hbWUiOiJOZ3V54buFbiBUaOG7iyBTb24ifV19fQ==&quot;,&#xd;
+      &quot;data_sign&quot;: &quot;meRQOT0qKGt3A8y8lDXkEGwHeykt2tLyePVyNZyZNfAaDrzBJGTVNKRPgpCwr0UjM0KOwNe1adUKuOlp9yao/xU9KmMxnOB6+4AS881pNJWMB2V0DSohjpRS5U1/fhhqRXN5zDVJ3TjreWaS3V3D0PZFxNLAbbdAnTeqD4WR0dH5D8m3XeJthHpZJcHMznQZN6Fevc7JPI6L6KJnJBqOyjILAK1GMG76CmQ+7OVZOOYMFTbGvv579YXcv1zZfz5+gaKsSt90+XGvCqq+Xw10yGLBb4HOIYCrBi5bvq9yoKeeu08K3shhFJtgMVTqLOpnOW7cqqV16njojFWiSU48bQ==&quot;,&#xd;
+      &quot;message&quot;: &quot;IDG-00000000&quot;,&#xd;
+      &quot;object&quot;: {&#xd;
+        &quot;customer_faces&quot;: [&#xd;
+          {&#xd;
+            &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250306/59497c8f-fa5f-11ef-ae0b-d5b7d5f1565a.jpeg&quot;,&#xd;
+            &quot;group_customer&quot;: &quot;Face selfie&quot;,&#xd;
+            &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
+            &quot;verify_status&quot;: 0,&#xd;
+            &quot;created_date&quot;: &quot;06/03/2025 14:48:15&quot;,&#xd;
+            &quot;status&quot;: 0&#xd;
+          },&#xd;
+          {&#xd;
+            &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250306/5a172cd0-fa5f-11ef-ae0b-c91f70929f83.jpeg&quot;,&#xd;
+            &quot;group_customer&quot;: &quot;Face chip&quot;,&#xd;
+            &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
+            &quot;verify_status&quot;: 1,&#xd;
+            &quot;created_date&quot;: &quot;06/03/2025 14:48:15&quot;,&#xd;
+            &quot;status&quot;: 1&#xd;
+          }&#xd;
+        ],&#xd;
+        &quot;uuid_customer&quot;: &quot;ad0264e6-d71e-46ab-92dd-494cbb0af859&quot;,&#xd;
+        &quot;customer_cards&quot;: [&#xd;
+          {&#xd;
+            &quot;origin_location&quot;: &quot;Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+            &quot;recent_location&quot;: &quot;Đội 9, Thôn Nghĩa, Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+            &quot;ethnic&quot;: &quot;Kinh&quot;,&#xd;
+            &quot;gender&quot;: &quot;Nam&quot;,&#xd;
+            &quot;dad_name&quot;: &quot;Hoàng Văn Chiến&quot;,&#xd;
+            &quot;result_c06&quot;: {&#xd;
+              &quot;signature&quot;: &quot;Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==&quot;,&#xd;
+              &quot;responds&quot;: {&#xd;
+                &quot;result&quot;: true,&#xd;
+                &quot;response_id&quot;: &quot;vnpt-00000000-0000-0000-0000-000000000000&quot;,&#xd;
+                &quot;exitcode&quot;: 0,&#xd;
+                &quot;time&quot;: 0,&#xd;
+                &quot;message&quot;: &quot;valid idcard&quot;,&#xd;
+                &quot;responseId&quot;: &quot;vnpt-00000000-0000-0000-0000-000000000000&quot;&#xd;
+              }&#xd;
+            },&#xd;
+            &quot;religion&quot;: &quot;Công giáo&quot;,&#xd;
+            &quot;birth_day&quot;: &quot;20/10/1998&quot;,&#xd;
+            &quot;features&quot;: &quot;Nốt ruồi C: 2cm dưới sau mép phải&quot;,&#xd;
+            &quot;valid_date&quot;: &quot;20/10/2038&quot;,&#xd;
+            &quot;spouse_name&quot;: &quot;&quot;,&#xd;
+            &quot;mrz&quot;: &quot;[IDVNM0980341588001098034158&lt;&lt;9, 9810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8, HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;]&quot;,&#xd;
+            &quot;nationality&quot;: &quot;Việt Nam&quot;,&#xd;
+            &quot;issue_date&quot;: &quot;03/07/2023&quot;,&#xd;
+            &quot;name&quot;: &quot;Hoàng Chí Công&quot;,&#xd;
+            &quot;old_id&quot;: &quot;017446254&quot;,&#xd;
+            &quot;id&quot;: &quot;001098034158&quot;,&#xd;
+            &quot;mom_name&quot;: &quot;Nguyễn Thị Son&quot;&#xd;
+          }&#xd;
         ]&#xd;
+      }&#xd;
     },&#xd;
-    &quot;priority&quot;: 2,&#xd;
-    &quot;metadata&quot;: {&#xd;
-        &quot;wiremock-gui&quot;: {&#xd;
-            &quot;folder&quot;: &quot;/mappings/hdb-biometric/jmeter&quot;&#xd;
-        }&#xd;
+    &quot;headers&quot;: {&#xd;
+      &quot;Content-Type&quot;: &quot;application/json&quot;&#xd;
+    },&#xd;
+    &quot;transformers&quot;: [&#xd;
+      &quot;response-template&quot;&#xd;
+    ]&#xd;
+  },&#xd;
+  &quot;priority&quot;: 2,&#xd;
+  &quot;metadata&quot;: {&#xd;
+    &quot;wiremock-gui&quot;: {&#xd;
+      &quot;folder&quot;: &quot;/mappings/hdb-biometric/jmeter&quot;&#xd;
     }&#xd;
+  }&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
@@ -2255,14 +3098,14 @@ if (idHyperVergeOCR) {
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- [MOCK] HDB BIOMETRIC ----------&quot;);
+log.info(&quot; \n 2.5 ---------- [MOCK] HDB BIOMETRIC ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2272,7 +3115,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -2370,7 +3213,7 @@ if (hdbBiometricMockingId) {
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- PRECHECK KYC ----------&quot;);
+log.info(&quot; \n 2.6 ---------- PRECHECK KYC ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2380,7 +3223,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -2486,7 +3329,7 @@ log.info(&quot;✅ Precheck KYC thành công! Response: &quot; + jsonResponse);<
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- SUBMIT INFO ----------&quot;);
+log.info(&quot; \n 2.7 ---------- SUBMIT INFO ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2496,7 +3339,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -2521,7 +3364,7 @@ log.info(&quot;✅ Submit Info thành công! Response: &quot; + jsonResponse);</
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.8 Create Password">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.8 Create Password" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/accountCreation/credential</stringProp>
@@ -2598,7 +3441,7 @@ log.info(&quot;✅ Submit Info thành công! Response: &quot; + jsonResponse);</
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- CREATE PASSWORD ----------&quot;);
+log.info(&quot; \n 2.8 ---------- CREATE PASSWORD ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2608,7 +3451,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -2637,7 +3480,10 @@ if (cifNumber) {
     log.info(&quot;✅ Tạo mật khẩu thành công! CIF Number: &quot; + cifNumber);
 } else {
     log.error(&quot;❌ CIF NUMBER NOT FOUND!&quot;);
-}</stringProp>
+}
+
+// Delay để chạy Checkfacededupe tránh lỗi
+Thread.sleep(2000)</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
@@ -2718,7 +3564,7 @@ if (cifNumber) {
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- TRIGGER FACEDEDUP ----------&quot;);
+log.info(&quot; \n 2.9 ---------- TRIGGER FACEDEDUP ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2728,7 +3574,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -2757,9 +3603,9 @@ log.info(&quot;✅ Facededup Trigger thành công! Response: &quot; + jsonRespon
             <stringProp name="WhileController.condition">${__groovy(
     def attempts = (vars.get(&quot;attemps&quot;) ?: &quot;0&quot;) as Integer;
     def kycStatus = vars.get(&quot;kycStatus&quot;);
-    
+
     if (kycStatus == &quot;APPROVED&quot;) return false;
-    if (attempts &gt;= 20) return false;
+    if (attempts &gt;= 25) return false;
     
     return kycStatus == null || 
            kycStatus == &quot;N_A&quot; || 
@@ -2767,7 +3613,7 @@ log.info(&quot;✅ Facededup Trigger thành công! Response: &quot; + jsonRespon
 )}</stringProp>
           </WhileController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get KYC status" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10.1 Get KYC status" enabled="true">
               <intProp name="HTTPSampler.concurrentPool">6</intProp>
               <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
               <stringProp name="HTTPSampler.path">/v3/onboarding/kyc/kyc-status-with-details</stringProp>
@@ -2836,7 +3682,11 @@ log.info(&quot;✅ Facededup Trigger thành công! Response: &quot; + jsonRespon
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot;\n---------- CHECKING KYC STATUS ----------&quot;);
+// ✅ Tăng số lần thử kiểm tra KYC
+def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
+vars.put(&quot;attempts&quot;, String.valueOf(attempts));
+
+log.info(&quot; \n 2.10.1 ---------- CHECKING KYC STATUS &quot; + attempts +&quot; ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -2846,7 +3696,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info(requestUrl + &quot; | Time: &quot; + responseTime + &quot;ms&quot;);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
 if (responseCode != &quot;200&quot;) {
@@ -2877,7 +3727,7 @@ vars.put(&quot;needsReviewCheck&quot;, needsReviewCheck ? needsReviewCheck.join(
 vars.put(&quot;declinedCheck&quot;, declinedCheck ? declinedCheck.join(&quot;,&quot;) : &quot;&quot;);
 
 // ✅ Ghi log Payload, Needs Review Check, Declined Check
-log.info(&quot; Payload: &quot; + payload);
+//log.info(&quot; Payload: &quot; + payload);
 
 // ✅ Xử lý `kycStatus` với `switch-case`
 switch (kycStatus) {
@@ -2901,17 +3751,20 @@ switch (kycStatus) {
         break;
 
     default:
-        log.warn(&quot;️ KYC Status: &quot; + kycStatus + &quot; - Continuing review process.&quot;);
+//        log.warn(&quot;️ KYC Status: &quot; + kycStatus + &quot; - Continuing review process.&quot;); 
+//        log.info(&quot;️&quot;);
+		log.info(&quot; Payload: &quot; + payload);
+		// ✅ Tạm dừng trước khi kiểm tra lại
+		Thread.sleep(3456);
 }
 
-// ✅ Tăng số lần thử kiểm tra KYC
-def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
-vars.put(&quot;attempts&quot;, String.valueOf(attempts));
+//// ✅ Tăng số lần thử kiểm tra KYC
+//def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
+//vars.put(&quot;attempts&quot;, String.valueOf(attempts));
 
-log.info(&quot; KYC Check Attempt: &quot; + attempts);
+//log.info(&quot; KYC Check Attempt: &quot; + attempts);
 
-// ✅ Tạm dừng trước khi kiểm tra lại
-Thread.sleep(2222);</stringProp>
+</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
@@ -2938,7 +3791,7 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 
 // ✅ Hiển thị thông tin cập nhật manual review
-log.info(&quot;\n---------- UPDATING MANUAL REVIEW ----------&quot;);
+log.info(&quot; \n 2.10.2 ---------- UPDATING MANUAL REVIEW ----------&quot;);
 
 // ✅ Lấy giá trị `needsReviewCheck`
 def needReviewStr = vars.get(&quot;needsReviewCheck&quot;)?.trim() ?: &quot;&quot;
@@ -2964,10 +3817,10 @@ def manualUpdateJson = new JsonBuilder(manualUpdateBody).toPrettyString();
 vars.put(&quot;manualUpdateJson&quot;, manualUpdateJson);
 
 // ✅ Ghi log nội dung JSON manual update theo format rõ ràng
-log.info(&quot;📜 Manual Update JSON:\n&quot; + JsonOutput.prettyPrint(JsonOutput.toJson(manualUpdateBody)));</stringProp>
+log.info(&quot; Manual Update JSON:\n&quot; + JsonOutput.prettyPrint(JsonOutput.toJson(manualUpdateBody)));</stringProp>
                 </JSR223PreProcessor>
                 <hashTree/>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Manual Update" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10.2 Manual Update" enabled="true">
                   <intProp name="HTTPSampler.concurrentPool">6</intProp>
                   <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
                   <stringProp name="HTTPSampler.path">/v3/onboarding/admin/kyc/${onboardingId}/manual-update</stringProp>
@@ -3045,7 +3898,7 @@ log.info(&quot;📜 Manual Update JSON:\n&quot; + JsonOutput.prettyPrint(JsonOut
                     <stringProp name="parameters"></stringProp>
                     <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot;\n---------- CHECKING KYC STATUS ----------&quot;);
+//log.info(&quot; \n ---------- MANUAL UPDATE ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -3055,7 +3908,8 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime + &quot;ms&quot;);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
+
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
 if (responseCode != &quot;200&quot;) {
@@ -3064,76 +3918,8 @@ if (responseCode != &quot;200&quot;) {
     return;
 }
 
-// ✅ Parse JSON an toàn
-def jsonResponse;
-try {
-    jsonResponse = new JsonSlurper().parseText(response);
-} catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
-}
-
-// ✅ Trích xuất thông tin KYC
-def kycStatus = jsonResponse?.payload?.kycStatus?.trim() ?: &quot;N_A&quot;;
-def needsReviewCheck = jsonResponse?.payload?.needsReviewCheck ?: [];
-def declinedCheck = jsonResponse?.payload?.declinedCheck ?: [];
-def payload = jsonResponse?.payload ?: &quot;N_A&quot;;
-
-// ✅ Ghi log Payload, Needs Review Check, Declined Check
-log.info(&quot; Payload: &quot; + payload);
-
-// ✅ Nếu KYC được APPROVED
-if (kycStatus == &quot;APPROVED&quot;) {
-    vars.put(&quot;kycStatus&quot;, kycStatus);
-    vars.put(&quot;needsReviewCheck&quot;, &quot;&quot;);
-    vars.put(&quot;isTriggerFinalCheck&quot;, &quot;true&quot;);
-    log.info(&quot;✅ KYC is APPROVED - Stopping current loop.&quot;);
-    prev.setIgnore(); // Dừng vòng lặp hiện tại
-    return;
-}
-
-// ✅ Nếu KYC là &quot;DECLINED&quot;, dừng vòng lặp while nhưng tiếp tục thread
-if (kycStatus == &quot;DECLINED&quot;) {
-    vars.put(&quot;kycStatus&quot;, kycStatus);
-    vars.put(&quot;declinedCheck&quot;, declinedCheck.join(&quot;,&quot;));
-    log.info(&quot;❌ KYC DECLINED! Declined Check Reasons: &quot; + declinedCheck);
-    prev.setIgnore();
-    return; 
-}
-
-// ✅ Nếu KYC là &quot;NEEDS_REVIEW&quot;, tiếp tục xử lý
-if (kycStatus == &quot;NEEDS_REVIEW&quot;) {
-    vars.put(&quot;kycStatus&quot;, kycStatus);
-    def needReview = needsReviewCheck ? needsReviewCheck.join(&quot;,&quot;) : &quot;&quot;;
-    vars.put(&quot;needsReviewCheck&quot;, needReview);
-
-    log.info(&quot;🔍 KYC NEEDS REVIEW: &quot; + needReview);
-
-    // Nếu danh sách kiểm tra review rỗng, kích hoạt kiểm tra cuối cùng
-    if (needReview.isEmpty()) {
-        vars.put(&quot;isTriggerFinalCheck&quot;, &quot;true&quot;);
-        log.info(&quot;⚠️ No further review required. Triggering final check.&quot;);
-    }
-}
-
-// ✅ Nếu KYC không phải là &quot;N_A&quot;, xử lý tiếp tục
-if (kycStatus != &quot;N_A&quot;) {
-    vars.put(&quot;kycStatus&quot;, kycStatus);
-    def needReview = needsReviewCheck ? needsReviewCheck.join(&quot;,&quot;) : &quot;&quot;;
-    vars.put(&quot;needsReviewCheck&quot;, needReview);
-
-    log.info(&quot; Needs Review Check: &quot; + needReview);
-}
-
-// ✅ Tăng số lần thử kiểm tra KYC
-def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
-vars.put(&quot;attempts&quot;, String.valueOf(attempts));
-
-log.info(&quot; KYC Check Attempt: &quot; + attempts);
-
-// ✅ Tạm dừng trước khi kiểm tra lại
-Thread.sleep(3000);</stringProp>
+// ✅ Nếu thành công, log kết quả
+log.info(&quot;✅ Manual Update thành công!&quot;);</stringProp>
                     <stringProp name="scriptLanguage">groovy</stringProp>
                   </JSR223PostProcessor>
                   <hashTree/>
@@ -3145,7 +3931,7 @@ Thread.sleep(3000);</stringProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Manual Final update" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10.3 Manual Final update" enabled="true">
                   <intProp name="HTTPSampler.concurrentPool">6</intProp>
                   <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
                   <stringProp name="HTTPSampler.path">/v3/onboarding/admin/kyc/${onboardingId}/final-check</stringProp>
@@ -3222,7 +4008,7 @@ Thread.sleep(3000);</stringProp>
                     <stringProp name="parameters"></stringProp>
                     <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- MANUAL FINAL UPDATE ----------&quot;);
+log.info(&quot; \n 2.10.3 ---------- MANUAL FINAL UPDATE ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -3232,7 +4018,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info( requestUrl + &quot; | &quot; + responseTime);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -3251,7 +4037,7 @@ log.info(&quot;✅ Manual Final Update thành công!&quot;);</stringProp>
               </hashTree>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.11 Update Status bypass OTP" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.11 Update Status bypass OTP">
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/config-service/v1/config/update</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3299,7 +4085,7 @@ log.info(&quot;✅ Manual Final Update thành công!&quot;);</stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- UPDATE STATUS BYPASS OTP ----------&quot;);
+log.info(&quot; \n 2.11 ---------- UPDATE STATUS BYPASS OTP ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -3309,7 +4095,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -3372,7 +4158,7 @@ log.info(&quot;✅ Update Status bypass OTP thành công!&quot;);</stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- CREATE BYPASS OTP ----------&quot;);
+log.info(&quot; \n 2.12 ---------- CREATE BYPASS OTP ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -3382,7 +4168,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -3399,10 +4185,16 @@ log.info(&quot;✅ Create Bypass OTP thành công!&quot;);</stringProp>
           </hashTree>
           <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="2.13 Check account creation status" enabled="true">
             <stringProp name="WhileController.condition">${__groovy(
-	 def attempts = (vars.get(&quot;attemptsCreateAccount&quot;) ?: &quot;0&quot;) as Integer;
-	 if (attempts &gt;= 10) { return false; } 
-	 else { return vars.get(&quot;accountCreationStatusOnboarded&quot;) != &quot;SUCCESS&quot;; }
-)}</stringProp>
+    def attempts = (vars.get(&quot;attemptsCreateAccount&quot;) ?: &quot;0&quot;) as Integer;
+    def status = vars.get(&quot;accountCreationStatusOnboarded&quot;) ?: &quot;UNKNOWN&quot;;
+
+    if (attempts &gt;= 20) return false; // Giới hạn tối đa 20 lần retry
+    if (status == &quot;SUCCESS&quot;) return false; // Dừng nếu thành công
+    if (status == &quot;FAILED&quot;) return true; // Tiếp tục để thực hiện re-run create account
+
+    return true; // Nếu &quot;INPROGRESS&quot;, tiếp tục vòng lặp
+)}
+</stringProp>
           </WhileController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.13.1 Get Account Creation Status" enabled="true">
@@ -3474,26 +4266,30 @@ log.info(&quot;✅ Create Bypass OTP thành công!&quot;);</stringProp>
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot;\n---------- ACCOUNT CREATION STATUS ----------&quot;);
+
+// ✅ Tăng số lần thử kiểm tra Creation Account
+def attemptsCreateAccount = Integer.parseInt(vars.get(&quot;attemptsCreateAccount&quot;) ?: &quot;0&quot;) + 1;
+vars.put(&quot;attemptsCreateAccount&quot;, String.valueOf(attemptsCreateAccount));
+
+log.info(&quot; \n 2.13.1 ========== ACCOUNT CREATION STATUS &quot;+attemptsCreateAccount+&quot; ==========&quot;);
+
+
+//log.info(&quot;🔄 Account Creation Attempt: &quot; + attemptsCreateAccount);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode()?.toString();
 def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
+def responseTime = prev.getTime(); 
+def requestUrl = prev.getURL().toString();
 def response = prev.getResponseDataAsString().trim();
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime + &quot;ms&quot;);
+// ✅ Log thông tin cơ bản để debug
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+// ✅ Nếu response không thành công, log lỗi &amp; tăng retry count
 if (responseCode != &quot;200&quot;) {
-    def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
-    vars.put(&quot;attempts&quot;, String.valueOf(attempts));
-
     log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
     log.error(&quot; Full Response: \n&quot; + response);
-    log.error(&quot; 🔄 Creation Account Check Attempt: &quot; + attempts);
     return;
 }
 
@@ -3507,97 +4303,57 @@ try {
     return;
 }
 
-
-// ✅ Tăng số lần thử kiểm tra Creation Account
-def attemptsCreateAccount = Integer.parseInt(vars.get(&quot;attemptsCreateAccount&quot;) ?: &quot;0&quot;) + 1;
-vars.put(&quot;attemptsCreateAccount&quot;, String.valueOf(attemptsCreateAccount));
-//log.info(&quot; Creation Account Check Attempt: &quot; + attemptsCreateAccount);
-
 // ✅ Trích xuất trạng thái tạo tài khoản
-try {
-    def accountCreationStatusOnboarded = jsonResponse?.payload?.status?.trim() ?: &quot;UNKNOWN&quot;;
-    vars.put(&quot;accountCreationStatusOnboarded&quot;, accountCreationStatusOnboarded);
-    log.info(&quot;✅ Account creation status: &quot; + accountCreationStatusOnboarded);
-} catch (Exception e) {
-    log.error(&quot;❌ Lỗi khi lấy trạng thái tài khoản: &quot; + e.getMessage());
+def accountCreationStatusOnboarded = jsonResponse?.payload?.status?.trim() ?: &quot;UNKNOWN&quot;;
+vars.put(&quot;accountCreationStatusOnboarded&quot;, accountCreationStatusOnboarded);
+log.info(&quot;✅ Account creation status: &quot; + accountCreationStatusOnboarded);
+
+// ✅ Nếu status là &quot;FAILED&quot;, lưu biến trigger cho If Controller
+if (accountCreationStatusOnboarded == &quot;FAILED&quot;) {
+    vars.put(&quot;triggerReRunCreateAccount&quot;, &apos;true&apos;);
+    log.error(&quot;❌ Account creation FAILED. Will trigger re-run after 2 minutes.&quot;);
+    Thread.sleep(1200);
 }
 
-// ✅ Tạm dừng 300ms trước lần thử tiếp theo
-Thread.sleep(300);</stringProp>
+// ✅ Nếu status là &quot;IN_PROGRESS&quot;, chờ trước lần thử tiếp theo
+if (accountCreationStatusOnboarded == &quot;IN_PROGRESS&quot;) {
+    Thread.sleep(500);
+}
+</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
-          </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="true">
-            <intProp name="HTTPSampler.concurrentPool">6</intProp>
-            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-            <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-              <collectionProp name="Arguments.arguments"/>
-            </elementProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="x-request-id" elementType="Header">
-                  <stringProp name="Header.name">x-request-id</stringProp>
-                  <stringProp name="Header.value">dcb51815-7759-41d8-8fd6-46b32e241acf</stringProp>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2.13.2 Check Account FAILED" enabled="true">
+              <stringProp name="IfController.condition">${__groovy(vars.get(&apos;triggerReRunCreateAccount&apos;) == &apos;true&apos;)}</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+              <boolProp name="IfController.useExpression">true</boolProp>
+            </IfController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.13.2 Re-running create account" enabled="true">
+                <stringProp name="HTTPSampler.path">/v4/onboarding/accountCreation/internal/account</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{ &quot;onboardId&quot;: &quot;${onboardingId}&quot; }</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
                 </elementProp>
-                <elementProp name="gtw-authorization" elementType="Header">
-                  <stringProp name="Header.name">gtw-authorization</stringProp>
-                  <stringProp name="Header.value"></stringProp>
-                </elementProp>
-                <elementProp name="baggage" elementType="Header">
-                  <stringProp name="Header.name">baggage</stringProp>
-                  <stringProp name="Header.value">sentry-environment=uat,sentry-transaction=StartupScreen,sentry-public_key=a8650128baf78c0abc77876f8736238f,sentry-trace_id=ae79a0eed0354e439ab2d6820a04d617,sentry-sample_rate=0.85</stringProp>
-                </elementProp>
-                <elementProp name="Accept-Language" elementType="Header">
-                  <stringProp name="Header.name">Accept-Language</stringProp>
-                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
-                </elementProp>
-                <elementProp name="sentry-trace" elementType="Header">
-                  <stringProp name="Header.name">sentry-trace</stringProp>
-                  <stringProp name="Header.value">ae79a0eed0354e439ab2d6820a04d617-ae34fb51315f7476-1</stringProp>
-                </elementProp>
-                <elementProp name="Accept" elementType="Header">
-                  <stringProp name="Header.name">Accept</stringProp>
-                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
-                </elementProp>
-                <elementProp name="x-open-id" elementType="Header">
-                  <stringProp name="Header.name">x-open-id</stringProp>
-                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
-                </elementProp>
-                <elementProp name="Content-Type" elementType="Header">
-                  <stringProp name="Header.name">Content-Type</stringProp>
-                  <stringProp name="Header.value">application/json</stringProp>
-                </elementProp>
-                <elementProp name="Accept-Encoding" elementType="Header">
-                  <stringProp name="Header.name">Accept-Encoding</stringProp>
-                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
-                </elementProp>
-                <elementProp name="User-Agent" elementType="Header">
-                  <stringProp name="Header.name">User-Agent</stringProp>
-                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">X-KEY</stringProp>
-                  <stringProp name="Header.value">${adminKey}</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">import groovy.json.JsonSlurper;
+              </HTTPSamplerProxy>
+              <hashTree>
+                <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+                  <stringProp name="scriptLanguage">groovy</stringProp>
+                  <stringProp name="parameters"></stringProp>
+                  <stringProp name="filename"></stringProp>
+                  <stringProp name="cacheKey">true</stringProp>
+                  <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- GET ACCOUNT DETAILS - PROSPECT ----------&quot;);
+log.info(&quot; \n 2.13.2 ---------- RE-RUN CREATE ACCOUNT ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -3607,7 +4363,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -3617,59 +4373,30 @@ if (responseCode != &quot;200&quot;) {
     return;
 }
 
-// ✅ Parse JSON an toàn
-def jsonResponse;
-try {
-    jsonResponse = new JsonSlurper().parseText(response);
-} catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
-    log.error(&quot; Full Response: \n&quot; + response);
-    return;
-}
+// ✅ Nếu thành công, log kết quả
+log.info(&quot;✅ Re-running create account thành công!&quot;);
 
-try {
-    log.info(&quot; Prospect ID: &quot; + vars.get(&quot;onboardingId&quot;));
-
-    // ✅ Trích xuất dữ liệu Prospect từ payload một cách an toàn
-    def payload = jsonResponse?.payload ?: [:];
-
-    def fullnameProspect = payload?.customerDetails?.fullName ?: &quot;N/A&quot;;
-    vars.put(&quot;fullnameProspect&quot;, fullnameProspect);
-    log.info(&quot; Full Name: &quot; + fullnameProspect);
-
-    def phoneNumberProspect = payload?.phoneNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;phoneNumberProspect&quot;, phoneNumberProspect);
-    log.info(&quot; Phone Number: &quot; + phoneNumberProspect);
-
-    def idNumberProspect = payload?.customerDetails?.idNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;idNumberProspect&quot;, idNumberProspect);
-    log.info(&quot; ID Number: &quot; + idNumberProspect);
-
-    def cifNumberProspect = payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;cifNumberProspect&quot;, cifNumberProspect);
-    log.info(&quot; CIF Number: &quot; + cifNumberProspect);
-
-    def vikkiAccountNumberProspect = payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;vikkiAccountNumberProspect&quot;, vikkiAccountNumberProspect);
-    log.info(&quot; Vikki Account Number: &quot; + vikkiAccountNumberProspect);
-
-    def hdbCifNumberProspect = payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;hdbCifNumberProspect&quot;, hdbCifNumberProspect);
-    log.info(&quot; HDBank CIF Number: &quot; + hdbCifNumberProspect);
-
-    def caseIDProspect = payload?.caseId ?: &quot;N/A&quot;;
-    vars.put(&quot;caseIDProspect&quot;, caseIDProspect);
-    log.info(&quot; Case ID: &quot; + caseIDProspect);
-
-    log.info(&quot;✅ Lấy thông tin Prospect thành công!&quot;);
-
-} catch (Exception e1) {
-    log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
-}</stringProp>
-            </JSR223PostProcessor>
-            <hashTree/>
+// ✅ Reset biến `triggerReRunCreateAccount` để tránh chạy lại không cần thiết
+vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
+                </JSR223PostProcessor>
+                <hashTree/>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="Accept" elementType="Header">
+                      <stringProp name="Header.name">Content-Type</stringProp>
+                      <stringProp name="Header.value">application/json</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">X-KEY</stringProp>
+                      <stringProp name="Header.value">${publicKey}</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.15 Up vKYC" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Up vKYC">
             <stringProp name="HTTPSampler.path">/v2/onboarding/admin/kyc/video</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -3747,7 +4474,7 @@ try {
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
 
-log.info(&quot; \n ---------- UP vKYC ----------&quot;);
+log.info(&quot; \n 2.14 ---------- UP vKYC ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
@@ -3757,7 +4484,7 @@ def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info( requestUrl + &quot; | Time: &quot; + responseTime);
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
 
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
@@ -3769,6 +4496,201 @@ if (responseCode != &quot;200&quot;) {
 
 // ✅ Nếu API thành công, chỉ log kết quả mà không cần hiển thị response đầy đủ
 log.info(&quot;✅ Up vKYC thành công!&quot;);</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.15 Get Account Details - Prospect">
+            <intProp name="HTTPSampler.concurrentPool">6</intProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="x-request-id" elementType="Header">
+                  <stringProp name="Header.name">x-request-id</stringProp>
+                  <stringProp name="Header.value">dcb51815-7759-41d8-8fd6-46b32e241acf</stringProp>
+                </elementProp>
+                <elementProp name="gtw-authorization" elementType="Header">
+                  <stringProp name="Header.name">gtw-authorization</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="baggage" elementType="Header">
+                  <stringProp name="Header.name">baggage</stringProp>
+                  <stringProp name="Header.value">sentry-environment=uat,sentry-transaction=StartupScreen,sentry-public_key=a8650128baf78c0abc77876f8736238f,sentry-trace_id=ae79a0eed0354e439ab2d6820a04d617,sentry-sample_rate=0.85</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="sentry-trace" elementType="Header">
+                  <stringProp name="Header.name">sentry-trace</stringProp>
+                  <stringProp name="Header.value">ae79a0eed0354e439ab2d6820a04d617-ae34fb51315f7476-1</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="x-open-id" elementType="Header">
+                  <stringProp name="Header.name">x-open-id</stringProp>
+                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">X-KEY</stringProp>
+                  <stringProp name="Header.value">${adminKey}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper;
+
+log.info(&quot; \n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+
+// ✅ Lấy thông tin từ request trước đó
+def responseCode = prev.getResponseCode();
+def responseMessage = prev.getResponseMessage();
+def responseTime = prev.getTime(); // Response time in milliseconds
+def requestUrl = prev.getURL().toString(); // Lấy URL của request
+def response = prev.getResponseDataAsString().trim();
+
+// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
+
+
+// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+// ✅ Parse JSON an toàn
+def jsonResponse;
+try {
+    jsonResponse = new JsonSlurper().parseText(response);
+} catch (Exception e) {
+    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+try {
+    log.info(&quot;\nProspect ID: &quot; + vars.get(&quot;onboardingId&quot;));
+
+    // ✅ Trích xuất dữ liệu Prospect từ payload một cách an toàn
+    def payload = jsonResponse?.payload ?: [:];
+
+    def fullnameProspect = payload?.customerDetails?.fullName ?: &quot;N/A&quot;;
+    vars.put(&quot;fullnameProspect&quot;, fullnameProspect);
+    log.info(&quot;Full Name: &quot; + fullnameProspect);
+
+    def phoneNumberProspect = payload?.phoneNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;phoneNumberProspect&quot;, phoneNumberProspect);
+    log.info(&quot;Phone Number: &quot; + phoneNumberProspect);
+
+    def idNumberProspect = payload?.customerDetails?.idNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;idNumberProspect&quot;, idNumberProspect);
+    log.info(&quot;ID Number: &quot; + idNumberProspect);
+
+    def cifNumberProspect = payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;cifNumberProspect&quot;, cifNumberProspect);
+    log.info(&quot;CIF Number: &quot; + cifNumberProspect);
+
+    def vikkiAccountNumberProspect = payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;vikkiAccountNumberProspect&quot;, vikkiAccountNumberProspect);
+    log.info(&quot;Vikki Account Number: &quot; + vikkiAccountNumberProspect);
+
+    def hdbCifNumberProspect = payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;hdbCifNumberProspect&quot;, hdbCifNumberProspect);
+    log.info(&quot;HDBank CIF Number: &quot; + hdbCifNumberProspect);
+
+    def caseIDProspect = payload?.caseId ?: &quot;N/A&quot;;
+    vars.put(&quot;caseIDProspect&quot;, caseIDProspect);
+    log.info(&quot;Case ID: &quot; + caseIDProspect);
+
+    log.info(&quot;\n✅ Lấy thông tin Prospect thành công! \n&quot;);
+
+} catch (Exception e1) {
+    log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
+}</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.16 [MOCK] Hyperverge OCR - Delete">
+            <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
+            <stringProp name="HTTPSampler.path">__admin/mappings/${idHyperVergeOCRNew}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">DELETE</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper
+
+log.info(&quot;\n 2.16 ----- DELETE [MOCK] HYPERVERGE OCR -----&quot;)
+
+// ✅ Lấy thông tin từ request trước đó
+def response = prev.getResponseDataAsString()?.trim()  // Đảm bảo response không null
+def responseCode = prev.getResponseCode()?.toString()  // Lấy mã trạng thái response
+def responseMessage = prev.getResponseMessage()  // Lấy thông điệp response
+def responseTime = prev.getTime()  // Lấy thời gian phản hồi
+
+// ✅ Log thông tin cơ bản của request
+log.info(&quot;Request URL: ${prev.getURL()} | Response Time: ${responseTime}ms&quot;)
+
+// ✅ Kiểm tra nếu response code khác 201 (DELETE thành công trả về 201)
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
+}
+
+// ✅ Parse JSON an toàn
+def jsonResponse
+try {
+    jsonResponse = new JsonSlurper().parseText(response)  // Parse response JSON
+} catch (Exception e) {
+    log.error(&quot;❌ JSON Parsing Error: ${e.message}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
+}
+
+// ✅ Log kết quả thành công
+def idHyperVergeOCRNew = vars.get(&quot;idHyperVergeOCRNew&quot;) ?: &quot;N/A&quot;  // Lấy ID mock OCR từ biến JMeter (nếu có)
+log.info(&quot;✅ Delete Mock HyperVerge successful: ${idHyperVergeOCRNew}&quot;)
+</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
@@ -3811,7 +4733,7 @@ def body = JsonOutput.toJson([
     amount: 490000000,
     refNo: vars.get(&quot;refNo&quot;),
     currency: &quot;VND&quot;,
-    transmissionDateTime: vars.get(&quot;timestamp&quot;),
+    transmissionDatevars.get(&quot;timestamp&quot;),
     fromAccount: &quot;0421000487800&quot;,
     fromAccountName: &quot;ADECCO HR Vietnam&quot;,
     toAccount: vikkiAccountNumberProspect,
@@ -3865,6 +4787,17 @@ vars.put(&quot;signature&quot;, signature)
           </hashTree>
         </hashTree>
       </hashTree>
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="Clear data Mock">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </PostThreadGroup>
+      <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
@@ -3901,6 +4834,51 @@ vars.put(&quot;signature&quot;, signature)
         </objProp>
         <stringProp name="filename"></stringProp>
       </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
+        <stringProp name="FileSaver.filename"></stringProp>
+        <boolProp name="FileSaver.errorsonly">false</boolProp>
+        <boolProp name="FileSaver.successonly">false</boolProp>
+        <boolProp name="FileSaver.skipsuffix">false</boolProp>
+        <boolProp name="FileSaver.skipautonumber">false</boolProp>
+      </ResultSaver>
       <hashTree/>
     </hashTree>
   </hashTree>
