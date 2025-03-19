@@ -10,7 +10,7 @@
       <stringProp name="TestPlan.user_define_classpath">./lib</stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -65,7 +65,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -1647,7 +1647,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             &quot;status&quot;: &quot;success&quot;,&#xd;
             &quot;statusCode&quot;: 200,&#xd;
             &quot;metadata&quot;: {&#xd;
-                &quot;requestId&quot;: &quot;24e7fac2b128971ac34a71bb4978d382&quot;,&#xd;
+                &quot;requestId&quot;: &quot;1742361340009-ffa72089-02d2-40fa-985b-756cc4d9ae12&quot;,&#xd;
                 &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
             },&#xd;
             &quot;result&quot;: {&#xd;
@@ -1806,7 +1806,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;score&quot;: 100&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-19/eunzfd/1742352078056-b269611c-f19b-4b72-8dcb-8465c166db18/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMRV56KAFES%2F20250319%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250319T024119Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBEaDmFwLXNvdXRoZWFzdC0xIkYwRAIgLZf87L%2BYAUU5gm5Ded1qfk0YdagqTUElqY6RlxC1hLUCIB5%2FXHQsEJgIME7u%2BeTOIsPNN4SBc%2BbDWn4kMFimew3NKssFCGoQARoMNjU1Njc2NTI1MzQ3IgzpL27utahf%2BJRiK5kqqAXUur%2BndiMte6ywc6tGRTLKtM382Hh1%2FqYXGGVDNcY7UR710M%2BtYo38KVEauX8bCfx1UwC3OsRVcFc%2FZRJXmcHSzLElaThCqU%2FBDKSdUfJ3d7KVJp%2Bx1jPwI6FlV1kPxdarHWAohTHUeyCrevECqRed5szib0csucrvx2JpDU0k6HSo8TA8LVRAcOcWJIdTRZiyOh9%2F1b6OEpSaQUpEXlWR%2BR%2BIw27EesK67aJ8WLwtTROe2%2FQde20i0JOt%2BDQ87AuVrhRkqUT2nhTeo6hbvHV99Qw3rXx0otnHrCU%2F7Twc5HcOiBjXBGFYOgvsHyQNr5xCukTIet1%2BGR%2Bd4c5IP7DDKRrnhxXyWLhar9gYmvtHb60euERTjnwQ9m%2FG6Hh6LRmb9Qk653q9qhNm7b9QWxTxzn2DkYjWfxuI%2BOwcKfGJSV74%2BMCVNGwf%2BygXLwThxwqPVqsP4bzShp0gUaD0Tut8qTJALOWXZWK%2FexJCxcckZvUtHsR6BsXGika09%2FpYO1J%2BttWYPVKx1xhjuGYBjAWy%2FFuThWWMDyfgH0%2BkKq9gFwew%2FI%2BIX%2FMlyaLzVixwzBOFsYIr9PhBOR7Mk1QTbnCh10Tek18CEUdH4T2ceBv6ZxIJ36GNI%2BnuaXixFsAUF5%2FF2D6%2FjOHm0ODneK0r3JXRKv86eQxvjbe2yTSpk8ap03gZABjX3o3C9idlXQqAGCIGvajXBQaPsccehEJA1SaBR9wJTV%2BUVq5F6%2Fm3NBdMq9%2BFnAfOWYEXoJJSpYlAv3B3emzb5wXd5WQPNgTnUAeVEfQS8Z1YIjZtYncKcjoMksrScGYU90yxr%2FyBfROpJBboNCypwUJc32kPAV6vXQKQhQC55b3zl8rLGdh2Ih2hq%2B%2BIL275NMSADtw2RA3qkmiMtVd4T6bymzDNrei%2BBjqyAbobpEhMDx4%2B%2BqM%2F%2BK5sDKE5s%2BlW3iGDCHlno%2FvEq47NjrSV4ZSh9ASBmWJQTkKDVT2f2W5MR8Rkp%2B2OCAM43WWOl%2FBCEqCP33oR2wgXE25EbK%2F9rqb30jF0qY1D9VJLkNjwjT7pRwpcmXo%2B9CuseNlazj3gvrpodvATp29anCeO6wXwV1UjRzjDqGjUh2b9dOqYYJGKOchJooXpnVqpMyfLFp2mb2NcLZnaFe7ShTXeKiU%3D&amp;X-Amz-Signature=ce47134a31003c6631de444640eae9b3a6595692d9cfb741797de48857f19b67&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2023,7 +2023,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-19/eunzfd/1742352084870-78c6e11a-148b-46eb-8a58-bea23d855356/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMR5Z5FIELZ%2F20250319%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250319T024126Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhANnKPCOGJ9fUHKo3Ti6b4kOVcpjM7Nj4Via%2FOM6AtBZtAiANv%2FKFe4XMZICMZQNo0GTU%2BR32hEcgr69StM0Un3WHDyrKBQhqEAEaDDY1NTY3NjUyNTM0NyIMolxB%2Bw3ElPeQ%2Bvo3KqcF3nLIInO6lYJCTNrDiMhl1G91kW2%2FTe2uevfNo43jqgV9rCxGsnP4W2UPqJUMNGIt1EwIjzCztED9o8Cv9pYCvOx7%2FDq98Vu8zm3ttPfhFm6jxLHqdc94bCDhEvLvGGgq0TCQRc82yj1rAqkT2EajnJMQKpXzH%2FY%2FuPVRZ%2BBdg%2FsUSvWHmE0%2FVkgojmJQjTbTblH3Nw%2BT%2F%2B8NkB1qK27Mf4E1qXxnxmb6FoIkaYiZG0ipC5OsX9bidmSeIvBhzDGSM2%2Bc1VkFLFjT2Rv%2FoDqZhtKwnXve354oj6CAwVoS4dTCC%2FOYUKVLg11L%2Bex430gh%2BzXGyIeSHqrZ6krbI%2FP5LN12cWcmgIOYbi%2F4lxReFDhbTg20kxOnjHAd%2FLnT%2FeAQ2hbGc%2FkgDYtL3bIBX7nteHIYvOObEzCGwaHVbqncJS37d%2FnWVkT1JXRbv4QruMAiCjd%2Bw1OQcm7F%2BleRZNyPrmazknHyf%2BYeM3yco%2FJ1I6yswIwxvz3agxAbCV13BH4zaX4MHJVgtIxUPSeUZ8S%2BOU8CWZvaoLqrlEOZSvvJ9pXIgZMgmo%2FB2wWXK%2F%2FXul2hNTWhr3a5%2BrCxUdMSSSdToUAFGoyldDglPzw4GLf%2FTTbE7fcCYvCMU6Jxci8wOE6aaBQsU19wEaBY49n%2F5Vcs3l0WB%2FnhQRKe3zOANdQkdpR26ebs2%2BtEhUQTybD4mQCokRRayFPtWTBq3Idq5NNpK8hl4DZ48EmYvKXmwcQUD5psFXu0qZ5uHt5RErZBLZitgnpkrCN%2FMwv7mr7gHeA8fkrEGff9LvDRIJ698If6ZpUDk0dbj3JB2XHJBTww16e4Ub6722jgEWvaQQAhgtVm7ruUjqBDykq5b2V1jLnFNHdAisBMfzYzX0k83rlcKo02SjUxnWI5ADCdr%2Bi%2BBjqxAXQrbddhM%2BdwyJo7NYbpMvsuuX2J4o04Ylll2y5v%2BhoMLfqxCx0YjS4y%2FPhwlrzRLW6fQfNKRjDwFIy9DMmaxLt1TUwtxdmAO9%2Bp0pICP8RIMdJJpPGtSkEHKvd8gC16S%2Fyagv%2FoZ7utKGoOJF0RHgkjpX6ukiYEDypNUkxmy3%2BaWsjvt6KnIX9nwFeuKD%2BOSeiQtcqNy0cp51mWW7yRidAnrZs%2B6GMVuwIZINMgnkwjrA%3D%3D&amp;X-Amz-Signature=b27f870615f25424612df14ce82968d7352dbd90012272dc26eab5d543b8ef19&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2235,7 +2235,8 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             &quot;folder&quot;: &quot;/mappings/hyperverge/jmeter&quot;&#xd;
         }&#xd;
     }&#xd;
-}</stringProp>
+}&#xd;
+</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -2382,7 +2383,7 @@ if (idHyperVergeOCRNew) {
             &quot;status&quot;: &quot;success&quot;,&#xd;
             &quot;statusCode&quot;: 200,&#xd;
             &quot;metadata&quot;: {&#xd;
-                &quot;requestId&quot;: &quot;24e7fac2b128971ac34a71bb4978d382&quot;,&#xd;
+                &quot;requestId&quot;: &quot;1742361340009-ffa72089-02d2-40fa-985b-756cc4d9ae12&quot;,&#xd;
                 &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
             },&#xd;
             &quot;result&quot;: {&#xd;
@@ -2541,7 +2542,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;score&quot;: 100&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-19/eunzfd/1742352078056-b269611c-f19b-4b72-8dcb-8465c166db18/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMRV56KAFES%2F20250319%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250319T024119Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBEaDmFwLXNvdXRoZWFzdC0xIkYwRAIgLZf87L%2BYAUU5gm5Ded1qfk0YdagqTUElqY6RlxC1hLUCIB5%2FXHQsEJgIME7u%2BeTOIsPNN4SBc%2BbDWn4kMFimew3NKssFCGoQARoMNjU1Njc2NTI1MzQ3IgzpL27utahf%2BJRiK5kqqAXUur%2BndiMte6ywc6tGRTLKtM382Hh1%2FqYXGGVDNcY7UR710M%2BtYo38KVEauX8bCfx1UwC3OsRVcFc%2FZRJXmcHSzLElaThCqU%2FBDKSdUfJ3d7KVJp%2Bx1jPwI6FlV1kPxdarHWAohTHUeyCrevECqRed5szib0csucrvx2JpDU0k6HSo8TA8LVRAcOcWJIdTRZiyOh9%2F1b6OEpSaQUpEXlWR%2BR%2BIw27EesK67aJ8WLwtTROe2%2FQde20i0JOt%2BDQ87AuVrhRkqUT2nhTeo6hbvHV99Qw3rXx0otnHrCU%2F7Twc5HcOiBjXBGFYOgvsHyQNr5xCukTIet1%2BGR%2Bd4c5IP7DDKRrnhxXyWLhar9gYmvtHb60euERTjnwQ9m%2FG6Hh6LRmb9Qk653q9qhNm7b9QWxTxzn2DkYjWfxuI%2BOwcKfGJSV74%2BMCVNGwf%2BygXLwThxwqPVqsP4bzShp0gUaD0Tut8qTJALOWXZWK%2FexJCxcckZvUtHsR6BsXGika09%2FpYO1J%2BttWYPVKx1xhjuGYBjAWy%2FFuThWWMDyfgH0%2BkKq9gFwew%2FI%2BIX%2FMlyaLzVixwzBOFsYIr9PhBOR7Mk1QTbnCh10Tek18CEUdH4T2ceBv6ZxIJ36GNI%2BnuaXixFsAUF5%2FF2D6%2FjOHm0ODneK0r3JXRKv86eQxvjbe2yTSpk8ap03gZABjX3o3C9idlXQqAGCIGvajXBQaPsccehEJA1SaBR9wJTV%2BUVq5F6%2Fm3NBdMq9%2BFnAfOWYEXoJJSpYlAv3B3emzb5wXd5WQPNgTnUAeVEfQS8Z1YIjZtYncKcjoMksrScGYU90yxr%2FyBfROpJBboNCypwUJc32kPAV6vXQKQhQC55b3zl8rLGdh2Ih2hq%2B%2BIL275NMSADtw2RA3qkmiMtVd4T6bymzDNrei%2BBjqyAbobpEhMDx4%2B%2BqM%2F%2BK5sDKE5s%2BlW3iGDCHlno%2FvEq47NjrSV4ZSh9ASBmWJQTkKDVT2f2W5MR8Rkp%2B2OCAM43WWOl%2FBCEqCP33oR2wgXE25EbK%2F9rqb30jF0qY1D9VJLkNjwjT7pRwpcmXo%2B9CuseNlazj3gvrpodvATp29anCeO6wXwV1UjRzjDqGjUh2b9dOqYYJGKOchJooXpnVqpMyfLFp2mb2NcLZnaFe7ShTXeKiU%3D&amp;X-Amz-Signature=ce47134a31003c6631de444640eae9b3a6595692d9cfb741797de48857f19b67&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2758,7 +2759,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-19/eunzfd/1742352084870-78c6e11a-148b-46eb-8a58-bea23d855356/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMR5Z5FIELZ%2F20250319%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250319T024126Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhANnKPCOGJ9fUHKo3Ti6b4kOVcpjM7Nj4Via%2FOM6AtBZtAiANv%2FKFe4XMZICMZQNo0GTU%2BR32hEcgr69StM0Un3WHDyrKBQhqEAEaDDY1NTY3NjUyNTM0NyIMolxB%2Bw3ElPeQ%2Bvo3KqcF3nLIInO6lYJCTNrDiMhl1G91kW2%2FTe2uevfNo43jqgV9rCxGsnP4W2UPqJUMNGIt1EwIjzCztED9o8Cv9pYCvOx7%2FDq98Vu8zm3ttPfhFm6jxLHqdc94bCDhEvLvGGgq0TCQRc82yj1rAqkT2EajnJMQKpXzH%2FY%2FuPVRZ%2BBdg%2FsUSvWHmE0%2FVkgojmJQjTbTblH3Nw%2BT%2F%2B8NkB1qK27Mf4E1qXxnxmb6FoIkaYiZG0ipC5OsX9bidmSeIvBhzDGSM2%2Bc1VkFLFjT2Rv%2FoDqZhtKwnXve354oj6CAwVoS4dTCC%2FOYUKVLg11L%2Bex430gh%2BzXGyIeSHqrZ6krbI%2FP5LN12cWcmgIOYbi%2F4lxReFDhbTg20kxOnjHAd%2FLnT%2FeAQ2hbGc%2FkgDYtL3bIBX7nteHIYvOObEzCGwaHVbqncJS37d%2FnWVkT1JXRbv4QruMAiCjd%2Bw1OQcm7F%2BleRZNyPrmazknHyf%2BYeM3yco%2FJ1I6yswIwxvz3agxAbCV13BH4zaX4MHJVgtIxUPSeUZ8S%2BOU8CWZvaoLqrlEOZSvvJ9pXIgZMgmo%2FB2wWXK%2F%2FXul2hNTWhr3a5%2BrCxUdMSSSdToUAFGoyldDglPzw4GLf%2FTTbE7fcCYvCMU6Jxci8wOE6aaBQsU19wEaBY49n%2F5Vcs3l0WB%2FnhQRKe3zOANdQkdpR26ebs2%2BtEhUQTybD4mQCokRRayFPtWTBq3Idq5NNpK8hl4DZ48EmYvKXmwcQUD5psFXu0qZ5uHt5RErZBLZitgnpkrCN%2FMwv7mr7gHeA8fkrEGff9LvDRIJ698If6ZpUDk0dbj3JB2XHJBTww16e4Ub6722jgEWvaQQAhgtVm7ruUjqBDykq5b2V1jLnFNHdAisBMfzYzX0k83rlcKo02SjUxnWI5ADCdr%2Bi%2BBjqxAXQrbddhM%2BdwyJo7NYbpMvsuuX2J4o04Ylll2y5v%2BhoMLfqxCx0YjS4y%2FPhwlrzRLW6fQfNKRjDwFIy9DMmaxLt1TUwtxdmAO9%2Bp0pICP8RIMdJJpPGtSkEHKvd8gC16S%2Fyagv%2FoZ7utKGoOJF0RHgkjpX6ukiYEDypNUkxmy3%2BaWsjvt6KnIX9nwFeuKD%2BOSeiQtcqNy0cp51mWW7yRidAnrZs%2B6GMVuwIZINMgnkwjrA%3D%3D&amp;X-Amz-Signature=b27f870615f25424612df14ce82968d7352dbd90012272dc26eab5d543b8ef19&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2970,7 +2971,8 @@ if (idHyperVergeOCRNew) {
             &quot;folder&quot;: &quot;/mappings/hyperverge/jmeter&quot;&#xd;
         }&#xd;
     }&#xd;
-}</stringProp>
+}&#xd;
+</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -3109,10 +3111,10 @@ if (idHyperVergeOCR) {
     &quot;response&quot;: {&#xd;
         &quot;status&quot;: 200,&#xd;
         &quot;jsonBody&quot;: {&#xd;
-            &quot;transaction_id&quot;: &quot;b6008e32-d3f9-4d2e-abd3-7dd237a09571&quot;,&#xd;
-            &quot;log_id&quot;: &quot;bb42784e-046c-11f0-9ba6-6302727a65b2-526f2dfc-apigateway-service-84d657594f-svzwm&quot;,&#xd;
-            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6ImI2MDA4ZTMyLWQzZjktNGQyZS1hYmQzLTdkZDIzN2EwOTU3MSIsImxvZ19pZCI6ImJiNDI3ODRlLTA0NmMtMTFmMC05YmE2LTYzMDI3MjdhNjViMi01MjZmMmRmYy1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9jZTUwZjg1MC0wNDZiLTExZjAtYWU0NC1kMTBkNzA4ZTJjNDQuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIxOS8wMy8yMDI1IDA5OjQyOjM4Iiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9jZWY4ZjgyMS0wNDZiLTExZjAtYWU0NC02OWI1NTBlMzlmZTMuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBjaGlwIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MSwiY3JlYXRlZF9kYXRlIjoiMTkvMDMvMjAyNSAwOTo0MjozNiIsInN0YXR1cyI6MX1dLCJ1dWlkX2N1c3RvbWVyIjoiZWJjYWRjYjktY2U2NC00ZGRlLTg4MzAtNzdhODNmNmQ3Yjc3IiwiY3VzdG9tZXJfY2FyZHMiOlt7Im9yaWdpbl9sb2NhdGlvbiI6Ilh1eSBYw6EsIE3hu7kgxJDhu6ljLCBIw6AgTuG7mWkiLCJyZWNlbnRfbG9jYXRpb24iOiLEkOG7mWkgOSwgVGjDtG4gTmdoxKlhLCBYdXkgWMOhLCBN4bu5IMSQ4bupYywgSMOgIE7hu5lpIiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik5hbSIsImRhZF9uYW1lIjoiSG/DoG5nIFbEg24gQ2hp4bq/biIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJDw7RuZyBnacOhbyIsImJpcnRoX2RheSI6IjIwLzEwLzE5OTgiLCJmZWF0dXJlcyI6Ik7hu5F0IHJ14buTaSBDOiAyY20gZMaw4bubaSBzYXUgbcOpcCBwaOG6o2kiLCJ2YWxpZF9kYXRlIjoiMjAvMTAvMjAzOCIsInNwb3VzZV9uYW1lIjoiIiwibXJ6IjoiW0lEVk5NMDk4MDM0MTU4ODAwMTA5ODAzNDE1ODw8OSwgOTgxMDIwNE0zODEwMjAyVk5NPDw8PDw8PDw8PDw4LCBIT0FORzw8Q0hJPENPTkc8PDw8PDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjAzLzA3LzIwMjMiLCJuYW1lIjoiSG/DoG5nIENow60gQ8O0bmciLCJvbGRfaWQiOiIwMTc0NDYyNTQiLCJpZCI6IjAwMTA5ODAzNDE1OCIsIm1vbV9uYW1lIjoiTmd1eeG7hW4gVGjhu4sgU29uIn1dfX0=&quot;,&#xd;
-            &quot;data_sign&quot;: &quot;JKUIvSpOlxE/VT13V8VlQje+xJkCP7CflYnvUb8PVCZ3wakY+SuWVx2eCzapFdAPkVyMg+vC9nCnsmNUhjTxQhdFtu5uATE4GWIRxwt4dTWQFKK5RerhtWrfCQx5DPsmfaaXF0M7Qmsb4cJQWsJcWJejCxxv4ynE7EPx4rTfSqsCaW7tp4d8uYw1r0irAQQYE8Bh+4gqGoQgQyj/5LGzIXjinE1wd1OVx8Ju8/vNL2vhuP+rY349VG0YSVyN60FR+7zsdAW7DlGaCO8iKNMWGm16TqJUI8ENrojGYj5GDMpVpZLwan1nb3otDjljajyjkY/++VEBw5b/EFSdeEJf5A==&quot;,&#xd;
+            &quot;transaction_id&quot;: &quot;90ccf7ac-ac2a-41ef-aa48-4ef851792c99&quot;,&#xd;
+            &quot;log_id&quot;: &quot;87759442-0480-11f0-9ba6-4b0f69551108-d999a0fb-apigateway-service-84d657594f-svzwm&quot;,&#xd;
+            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6IjkwY2NmN2FjLWFjMmEtNDFlZi1hYTQ4LTRlZjg1MTc5MmM5OSIsImxvZ19pZCI6Ijg3NzU5NDQyLTA0ODAtMTFmMC05YmE2LTRiMGY2OTU1MTEwOC1kOTk5YTBmYi1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9jZTUwZjg1MC0wNDZiLTExZjAtYWU0NC1kMTBkNzA4ZTJjNDQuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIxOS8wMy8yMDI1IDA5OjQyOjM4Iiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9jZWY4ZjgyMS0wNDZiLTExZjAtYWU0NC02OWI1NTBlMzlmZTMuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBjaGlwIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MSwiY3JlYXRlZF9kYXRlIjoiMTkvMDMvMjAyNSAwOTo0MjozNiIsInN0YXR1cyI6MX1dLCJ1dWlkX2N1c3RvbWVyIjoiZWJjYWRjYjktY2U2NC00ZGRlLTg4MzAtNzdhODNmNmQ3Yjc3IiwiY3VzdG9tZXJfY2FyZHMiOlt7Im9yaWdpbl9sb2NhdGlvbiI6Ilh1eSBYw6EsIE3hu7kgxJDhu6ljLCBIw6AgTuG7mWkiLCJyZWNlbnRfbG9jYXRpb24iOiLEkOG7mWkgOSwgVGjDtG4gTmdoxKlhLCBYdXkgWMOhLCBN4bu5IMSQ4bupYywgSMOgIE7hu5lpIiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik5hbSIsImRhZF9uYW1lIjoiSG/DoG5nIFbEg24gQ2hp4bq/biIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJDw7RuZyBnacOhbyIsImJpcnRoX2RheSI6IjIwLzEwLzE5OTgiLCJmZWF0dXJlcyI6Ik7hu5F0IHJ14buTaSBDOiAyY20gZMaw4bubaSBzYXUgbcOpcCBwaOG6o2kiLCJ2YWxpZF9kYXRlIjoiMjAvMTAvMjAzOCIsInNwb3VzZV9uYW1lIjoiIiwibXJ6IjoiW0lEVk5NMDk4MDM0MTU4ODAwMTA5ODAzNDE1ODw8OSwgOTgxMDIwNE0zODEwMjAyVk5NPDw8PDw8PDw8PDw4LCBIT0FORzw8Q0hJPENPTkc8PDw8PDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjAzLzA3LzIwMjMiLCJuYW1lIjoiSG/DoG5nIENow60gQ8O0bmciLCJvbGRfaWQiOiIwMTc0NDYyNTQiLCJpZCI6IjAwMTA5ODAzNDE1OCIsIm1vbV9uYW1lIjoiTmd1eeG7hW4gVGjhu4sgU29uIn1dfX0=&quot;,&#xd;
+            &quot;data_sign&quot;: &quot;kDkBrEZeP4OJmt0fWSBqZNeb9kGsvF7EI+YAzZS/kO8keHw60cHV5UuzrL5wUK7SnK8ozC/ohrcNWuZBdw/FI9NLKb3gaDMRsK8qIpZEGjDzSA8Gla6yGqNnT9++LgBdjk5N7uVDbaMwBoC9pOxKLBdY0pa12Vz/c9i0/u3dxTtnDN1ZmA6kdTpfAlgvSzfYRM8jQV4CLuLyCtlcYcaAdA23aisb/5oI0/eAOCMd7NIx12cPxMyO1nr4YGOdt8e7guJf6Su1PM5iT5+E7uyjMbm/RWE4qfcE2ZKhD/s7sY4LqnxF125bL4rF8nWAAVYzTO+r4VeJf6nGSfyksQKNow==&quot;,&#xd;
             &quot;message&quot;: &quot;IDG-00000000&quot;,&#xd;
             &quot;object&quot;: {&#xd;
                 &quot;customer_faces&quot;: [&#xd;
@@ -3283,7 +3285,7 @@ if (hdbBiometricMockingId) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 Pre check KYC">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 Pre check KYC" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/kyc/pre-check-kyc</stringProp>
@@ -4921,7 +4923,7 @@ vars.put(&quot;signature&quot;, signature)
           </hashTree>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
