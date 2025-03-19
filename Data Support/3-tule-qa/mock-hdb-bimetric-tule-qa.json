@@ -1,0 +1,76 @@
+{
+    "name": "jmeter-hdb-biometric-tule-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "a96a0092-1b14-48de-ac5f-17de653c922b",
+            "log_id": "05a3aecf-0460-11f0-a1aa-494015a9c8e2-3ef03bc0-apigateway-service-84d657594f-swv8t",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6ImE5NmEwMDkyLTFiMTQtNDhkZS1hYzVmLTE3ZGU2NTNjOTIyYiIsImxvZ19pZCI6IjA1YTNhZWNmLTA0NjAtMTFmMC1hMWFhLTQ5NDAxNWE5YzhlMi0zZWYwM2JjMC1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNDExMDUvMGI0MDQwMzEtOWIyNS0xMWVmLWIwZTctYWJkMTdhMzg4ZmRhLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2UgY2hpcCIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjEsImNyZWF0ZWRfZGF0ZSI6IjA1LzExLzIwMjQgMTA6MjE6MzIiLCJzdGF0dXMiOjF9XSwidXVpZF9jdXN0b21lciI6Ijc4YWVhMTdhLTMyODAtNDM0MC1hOGI0LTNhYTc4YTU1NTQyNyIsImN1c3RvbWVyX2NhcmRzIjpbeyJvcmlnaW5fbG9jYXRpb24iOiJQaMaw4budbmcgOSwgUXXhuq1uIDUsIFRQLiBI4buTIENow60gTWluaCIsImlzc3VlX3BsYWNlIjoiQ+G7pEMgVFLGr+G7nk5HIEPhu6RDIEPhuqJOSCBTw4FUIFFV4bqiTiBMw50gSMOATkggQ0jDjU5IIFbhu4AgVFLhuqxUIFThu7AgWMODIEjhu5hJIiwicmVjZW50X2xvY2F0aW9uIjoiNDUxLzc0IFjDtCBWaeG6v3QgTmdo4buHIFTEqW5oLCBQaMaw4budbmcgMjYsIELDrG5oIFRo4bqhbmgsIFRQLiBI4buTIENow60gTWluaCIsImV0aG5pYyI6IktpbmgiLCJnZW5kZXIiOiJO4buvIiwiZGFkX25hbWUiOiJMw6ogQW5oIFR14bqlbiIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJLaMO0bmciLCJpbWdfZnJvbnQiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjQxMTA1L2FmMmE3ZDhlLTliMjQtMTFlZi1hMDMyLTlkZDkwY2Y2ZTNlYS5qcGVnIiwiYmlydGhfZGF5IjoiMjAvMDkvMTk4MyIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIEM6MSBjbSBkxrDhu5tpIHNhdSDEkXXDtGkgbeG6r3QgdHLDoWkiLCJ2YWxpZF9kYXRlIjoiMjAvMDkvMjA0MyIsInNwb3VzZV9uYW1lIjoixJDhurduZyBYdcOibiBUcnVuZyIsIm5hdGlvbmFsaXR5IjoiVmnhu4d0IE5hbSIsImlzc3VlX2RhdGUiOiIzMC8wNS8yMDIzIiwibmFtZSI6IkzDqiBOZ+G7jWMgVMO6Iiwib2xkX2lkIjoiMDIzODAwMzUxIiwiaWQiOiIwNzkxODMwMjkxNzkiLCJtb21fbmFtZSI6Ik5ndXnhu4VuIFRo4buLIFbDom4ifV19fQ==",
+            "data_sign": "AM4xHbHriE7/UdZ8ZgtQVTOazdHRUZQWXig+lUSPjO9tTCGR9v4EBT7UzUxnr3O+cM3L8Of2Yed7Fe0/R6jOKf1ebrOzGwoeFMFd1sIbNjc/C/rezuG4lYKGC6ssOIeYDa0url1omKZjAfM0oXqN26cVIA48fzp1JZBxSNCcqzYUXqoNu+6q85zsg5508k8dwncOKOBqQo3ZYe2cZxCGUNhgmr1XSwJQJ+4VO8DG0j8iOmvBuWV+1vujuu+W4nkb4hHJmhNaz2SsoUthhqWrJMRGqNlisvebmYgG+Z+/DEvXrL4ihHD2T/udEcZEZEcLq+MdyyXV+H/Nd6hzOnnohg==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20241105/0b404031-9b25-11ef-b0e7-abd17a388fda.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "05/11/2024 10:21:32",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "78aea17a-3280-4340-a8b4-3aa78a555427",
+                "customer_cards": [
+                    {
+                        "origin_location": "Phường 9, Quận 5, TP. Hồ Chí Minh",
+                        "issue_place": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                        "recent_location": "451/74 Xô Viết Nghệ Tĩnh, Phường 26, Bình Thạnh, TP. Hồ Chí Minh",
+                        "ethnic": "Kinh",
+                        "gender": "Nữ",
+                        "dad_name": "Lê Anh Tuấn",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Không",
+                        "img_front": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20241105/af2a7d8e-9b24-11ef-a032-9dd90cf6e3ea.jpeg",
+                        "birth_day": "20/09/1983",
+                        "features": "Nốt ruồi C:1 cm dưới sau đuôi mắt trái",
+                        "valid_date": "20/09/2043",
+                        "spouse_name": "Đặng Xuân Trung",
+                        "nationality": "Việt Nam",
+                        "issue_date": "30/05/2023",
+                        "name": "Lê Ngọc Tú",
+                        "old_id": "023800351",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Nguyễn Thị Vân"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}

@@ -1,0 +1,558 @@
+{
+    "name": "jmeter-hyperverge-mocking-sanhuynh-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hyperverge/v1/link-kyc/results",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": "$[?(@.transactionId == '${onboardingId}')]"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "status": "success",
+            "statusCode": 200,
+            "metadata": {
+                "requestId": "effcc0a97efc83ef08a355078c05993d",
+                "transactionId": "1350049962386579456"
+            },
+            "result": {
+                "workflowDetails": {
+                    "workflowId": "document_verification",
+                    "version": 1
+                },
+                "applicationStatus": "auto_approved",
+                "results": [
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "front",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1741947421492-516d3214-ffcd-41e9-9870-a76caefc8866",
+                                "transactionId": "1350049962386579456"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_front",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "HUỲNH THỊ HIẾU SAN",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "05-03-1992",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "05-03-2032",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "87 Nguyễn Trãi Thuận Hòa, Thành phố Huế, Thừa Thiên Huế",
+                                                "confidence": "high",
+                                                "score": 100,
+                                                "additionalInfo": "87 nguyn tri thun ha tha thin hu",
+                                                "street": "",
+                                                "houseNumber": "",
+                                                "district": "THÀNH PHỐ HUẾ",
+                                                "province": "TỈNH THỪA THIÊN HUẾ",
+                                                "zipCode": ""
+                                            },
+                                            "gender": {
+                                                "value": "F",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "idNumber": {
+                                                "value": "${idNumberOnboard}",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "1992",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "Việt Nam",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "mrzString": {
+                                                "value": "",
+                                                "idNumber": "",
+                                                "fullName": "",
+                                                "gender": "",
+                                                "dateOfBirth": "",
+                                                "dateOfExpiry": "",
+                                                "nationality": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "homeTown": {
+                                                "value": "Hương Toàn Thị xã Hương Trà, Thừa Thiên Huế",
+                                                "confidence": "high",
+                                                "score": 100
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-14/eunzfd/1741947421492-516d3214-ffcd-41e9-9870-a76caefc8866/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAZRKK5ZMR6NNVHKHP%2F20250314%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20250314T101703Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhAIhhkJMhvmzOdsEtXwWosXYjt09W927kg6xBKoyKsIFuAiBcb30PZrPSuqHjrjlXK%2B7v%2BqMA2JYLDkSaCGz6g709hCrTBQjq%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDY1NTY3NjUyNTM0NyIMgZhYps1W3FATLCrHKqcFTMzqsMHSqAsJehGMokmRA0iYUXvTkDXUcqc%2BGCK53ZFO2fdZXusU5iYi9EAzQw0pP%2F%2BDe%2FcT5JGFd%2FKglWHX8cCcFk0ddR%2BhJhAoT9qCPf3mZgOYBcUI%2F41f9NPj%2BVuKIeV6OqfeBxHGexkz08iZn01qn7VN47F6Vl1DuJ2EzTXob3IebFZtSX4lYtocgVEnHS2lEUdevZVk7jWscINqLFcK2uJ%2FoxtkI98uvl9%2BmRGieqv7FdyxvU0Jm4tsNiFslHQ%2BCZEiAbmFwVHGJEmQUCegZbkpKwIzbLElLoaGW4Uh6a%2Fqiw0Rn1%2BTHguv344b8pXdkRfcWYzT3m1YAc6x5MzbTtj6gmQ32lqjLt72uKL2%2F0ncT%2FcKjPGMMK0xHpkLZVTVgyjNNoCyrmjIPFI21MqQ4B5qUUdIYLcg3gWL4U1DQle1giCx8c2WkfHH77DENDbkWTnvhCtl4bzdBa%2FG3bhi3scX6i29JlZXxKA8SjYcet%2BccyS5n%2FKufXsU0IZUkOCHknCNvRI5DUBb0z9kNeejd1F7a7Wg1qUKSOKbwNtUH0Hn4zSLaWfKphC1ZbyxHCzhxWzuC7xY7quFAJNQFhCTIY79cO27GsUcCJtli8OLjxRrXvs1hTYXVj8747v%2FWiowQvzJenfnBdfgigRJp6fd2obulLXLdNvEyYl%2BAcNqYvb93ngJ4X9iKppFANgTJ9yxMZDTMaUrcDbmKtlXM1NP6hnpENN2V%2F26qf8p8nJkIMXcfbnFy2kJHKAMbhkLX2Ork1VxK3YpXd2avxGLK19vYjca4d%2BJN9NcF1WYQfgqKwwq8k%2Brnm%2F4fq1rNEzwDg8aqm8EIwrLAfF0LWmqcuJYIUZFqhlPxSB2m5RC9zbQfBifHbuVKfrAtPORT%2F9UlJJh8HzUmDC708%2B%2BBjqxAZAgfWyK55FmxOOMwDlYHdSCQ2w3jwDWPgL9e3KFw3LexDvH%2F8gR8QcrsiWf9aZiIWxQV3zFqp4KVEGAMMaXBe2jjmRoEc7jB4fy%2Fl8CDSX8MHUO8yS3TUQogAmb78qNbCfRJhTt2SOCO6VxWuCQtXURtDg%2Biyg6XPBfQ%2FoERDEjGRhcb6wseRMZWra0k3EEKdVUiAf7qQbhA%2F0pbURlo6hw8hYtQQJw6woBMEHQ3z%2FJaw%3D%3D&X-Amz-Signature=eb5de2dccf349f545d70417646f33ddf6676fdd050e019eeb981f7799d168aad&X-Amz-SignedHeaders=host",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            },
+                                            "faceNotDetected": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "tamperChecks": {
+                                            "photoTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "idNumberLengthMismatch": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "expiredID": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idProvinceCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idDOBGenderCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "back",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-back.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-back.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1741947470198-5cf5bbf0-03fa-4c45-9455-9281ebc08cdf",
+                                "transactionId": "1350049962386579456"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_back",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "28-06-2021",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "",
+                                                "additionalInfo": "",
+                                                "street": "",
+                                                "houseNumber": "",
+                                                "district": "",
+                                                "province": "",
+                                                "zipCode": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "gender": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idNumber": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                                                "confidence": "high",
+                                                "score": 95
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "mrzString": {
+                                                "value": "IDVNM1920166993046192016699<<19203055F3203053VNM<<<<<<<<<<<2HUYNH<<THI<HIEU<SAN<<<<<<<<<<<",
+                                                "confidence": "high",
+                                                "score": 100,
+                                                "idNumber": "046192016699",
+                                                "fullName": "HUYNH THI HIEU SAN",
+                                                "gender": "F",
+                                                "dateOfBirth": "05-03-1992",
+                                                "dateOfExpiry": "05-03-2032",
+                                                "nationality": "VNM"
+                                            },
+                                            "homeTown": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-14/eunzfd/1741947470198-5cf5bbf0-03fa-4c45-9455-9281ebc08cdf/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAZRKK5ZMR6NNVHKHP%2F20250314%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20250314T101752Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhAIhhkJMhvmzOdsEtXwWosXYjt09W927kg6xBKoyKsIFuAiBcb30PZrPSuqHjrjlXK%2B7v%2BqMA2JYLDkSaCGz6g709hCrTBQjq%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDY1NTY3NjUyNTM0NyIMgZhYps1W3FATLCrHKqcFTMzqsMHSqAsJehGMokmRA0iYUXvTkDXUcqc%2BGCK53ZFO2fdZXusU5iYi9EAzQw0pP%2F%2BDe%2FcT5JGFd%2FKglWHX8cCcFk0ddR%2BhJhAoT9qCPf3mZgOYBcUI%2F41f9NPj%2BVuKIeV6OqfeBxHGexkz08iZn01qn7VN47F6Vl1DuJ2EzTXob3IebFZtSX4lYtocgVEnHS2lEUdevZVk7jWscINqLFcK2uJ%2FoxtkI98uvl9%2BmRGieqv7FdyxvU0Jm4tsNiFslHQ%2BCZEiAbmFwVHGJEmQUCegZbkpKwIzbLElLoaGW4Uh6a%2Fqiw0Rn1%2BTHguv344b8pXdkRfcWYzT3m1YAc6x5MzbTtj6gmQ32lqjLt72uKL2%2F0ncT%2FcKjPGMMK0xHpkLZVTVgyjNNoCyrmjIPFI21MqQ4B5qUUdIYLcg3gWL4U1DQle1giCx8c2WkfHH77DENDbkWTnvhCtl4bzdBa%2FG3bhi3scX6i29JlZXxKA8SjYcet%2BccyS5n%2FKufXsU0IZUkOCHknCNvRI5DUBb0z9kNeejd1F7a7Wg1qUKSOKbwNtUH0Hn4zSLaWfKphC1ZbyxHCzhxWzuC7xY7quFAJNQFhCTIY79cO27GsUcCJtli8OLjxRrXvs1hTYXVj8747v%2FWiowQvzJenfnBdfgigRJp6fd2obulLXLdNvEyYl%2BAcNqYvb93ngJ4X9iKppFANgTJ9yxMZDTMaUrcDbmKtlXM1NP6hnpENN2V%2F26qf8p8nJkIMXcfbnFy2kJHKAMbhkLX2Ork1VxK3YpXd2avxGLK19vYjca4d%2BJN9NcF1WYQfgqKwwq8k%2Brnm%2F4fq1rNEzwDg8aqm8EIwrLAfF0LWmqcuJYIUZFqhlPxSB2m5RC9zbQfBifHbuVKfrAtPORT%2F9UlJJh8HzUmDC708%2B%2BBjqxAZAgfWyK55FmxOOMwDlYHdSCQ2w3jwDWPgL9e3KFw3LexDvH%2F8gR8QcrsiWf9aZiIWxQV3zFqp4KVEGAMMaXBe2jjmRoEc7jB4fy%2Fl8CDSX8MHUO8yS3TUQogAmb78qNbCfRJhTt2SOCO6VxWuCQtXURtDg%2Biyg6XPBfQ%2FoERDEjGRhcb6wseRMZWra0k3EEKdVUiAf7qQbhA%2F0pbURlo6hw8hYtQQJw6woBMEHQ3z%2FJaw%3D%3D&X-Amz-Signature=f13fe0dd1615cfabd9ba3eb11d856aeb27773a3c73e4476e8259a51d42cc8d55&X-Amz-SignedHeaders=host",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "mrzTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "attempts": "1",
+                        "moduleId": "module_selfie",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1741947479481-cf13ecf0-0a46-4851-a36d-de5f191202b6",
+                                "transactionId": "1350049962386579456"
+                            },
+                            "result": {
+                                "details": {
+                                    "liveFace": {
+                                        "value": "yes",
+                                        "confidence": "high",
+                                        "score": 100
+                                    },
+                                    "qualityChecks": {
+                                        "blur": {
+                                            "score": 96,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyesClosed": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyewear": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "faceOccluded": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "hat": {
+                                            "score": 99,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "headTurned": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "maskPresent": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "multipleFaces": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "nudity": {
+                                            "score": 100,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        }
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "moduleId": "module_facematch",
+                        "idImageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png",
+                        "selfieImageUrl": "https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1741947481158-232dcb1b-6319-467e-b72a-bad2af6f4f19",
+                                "transactionId": "1350049962386579456"
+                            },
+                            "result": {
+                                "details": {
+                                    "match": {
+                                        "value": "yes",
+                                        "score": 98,
+                                        "confidence": "high"
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "attempts": "1"
+                    }
+                ],
+                "userDetails": {
+                    "selfieRequestId": "1741947479481-cf13ecf0-0a46-4851-a36d-de5f191202b6",
+                    "facematchAction": "pass",
+                    "facematchRequestId": "1741947481158-232dcb1b-6319-467e-b72a-bad2af6f4f19",
+                    "selfieAction": "pass"
+                }
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hyperverge/jmeter"
+        }
+    }
+}
