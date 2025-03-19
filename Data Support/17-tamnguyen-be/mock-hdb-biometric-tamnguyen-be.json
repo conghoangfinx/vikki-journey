@@ -1,0 +1,139 @@
+{
+    "name": "jmeter-hdb-biometric-tamnguyen-be",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "b04b805c-f2e9-4180-ab31-2ba2b6558d06",
+            "log_id": "3a759a2b-0491-11f0-9ba6-c104b55db7ac-daa82374-apigateway-service-84d657594f-svzwm",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6ImIwNGI4MDVjLWYyZTktNDE4MC1hYjMxLTJiYTJiNjU1OGQwNiIsImxvZ19pZCI6IjNhNzU5YTJiLTA0OTEtMTFmMC05YmE2LWMxMDRiNTVkYjdhYy1kYWE4MjM3NC1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAyMjYvNTkxMjk4YzItZjNmNi0xMWVmLWFlMGItOTM5NGViNDkwMWMyLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMjYvMDIvMjAyNSAxMTowMTozMCIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzExLzA1NzI3ODkwLWZlNjMtMTFlZi1hZTBiLWVkMjMyM2Y3YzljNC5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIHNlbGZpZSIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjAsImNyZWF0ZWRfZGF0ZSI6IjExLzAzLzIwMjUgMTc6MjY6MzQiLCJzdGF0dXMiOjB9LHsiaW1hZ2VfdXJsIjoiZWt5Yy1jaWMvdmVreWN1cGxvYWQvaWRndjItdHlwZTMxLWQ2M2Q4ZGI0LTIzMjItNGY3Ni1iNWRmLWJjNDNkMzdjN2MxMy8yMDI1MDMxMi9kMGY1YWM4ZS1mZWUyLTExZWYtYWU0NC1kOTlhY2QxODVjNzUuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIxMi8wMy8yMDI1IDA4OjM5OjUwIiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMTAvNjk2YjJhYmMtZmQ5NS0xMWVmLWFlNDQtMDFmZTRhZjM1NjM5LmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMTAvMDMvMjAyNSAxNjo1Njo0NSIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzExL2FiMzFjNzE1LWZlNDEtMTFlZi1hZTBiLWFiN2YyMmQ5YzIwNi5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIHNlbGZpZSIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjAsImNyZWF0ZWRfZGF0ZSI6IjExLzAzLzIwMjUgMTM6NTU6MzIiLCJzdGF0dXMiOjB9LHsiaW1hZ2VfdXJsIjoiZWt5Yy1jaWMvdmVreWN1cGxvYWQvaWRndjItdHlwZTMxLWQ2M2Q4ZGI0LTIzMjItNGY3Ni1iNWRmLWJjNDNkMzdjN2MxMy8yMDI1MDMxMC81MWRhMDFlZS1mZDk5LTExZWYtYWU0NC1mZjgxMmY1NzNmODMuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIxMC8wMy8yMDI1IDE3OjIxOjEzIiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMTAvY2RmNGNhNzctZmQ5OS0xMWVmLWFlMGItNmQwNDM1MmYxYjgyLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMTAvMDMvMjAyNSAxNzoyNjo0MSIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9kZDVmOGI5OC04ZjgxLTQyNmEtOTU2Mi1jYjhiMTBhZWU0MDUvMjAyNTAzMTgvYTI0MWIyOWMtMDNkNC0xMWYwLWFlMGItMTkzNjc3ZGQ0NTMyLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMTgvMDMvMjAyNSAxNTo0MDo1NCIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMjI2LzVhMmZlZmEzLWYzZjYtMTFlZi1hZTBiLTkxMDNkYjMyMWI5OC5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIyNi8wMi8yMDI1IDExOjAxOjMwIiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiIwNGYwZDU2Ny02Y2I1LTRhMjgtYTg2NS1hM2IwNGJlM2RmZjgiLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiVsSpbmggTG9uZyIsInJlY2VudF9sb2NhdGlvbiI6IlPhu5EgNzcsIE5ndXnhu4VuIER1LCBQaMaw4budbmcgMSwgVFAuIFbEqW5oIExvbmcsIFbEqW5oIExvbmciLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTmFtIiwiZGFkX25hbWUiOiJOZ3V54buFbiBUaMOgbmggTG9uZyIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJLaMO0bmciLCJiaXJ0aF9kYXkiOiIyOC8xMC8xOTk1IiwiZmVhdHVyZXMiOiJT4bq5byBjaOG6pW0gQzoyY20gZMaw4bubaSBzYXUgxJHhuqd1IGzDtG5nIG3DoHkgcGjhuqNpIiwidmFsaWRfZGF0ZSI6IjI4LzEwLzIwMzUiLCJzcG91c2VfbmFtZSI6IiIsIm1yeiI6IltJRFZOTTA5NTAwMjE5MjAwODYwOTUwMDIxOTI8PDAsIDk1MTAyODNNMzUxMDI4MVZOTTw8PDw8PDw8PDw8MCwgTkdVWUVOPDxIT0FORzxEVUM8VEFNPDw8PDw8PDw8XSIsIm5hdGlvbmFsaXR5IjoiVmnhu4d0IE5hbSIsImlzc3VlX2RhdGUiOiIwNS8wOS8yMDIzIiwibmFtZSI6Ik5ndXnhu4VuIEhvw6BuZyDEkOG7qWMgVMOibSIsIm9sZF9pZCI6IjMzMTc1MDgwMyIsImlkIjoiMDg2MDk1MDAyMTkyIiwibW9tX25hbWUiOiJOZ3V54buFbiBUaOG7iyBCw61jaCBUacOqbiJ9XX19",
+            "data_sign": "Mr2z5qPhc5jJ9FNYziWegSkadoFKNGUfG0VtSGBkgMhvV0HkDJ3DaZWM9y/DflZJMouDTfHcJ43vgPIoe7yHJN1Xfz37Pltx2qKssEwtj4HbAckwnxSxOWy6KR0VUCatVA4r6f+PUzGlcW+lKdwfgSj3Qg10bYA2+a7zhzbA2W1M4WkE4EpezLXBO0JcCvVjBtLd/4kafhWVXutIbQ06OJkVs78+HQhV8OeMrXpr36r1Jk/k6fnBRSN2BqlcoasXDASwlivt56PLgCsMU6/plP2K7Oh2BGFzHMhLpLbLhvBRftrH0RZpVBavEuVcaXq8kOCV9wdgvEZ4P87orYqsFw==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250226/591298c2-f3f6-11ef-ae0b-9394eb4901c2.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "26/02/2025 11:01:30",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250311/05727890-fe63-11ef-ae0b-ed2323f7c9c4.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "11/03/2025 17:26:34",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250312/d0f5ac8e-fee2-11ef-ae44-d99acd185c75.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "12/03/2025 08:39:50",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250310/696b2abc-fd95-11ef-ae44-01fe4af35639.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "10/03/2025 16:56:45",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250311/ab31c715-fe41-11ef-ae0b-ab7f22d9c206.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "11/03/2025 13:55:32",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250310/51da01ee-fd99-11ef-ae44-ff812f573f83.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "10/03/2025 17:21:13",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250310/cdf4ca77-fd99-11ef-ae0b-6d04352f1b82.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "10/03/2025 17:26:41",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/dd5f8b98-8f81-426a-9562-cb8b10aee405/20250318/a241b29c-03d4-11f0-ae0b-193677dd4532.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "18/03/2025 15:40:54",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250226/5a2fefa3-f3f6-11ef-ae0b-9103db321b98.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "26/02/2025 11:01:30",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "04f0d567-6cb5-4a28-a865-a3b04be3dff8",
+                "customer_cards": [
+                    {
+                        "origin_location": "Vĩnh Long",
+                        "recent_location": "Số 77, Nguyễn Du, Phường 1, TP. Vĩnh Long, Vĩnh Long",
+                        "ethnic": "Kinh",
+                        "gender": "Nam",
+                        "dad_name": "Nguyễn Thành Long",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Không",
+                        "birth_day": "28/10/1995",
+                        "features": "Sẹo chấm C:2cm dưới sau đầu lông mày phải",
+                        "valid_date": "28/10/2035",
+                        "spouse_name": "",
+                        "mrz": "[IDVNM0950021920086095002192<<0, 9510283M3510281VNM<<<<<<<<<<<0, NGUYEN<<HOANG<DUC<TAM<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "05/09/2023",
+                        "name": "Nguyễn Hoàng Đức Tâm",
+                        "old_id": "331750803",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Nguyễn Thị Bích Tiên"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
