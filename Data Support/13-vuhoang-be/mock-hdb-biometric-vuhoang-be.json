@@ -1,0 +1,74 @@
+{
+    "name": "jmeter-hdb-biometric-vuhoang-be",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "93aa4c6b-463d-4bae-a67a-6951c03d4ff8",
+            "log_id": "116c5f50-0468-11f0-9ba6-879e115948c8-d4489924-apigateway-service-84d657594f-svzwm",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6IjkzYWE0YzZiLTQ2M2QtNGJhZS1hNjdhLTY5NTFjMDNkNGZmOCIsImxvZ19pZCI6IjExNmM1ZjUwLTA0NjgtMTFmMC05YmE2LTg3OWUxMTU5NDhjOC1kNDQ4OTkyNC1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNDEwMDkvNzY3YjQ0NDQtODVmYi0xMWVmLWFkMzktOTNkYmY3NjRhYzgyLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2UgY2hpcCIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjEsImNyZWF0ZWRfZGF0ZSI6IjA5LzEwLzIwMjQgMTI6MDA6NTgiLCJzdGF0dXMiOjF9XSwidXVpZF9jdXN0b21lciI6ImY0YmI1ZWRkLTNlNTktNDRkMy04ZmI2LTM0MWRjMmY2ZmQzNSIsImN1c3RvbWVyX2NhcmRzIjpbeyJvcmlnaW5fbG9jYXRpb24iOiJRdWFuZyBWxKluaCwgxJDhu6ljIFRo4buNLCBIw6AgVMSpbmgiLCJyZWNlbnRfbG9jYXRpb24iOiJU4buVIExpw6puIEdpYSA2LCBU4buVIETDom4gUGjhu5EgNCwgS2jDoW5oIFh1w6JuLCBCdcO0biBNYSBUaHXhu5l0LCDEkOG6r2sgTOG6r2siLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTmFtIiwiZGFkX25hbWUiOiJIb8OgbmcgS2jhuq9jIE1pbmgiLCJyZXN1bHRfYzA2Ijp7InNpZ25hdHVyZSI6IktvMjdsT3B0VFl1OFRPNklWWnJSd0xlVGJQSlFvMGpkbmNicUdLTlNCeThob1NrWWQzSHk2dXg1VFIrTTJxRVlzeVlPZk1iaXBNNnQ0L0QyU2wrcXFrOEZUQlNYZ05DVmtMUWJMM2FwVnJKV3hSRzQrb1MxNENxdlk4bWVXRGlKaHRGTytOZ1lJeWNvTFNZSTFDZzFuYnIyd3gwd05TSWlhZHJjRmdZS0F4QjNObDd0cGVDU25NeUJLS1VmNkRpdHRTc3pwaWtmTG8rb0Rtdi9lMVJPdWRWU0NFb2c5K1NXZjN6ckU2cWZFWmtLNGV3ZTJ0OGJCUUdTNGlhaUZFanhhempvODlycGFkNjhaVUhuaENBc2ZDL1d0aXBRbkx4TEEySytSVnlsUkRCK002SSthKzZoUlFtYWZFdjM0cEpWR3hBT0Uza3VoWnBqanlQSml0QUxtdz09IiwicmVzcG9uZHMiOnsicmVzdWx0Ijp0cnVlLCJyZXNwb25zZV9pZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwiZXhpdGNvZGUiOjAsInRpbWUiOjAsIm1lc3NhZ2UiOiJ2YWxpZCBpZGNhcmQiLCJyZXNwb25zZUlkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifX0sInJlbGlnaW9uIjoiS2jDtG5nIiwiYmlydGhfZGF5IjoiMTcvMTIvMjAwMCIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIEM6M2NtIHRyw6puIHRyxrDhu5tjIGPDoW5oIG3FqWkgcGjhuqNpIiwidmFsaWRfZGF0ZSI6IjE3LzEyLzIwMjUiLCJtcnoiOiJbSURWTk0yMDAwMDU3MDc1MDY2MjAwMDA1NzA3PDw5LCAwMDEyMTc1TTI1MTIxNzRWTk08PDw8PDw8PDw8PDQsIEhPQU5HPDxUUlVORzxWVTw8PDw8PDw8PDw8PDw8PF0iLCJuYXRpb25hbGl0eSI6IlZp4buHdCBOYW0iLCJpc3N1ZV9kYXRlIjoiMzEvMDEvMjAyMyIsIm5hbWUiOiJIb8OgbmcgVHJ1bmcgVsWpIiwib2xkX2lkIjoiMjQxODY2NjMwIiwiaWQiOiIwNjYyMDAwMDU3MDciLCJtb21fbmFtZSI6IkzDqiBUaOG7iyBI4bqjaSJ9XX19",
+            "data_sign": "mPTZrWVjP0ssfWT8GUDss6CSNMkID/oN1c3Fqx6IRkxlnCC34IqyWVaur65eq1oe/HL84M0uOgWw7BlMz910ncQqMRw2eRtO7zar2TdIj7JxclHMFynfoQq6FYhLsO46cR1Rz/4ypozFUGGZtGv5UBpI/W148d8PilsvPlyuRXDAT0Ujqe/r6PTryy9FykC1KQt9JvGZ4bd+/MScUxNv9yErEkeM4WEBPDQUQq3JvNuIbBFYYXlG8VczaLZVtPBBckmWM6g+FhB83Lof1WTqpfqDqkGZP/U3Wi7rivd7yPxCZTIKktr1R6yKQdfbtklpKBJU9LYcDA7dfA+PKcbNfQ==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20241009/767b4444-85fb-11ef-ad39-93dbf764ac82.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "09/10/2024 12:00:58",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "f4bb5edd-3e59-44d3-8fb6-341dc2f6fd35",
+                "customer_cards": [
+                    {
+                        "origin_location": "Quang Vĩnh, Đức Thọ, Hà Tĩnh",
+                        "recent_location": "Tổ Liên Gia 6, Tổ Dân Phố 4, Khánh Xuân, Buôn Ma Thuột, Đắk Lắk",
+                        "ethnic": "Kinh",
+                        "gender": "Nam",
+                        "dad_name": "Hoàng Khắc Minh",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Không",
+                        "birth_day": "17/12/2000",
+                        "features": "Nốt ruồi C:3cm trên trước cánh mũi phải",
+                        "valid_date": "17/12/2025",
+                        "mrz": "[IDVNM2000057075066200005707<<9, 0012175M2512174VNM<<<<<<<<<<<4, HOANG<<TRUNG<VU<<<<<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "31/01/2023",
+                        "name": "Hoàng Trung Vũ",
+                        "old_id": "241866630",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Lê Thị Hải"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
