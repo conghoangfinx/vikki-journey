@@ -1,0 +1,75 @@
+{
+    "name": "jmeter-hdb-biometric-haiduong-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "7796438e-389d-412d-84e0-9f32157ffec6",
+            "log_id": "a09cd85c-049f-11f0-9ba6-c7cd4c11e7f3-589ad27d-apigateway-service-84d657594f-svzwm",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6Ijc3OTY0MzhlLTM4OWQtNDEyZC04NGUwLTlmMzIxNTdmZmVjNiIsImxvZ19pZCI6ImEwOWNkODVjLTA0OWYtMTFmMC05YmE2LWM3Y2Q0YzExZTdmMy01ODlhZDI3ZC1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNDEyMTcvOTQxNGMwZTctYmMyMy0xMWVmLTg0YzItZmQyZDJmMzIzNGJhLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2UgY2hpcCIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjEsImNyZWF0ZWRfZGF0ZSI6IjE3LzEyLzIwMjQgMTA6MDQ6MDkiLCJzdGF0dXMiOjF9XSwidXVpZF9jdXN0b21lciI6IjJmNDBkMzg5LWRlYTctNDRlNS1hNTdhLTE0YjJjNDA2MmMxNiIsImN1c3RvbWVyX2NhcmRzIjpbeyJvcmlnaW5fbG9jYXRpb24iOiJM4buZYyBUaOG7p3ksIEzhu4cgVGjhu6d5LCBRdeG6o25nIELDrG5oIiwicmVjZW50X2xvY2F0aW9uIjoiMTUyIFF1eeG6v3QgVGnhur9uLCBJYSBLcmluZywgVGjDoG5oIHBo4buRIFBsZWlrdSwgR2lhIExhaSIsImV0aG5pYyI6IlRow6FpIiwiZ2VuZGVyIjoiTmFtIiwiZGFkX25hbWUiOiJExrDGoW5nIFPGoW4iLCJyZXN1bHRfYzA2Ijp7InNpZ25hdHVyZSI6IktvMjdsT3B0VFl1OFRPNklWWnJSd0xlVGJQSlFvMGpkbmNicUdLTlNCeThob1NrWWQzSHk2dXg1VFIrTTJxRVlzeVlPZk1iaXBNNnQ0L0QyU2wrcXFrOEZUQlNYZ05DVmtMUWJMM2FwVnJKV3hSRzQrb1MxNENxdlk4bWVXRGlKaHRGTytOZ1lJeWNvTFNZSTFDZzFuYnIyd3gwd05TSWlhZHJjRmdZS0F4QjNObDd0cGVDU25NeUJLS1VmNkRpdHRTc3pwaWtmTG8rb0Rtdi9lMVJPdWRWU0NFb2c5K1NXZjN6ckU2cWZFWmtLNGV3ZTJ0OGJCUUdTNGlhaUZFanhhempvODlycGFkNjhaVUhuaENBc2ZDL1d0aXBRbkx4TEEySytSVnlsUkRCK002SSthKzZoUlFtYWZFdjM0cEpWR3hBT0Uza3VoWnBqanlQSml0QUxtdz09IiwicmVzcG9uZHMiOnsicmVzdWx0Ijp0cnVlLCJyZXNwb25zZV9pZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwiZXhpdGNvZGUiOjAsInRpbWUiOjAsIm1lc3NhZ2UiOiJ2YWxpZCBpZGNhcmQiLCJyZXNwb25zZUlkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifX0sInJlbGlnaW9uIjoiS2jDtG5nIiwiYmlydGhfZGF5IjoiMjAvMTAvMTk5NSIsImZlYXR1cmVzIjoiU+G6uW8gY2jhuqVtIENMIDIsMmNtIGTGsOG7m2kgc2F1IMSRdcO0aSBtw6B5IHBo4bqjaS4iLCJ2YWxpZF9kYXRlIjoiMjAvMTAvMjAzNSIsInNwb3VzZV9uYW1lIjoiIiwibXJ6IjoiW0lEVk5NMDk1MDAzNDM0NjA2NDA5NTAwMzQzNDw8OCwgOTUxMDIwNU0zNTEwMjAzVk5NPDw8PDw8PDw8PDwwLCBEVU9ORzw8Q09ORzxIQUk8PDw8PDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjI3LzA0LzIwMjEiLCJuYW1lIjoiRMawxqFuZyBDw7RuZyBI4bqjaSIsIm9sZF9pZCI6IjIzMDkxNTY2NCIsImlkIjoiMDY0MDk1MDAzNDM0IiwibW9tX25hbWUiOiJRdWFuZyBUaOG7iyBN4bu5IExpw6puIn1dfX0=",
+            "data_sign": "Jcy4Q3531mdc1LAT4o1hl/kiwZyFlZtlRJXVfeLHHpWLhZ2XaFP7go9aGzgVyn2TlNzdtH4+7Vqj06woh5QywsZ0U+7YgF0zpemUtslxbnBH29oz3tDPpQCT2NpkLai0qOv3A1TqNYWAXsSdbzQSo55P5qOPTyLksbFbponqBDTL+hwRAPaIQjQoiENRLEW9ARHPM7NctsRrnHN1ful6g1cY2aY9vnQmMi4gUPYYzImjFSspl2HDzc+sNukNS7qoNh12LjKlFZP/Wk0t9RPX7LpycrGFQQrZ9EjIHp4HWQrxSaHoJxKuaPlFhy0hTy2c5tcFTYj9d6iFHR+LpOj6ag==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20241217/9414c0e7-bc23-11ef-84c2-fd2d2f3234ba.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "17/12/2024 10:04:09",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "2f40d389-dea7-44e5-a57a-14b2c4062c16",
+                "customer_cards": [
+                    {
+                        "origin_location": "Lộc Thủy, Lệ Thủy, Quảng Bình",
+                        "recent_location": "152 Quyết Tiến, Ia Kring, Thành phố Pleiku, Gia Lai",
+                        "ethnic": "Thái",
+                        "gender": "Nam",
+                        "dad_name": "Dương Sơn",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Không",
+                        "birth_day": "20/10/1995",
+                        "features": "Sẹo chấm CL 2,2cm dưới sau đuôi mày phải.",
+                        "valid_date": "20/10/2035",
+                        "spouse_name": "",
+                        "mrz": "[IDVNM0950034346064095003434<<8, 9510205M3510203VNM<<<<<<<<<<<0, DUONG<<CONG<HAI<<<<<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "27/04/2021",
+                        "name": "Dương Công Hải",
+                        "old_id": "230915664",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Quang Thị Mỹ Liên"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
