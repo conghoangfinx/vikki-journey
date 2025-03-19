@@ -1,0 +1,553 @@
+{
+    "name": "jmeter-hyperverge-mocking-phanguyen-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hyperverge/v1/link-kyc/results",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": "$[?(@.transactionId == '${onboardingId}')]"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "status": "success",
+            "statusCode": 200,
+            "metadata": {
+                "requestId": "1735283340253-3cb9c734-d1e1-4606-b3e4-df0491b93d83",
+                "transactionId": "1322098220031750144"
+            },
+            "result": {
+                "workflowDetails": {
+                    "workflowId": "document_verification",
+                    "version": 1
+                },
+                "applicationStatus": "auto_approved",
+                "results": [
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "front",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-front.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-front.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1735283205480-cf0fd4f9-3035-4da8-90f0-8793bc4734c0",
+                                "transactionId": "1322098220031750144"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_front",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "NGUYỄN THANH HOÀNG PHA",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "09-09-1994",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "09-09-2034",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "50, Ấp 2 Long Thới, Nhà Bè, Hồ Chí Minh",
+                                                "confidence": "high",
+                                                "score": 100,
+                                                "additionalInfo": "p 2 long thi nh b h ch minh",
+                                                "street": "50",
+                                                "houseNumber": "",
+                                                "district": "HUYỆN NHÀ BÈ",
+                                                "province": "THÀNH PHỐ HỒ CHÍ MINH",
+                                                "zipCode": ""
+                                            },
+                                            "gender": {
+                                                "value": "M",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "idNumber": {
+                                                "value": "${idNumberOnboard}",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "1994",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "Việt Nam",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "mrzString": {
+                                                "value": "",
+                                                "idNumber": "",
+                                                "fullName": "",
+                                                "gender": "",
+                                                "dateOfBirth": "",
+                                                "dateOfExpiry": "",
+                                                "nationality": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "homeTown": {
+                                                "value": "Tân Thuận Đông, Quận 7, Hồ Chí Minh",
+                                                "confidence": "high",
+                                                "score": 100
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-front.png",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            },
+                                            "faceNotDetected": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "tamperChecks": {
+                                            "photoTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "idNumberLengthMismatch": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "expiredID": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idProvinceCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idDOBGenderCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "2",
+                        "expectedDocumentSide": "back",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-back.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-back.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1735283249595-b5ec647d-9f91-4aef-a41c-06881a0ac786",
+                                "transactionId": "1322098220031750144"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_back",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "25-04-2021",
+                                                "confidence": "high",
+                                                "score": 96
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "",
+                                                "additionalInfo": "",
+                                                "street": "",
+                                                "houseNumber": "",
+                                                "district": "",
+                                                "province": "",
+                                                "zipCode": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "gender": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idNumber": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                                                "confidence": "high",
+                                                "score": 95
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "mrzString": {
+                                                "value": "IDVNM0940195134079094019513<<49409097M3409095VNM<<<<<<<<<<<2NGUYEN<<THANH<HOANG<PHA<<<<<<<",
+                                                "confidence": "high",
+                                                "score": 99,
+                                                "idNumber": "079094019513",
+                                                "fullName": "NGUYEN THANH HOANG PHA",
+                                                "gender": "M",
+                                                "dateOfBirth": "09-09-1994",
+                                                "dateOfExpiry": "09-09-2034",
+                                                "nationality": "VNM"
+                                            },
+                                            "homeTown": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-back.png",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 72,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "mrzTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "attempts": "1",
+                        "moduleId": "module_selfie",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1735283260029-9757ba5f-b23b-4680-b02a-65aaf876e75e",
+                                "transactionId": "1322098220031750144"
+                            },
+                            "result": {
+                                "details": {
+                                    "liveFace": {
+                                        "value": "yes",
+                                        "confidence": "high",
+                                        "score": 100
+                                    },
+                                    "qualityChecks": {
+                                        "blur": {
+                                            "score": 96,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyesClosed": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyewear": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "faceOccluded": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "hat": {
+                                            "score": 99,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "headTurned": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "maskPresent": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "multipleFaces": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "nudity": {
+                                            "score": 100,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        }
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "moduleId": "module_facematch",
+                        "idImageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-front.png",
+                        "selfieImageUrl": "https://wiremock.sit.galaxyfinx.in/phanguyenqa/phanguyen-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1735283261790-3135aeab-8fe5-49a8-abf6-ceffcd19b63b",
+                                "transactionId": "1322098220031750144"
+                            },
+                            "result": {
+                                "details": {
+                                    "match": {
+                                        "value": "yes",
+                                        "score": 92,
+                                        "confidence": "high"
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "attempts": "1"
+                    }
+                ],
+                "userDetails": {
+                    "selfieRequestId": "1735283260029-9757ba5f-b23b-4680-b02a-65aaf876e75e",
+                    "facematchRequestId": "1735283261790-3135aeab-8fe5-49a8-abf6-ceffcd19b63b",
+                    "selfieAction": "pass",
+                    "facematchAction": "pass"
+                }
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hyperverge/jmeter"
+        }
+    }
+}
