@@ -1,0 +1,83 @@
+{
+    "name": "jmeter-hdb-biometric-khoapham-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "75de0d1a-5271-43ba-ac2f-ffd48ea78a95",
+            "log_id": "815f0f8f-049e-11f0-a1aa-a1c46b5db195-1f378f1e-apigateway-service-84d657594f-swv8t",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6Ijc1ZGUwZDFhLTUyNzEtNDNiYS1hYzJmLWZmZDQ4ZWE3OGE5NSIsImxvZ19pZCI6IjgxNWYwZjhmLTA0OWUtMTFmMC1hMWFhLWExYzQ2YjVkYjE5NS0xZjM3OGYxZS1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMTEvMDEzNGNmYzctZmUzMy0xMWVmLWFlMGItMjkwYzU3MDM0ZDYyLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMTEvMDMvMjAyNSAxMTo0MDo1MyIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzExLzAyMGNiOTM4LWZlMzMtMTFlZi1hZTBiLWRkY2U2YjcyY2MyNC5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIxMS8wMy8yMDI1IDExOjQwOjUzIiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiIxZTI3MGYxOS1hMzVhLTRhYWYtOWEzZi0xZGJiMjhkYjY1MzMiLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiUGjhu6cgTMO9LCBIw6AgTmFtIiwicmVjZW50X2xvY2F0aW9uIjoiODUgQsOgdSBDw6F0IDEsIFThu5UgNjQsIEtodSBQaOG7kSA0LCBQaMaw4budbmcgMTQsIFTDom4gQsOsbmgsIFRQLkjhu5MgQ2jDrSBNaW5oIiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik5hbSIsImRhZF9uYW1lIjoiUGjhuqFtIFbEg24gUGjGsMahbmciLCJyZXN1bHRfYzA2Ijp7InNpZ25hdHVyZSI6IktvMjdsT3B0VFl1OFRPNklWWnJSd0xlVGJQSlFvMGpkbmNicUdLTlNCeThob1NrWWQzSHk2dXg1VFIrTTJxRVlzeVlPZk1iaXBNNnQ0L0QyU2wrcXFrOEZUQlNYZ05DVmtMUWJMM2FwVnJKV3hSRzQrb1MxNENxdlk4bWVXRGlKaHRGTytOZ1lJeWNvTFNZSTFDZzFuYnIyd3gwd05TSWlhZHJjRmdZS0F4QjNObDd0cGVDU25NeUJLS1VmNkRpdHRTc3pwaWtmTG8rb0Rtdi9lMVJPdWRWU0NFb2c5K1NXZjN6ckU2cWZFWmtLNGV3ZTJ0OGJCUUdTNGlhaUZFanhhempvODlycGFkNjhaVUhuaENBc2ZDL1d0aXBRbkx4TEEySytSVnlsUkRCK002SSthKzZoUlFtYWZFdjM0cEpWR3hBT0Uza3VoWnBqanlQSml0QUxtdz09IiwicmVzcG9uZHMiOnsicmVzdWx0Ijp0cnVlLCJyZXNwb25zZV9pZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwiZXhpdGNvZGUiOjAsInRpbWUiOjAsIm1lc3NhZ2UiOiJ2YWxpZCBpZGNhcmQiLCJyZXNwb25zZUlkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifX0sInJlbGlnaW9uIjoiS2jDtG5nIiwiYmlydGhfZGF5IjoiMjEvMTEvMTk5NiIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIEM6Miw1Y20gdHLDqm4gc2F1IMSR4bqndSBsw7RuZyBtw6B5IHBo4bqjaSIsInZhbGlkX2RhdGUiOiIyMS8xMS8yMDM2Iiwic3BvdXNlX25hbWUiOiIiLCJtcnoiOiJbSURWTk0wOTYwMzUxMTMwMDc5MDk2MDM1MTEzPDwwLCA5NjExMjE2TTM2MTEyMTRWTk08PDw8PDw8PDw8PDQsIFBIQU08PERBTkc8S0hPQTw8PDw8PDw8PDw8PDw8PF0iLCJuYXRpb25hbGl0eSI6IlZp4buHdCBOYW0iLCJpc3N1ZV9kYXRlIjoiMTAvMDcvMjAyMSIsIm5hbWUiOiJQaOG6oW0gxJDEg25nIEtob2EiLCJvbGRfaWQiOiIwMjU0ODk0MDIiLCJpZCI6IjA3OTA5NjAzNTExMyIsIm1vbV9uYW1lIjoiTMawxqFuZyBUaOG7iyBLaW0gSOG7k25nIn1dfX0=",
+            "data_sign": "YyvppPu3Yu1qhON+oaACIhALQ2JNjpzIZjYiAemPyvgMxplnN0X2QC3FKF9mtXCLpYwR50AfM86e3Izfcvz/TwnNlHfrAQl61xwRqegrIqTf54kvPARtCaS66+fhvYy7SWRO6UytR2uLETDz4wo3TkK/dZhOF0HIRBJzpkSpgSDq6LA59lhS3hwrJ1+tqpyO/DfhYkxxaTnzkhGRJgynGhlv5KKASvrU6AxuBhBNCbtUNF7nT4lBVT+Mv71Z9Gai08b2Fgz+xjSKYzY0Wfx07fFkPM0BjgPsw91c4rVFnqaFpO6BzuCUBml3+rm/ySEQ9ce5T+B8U8QcD/TeaSbhfg==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250311/0134cfc7-fe33-11ef-ae0b-290c57034d62.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "11/03/2025 11:40:53",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250311/020cb938-fe33-11ef-ae0b-ddce6b72cc24.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "11/03/2025 11:40:53",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "1e270f19-a35a-4aaf-9a3f-1dbb28db6533",
+                "customer_cards": [
+                    {
+                        "origin_location": "Phủ Lý, Hà Nam",
+                        "recent_location": "85 Bàu Cát 1, Tổ 64, Khu Phố 4, Phường 14, Tân Bình, TP.Hồ Chí Minh",
+                        "ethnic": "Kinh",
+                        "gender": "Nam",
+                        "dad_name": "Phạm Văn Phương",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Không",
+                        "birth_day": "21/11/1996",
+                        "features": "Nốt ruồi C:2,5cm trên sau đầu lông mày phải",
+                        "valid_date": "21/11/2036",
+                        "spouse_name": "",
+                        "mrz": "[IDVNM0960351130079096035113<<0, 9611216M3611214VNM<<<<<<<<<<<4, PHAM<<DANG<KHOA<<<<<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "10/07/2021",
+                        "name": "Phạm Đăng Khoa",
+                        "old_id": "025489402",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Lương Thị Kim Hồng"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
