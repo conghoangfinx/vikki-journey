@@ -1,0 +1,77 @@
+{
+    "name": "jmeter-hdb-biometric-hiennguyen-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "555749e1-1bd6-41cc-924e-38f8d009178a",
+            "log_id": "f9be1720-0498-11f0-9ba6-09ada0bed645-fef08435-apigateway-service-84d657594f-svzwm",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6IjU1NTc0OWUxLTFiZDYtNDFjYy05MjRlLTM4ZjhkMDA5MTc4YSIsImxvZ19pZCI6ImY5YmUxNzIwLTA0OTgtMTFmMC05YmE2LTA5YWRhMGJlZDY0NS1mZWYwODQzNS1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNDA5MjUvYzQ2MzI5NTctN2IxNC0xMWVmLWExMDktYTExODMzNjRlMjFjLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2UgY2hpcCIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjEsImNyZWF0ZWRfZGF0ZSI6IjI1LzA5LzIwMjQgMTU6MDQ6MjkiLCJzdGF0dXMiOjF9XSwidXVpZF9jdXN0b21lciI6IjVlMDg5MmI1LTNmZTQtNGViZi1iYmQzLTM5NGMzYjc3OTU4OCIsImN1c3RvbWVyX2NhcmRzIjpbeyJvcmlnaW5fbG9jYXRpb24iOiJYdcOibiBRdWFuZyAxLCDEkOG7k25nIFh1w6JuLCBQaMO6IFnDqm4iLCJpc3N1ZV9wbGFjZSI6IkPhu6RDIFRSxq/hu55ORyBD4bukQyBD4bqiTkggU8OBVCBRVeG6ok4gTMOdIEjDgE5IIENIw41OSCBW4buAIFRS4bqsVCBU4buwIFjDgyBI4buYSSIsInJlY2VudF9sb2NhdGlvbiI6IlRow7RuIEvhu7MgTOG7mSwgWHXDom4gUXVhbmcgMSwgxJDhu5NuZyBYdcOibiwgUGjDuiBZw6puIiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik7hu68iLCJkYWRfbmFtZSI6Ik5ndXnhu4VuIFbEg24gU8ahbiIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoibW9jayBkYXRhIHNpZ25hdHVyZSIsInJlc3BvbmRzIjp7InJlc3VsdCI6dHJ1ZSwicmVzcG9uc2VfaWQiOiIwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6IlN1Y2Nlc3MiLCJyZXNwb25zZUlkIjoiZWVhNDIzZDgtZmVjMi00MzMyLTg4NTctYmQxOTZlY2FmZWM3LW1vY2sifX0sInJlbGlnaW9uIjoiS2jDtG5nIiwiaW1nX2Zyb250IjoiZWt5Yy1jaWMvdmVreWN1cGxvYWQvaWRndjItdHlwZTMxLWQ2M2Q4ZGI0LTIzMjItNGY3Ni1iNWRmLWJjNDNkMzdjN2MxMy8yMDI0MDkyNS9iNWEzODZkNS03YjE0LTExZWYtYTEwOS04YmE5NGYzODYzMDYuanBlZyIsImJpcnRoX2RheSI6IjIyLzEwLzE5OTYiLCJmZWF0dXJlcyI6IlPhurlvIGNo4bqlbSBDOjAsNSBjbSB0csOqbiB0csaw4bubYyDEkeG6p3UgbMO0bmcgbcOgeSB0csOhaS4iLCJ2YWxpZF9kYXRlIjoiMjIvMTAvMjAzNiIsInNwb3VzZV9uYW1lIjoiIiwibXJ6IjoiW0lEVk5NMTk2MDA4Mzk4NDA1NDE5NjAwODM5ODw8MywgOTYxMDIyMEYzNjEwMjI4Vk5NPDw8PDw8PDw8PDwyLCBOR1VZRU48PFRISTxNWTxISUVOPDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjI4LzA2LzIwMjEiLCJuYW1lIjoiTmd1eeG7hW4gVGjhu4sgTeG7uSBIaeG7gW4iLCJvbGRfaWQiOiIyMjE0MTY0MjciLCJpZCI6IjA1NDE5NjAwODM5OCIsIm1vbV9uYW1lIjoiTmd1eeG7hW4gVGjhu4sgVHJhbmcifV19fQ==",
+            "data_sign": "d2vAFrW648iBmdtsvpQI025HiuSWH6OVkJGUz8VtcqWVb820x11JzCHx2xMpUrmphwqCLfDYGgBQhlyuxLb5U35zawieezKTJ17qu9yawbKShhb3JykrEPjsdweW67o1PRUYvBKDt8OgeLqEJOWQ1fzdr3pF/sGR8jHp4DSm9QfUqiqdHib6bNrQRhJsTJU1pFvshIjRNEVSwQG2cCk0ZNBkXiFVWx3KA1crKXHCWBHrunJuMH9rD6BcThrGnOKMI9cLYVGBloCxR9ds7ZN3C58LQnNY/OiqrGdTPKQLiJEUPZ/ezVHuP7ji/mkFOtXHXZeHkvDqUPZsGtOe9GBmmw==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20240925/c4632957-7b14-11ef-a109-a1183364e21c.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "25/09/2024 15:04:29",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "5e0892b5-3fe4-4ebf-bbd3-394c3b779588",
+                "customer_cards": [
+                    {
+                        "origin_location": "Xuân Quang 1, Đồng Xuân, Phú Yên",
+                        "issue_place": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                        "recent_location": "Thôn Kỳ Lộ, Xuân Quang 1, Đồng Xuân, Phú Yên",
+                        "ethnic": "Kinh",
+                        "gender": "Nữ",
+                        "dad_name": "Nguyễn Văn Sơn",
+                        "result_c06": {
+                            "signature": "mock data signature",
+                            "responds": {
+                                "result": true,
+                                "response_id": "000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "Success",
+                                "responseId": "eea423d8-fec2-4332-8857-bd196ecafec7-mock"
+                            }
+                        },
+                        "religion": "Không",
+                        "img_front": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20240925/b5a386d5-7b14-11ef-a109-8ba94f386306.jpeg",
+                        "birth_day": "22/10/1996",
+                        "features": "Sẹo chấm C:0,5 cm trên trước đầu lông mày trái.",
+                        "valid_date": "22/10/2036",
+                        "spouse_name": "",
+                        "mrz": "[IDVNM1960083984054196008398<<3, 9610220F3610228VNM<<<<<<<<<<<2, NGUYEN<<THI<MY<HIEN<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "28/06/2021",
+                        "name": "Nguyễn Thị Mỹ Hiền",
+                        "old_id": "221416427",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Nguyễn Thị Trang"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
