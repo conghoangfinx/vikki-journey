@@ -10,7 +10,7 @@
       <stringProp name="TestPlan.user_define_classpath">./lib</stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="true">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -65,7 +65,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -2351,7 +2351,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3087,7 +3087,7 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4923,7 +4923,7 @@ vars.put(&quot;signature&quot;, signature)
           </hashTree>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

@@ -1,0 +1,583 @@
+{
+    "name": "jmeter-hyperverge-mocking-thanhle-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hyperverge/v1/link-kyc/results",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": "$[?(@.transactionId == '${onboardingId}')]"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "status": "success",
+            "statusCode": 200,
+            "metadata": {
+                "requestId": "1713518568135-c2befac5-86af-4b16-9823-38298f80a370",
+                "transactionId": "1230809919932874752"
+            },
+            "result": {
+                "workflowDetails": {
+                    "workflowId": "document_verification",
+                    "version": 1
+                },
+                "applicationStatus": "auto_approved",
+                "results": [
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "front",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-front.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-front.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1713518525403-1854be7c-2fb6-4430-9c58-54e3e1c4b95d",
+                                "transactionId": "1230809919932874752"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_front",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "LÊ NGUYỄN THANH THANH",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "17-10-1993",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "17-10-2033",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "Ấp Bình Phú Quới Đăng Hưng Phước, Chợ Gạo, Tiền Giang",
+                                                "province": "TỈNH TIỀN GIANG",
+                                                "district": "HUYỆN CHỢ GẠO",
+                                                "score": 79,
+                                                "confidence": "high",
+                                                "houseNumber": "",
+                                                "street": "",
+                                                "zipCode": "",
+                                                "additionalInfo": ""
+                                            },
+                                            "gender": {
+                                                "value": "F",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "idNumber": {
+                                                "value": "${idNumberOnboard}",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "1993",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "Việt Nam",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "mrzString": {
+                                                "value": "",
+                                                "idNumber": "",
+                                                "fullName": "",
+                                                "dateOfBirth": "",
+                                                "dateOfExpiry": "",
+                                                "gender": "",
+                                                "nationality": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "homeTown": {
+                                                "value": "Đăng Hưng Phước, Chợ Gạo, Tiền Giang",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-front.png",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 71,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            },
+                                            "faceNotDetected": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            },
+                                            "capturedFromScreen": {
+                                                "value": "no",
+                                                "score": 40,
+                                                "confidence": "low"
+                                            }
+                                        },
+                                        "tamperChecks": {
+                                            "photoTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "idNumberLengthMismatch": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "expiredID": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idProvinceCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idDOBGenderCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "previousAttempts": []
+                    },
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "back",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-back.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-back.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1713518534157-b9155bd4-22cc-486c-9604-b3e0d0fe39d1",
+                                "transactionId": "1230809919932874752"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_back",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "12-10-2022",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "",
+                                                "houseNumber": "",
+                                                "additionalInfo": "",
+                                                "province": "",
+                                                "district": "",
+                                                "street": "",
+                                                "zipCode": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "gender": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idNumber": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                                                "score": 95,
+                                                "confidence": "high"
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "mrzString": {
+                                                "value": "IDVNM1930136050082193013605<<69310173F3310171VNM<<<<<<<<<<<4LE<<NGUYEN<THANH<THANH<<<<<<<<",
+                                                "idNumber": "082193013605",
+                                                "nationality": "VNM",
+                                                "gender": "F",
+                                                "score": 100,
+                                                "confidence": "high",
+                                                "fullName": "LE NGUYEN THANH THANH",
+                                                "dateOfBirth": "17-10-1993",
+                                                "dateOfExpiry": "17-10-2033"
+                                            },
+                                            "homeTown": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-back.png",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            },
+                                            "capturedFromScreen": {
+                                                "value": "no",
+                                                "score": 1,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "mrzTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "previousAttempts": []
+                    },
+                    {
+                        "moduleId": "module_fieldMatch",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": "200",
+                            "result": {
+                                "id_number": true,
+                                "name": true,
+                                "all": true
+                            }
+                        },
+                        "attempts": "1",
+                        "previousAttempts": [],
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-selfie.png"
+                    },
+                    {
+                        "module": "",
+                        "attempts": "1",
+                        "moduleId": "module_selfie",
+                        "imageUrl": "https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/checkLiveness/2024-04-19/eunzfd/1713518563077-fbc7de22-14b0-4018-8139-71e3cd78deb8/image.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAZRKK5ZMRTEF344O3%2F20240419%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240419T092248Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEA%2FD7sDd3W22vOXC5pMz990NShmCGdOtUBCjFoqxZWKsUCIQD68xedyPnkA0qq7f%2F084yM8Z3vh6NHVipu6EvXQ8V4oCq%2FBQgQEAEaDDY1NTY3NjUyNTM0NyIMxwi4%2FU9CP77posj2KpwFxK8E5csTwEBTKkEcKp37Ee8hj4PYSIHgmyYbotTh6qfZ%2BbZwXC%2FTwISwu75h6lXOpEH67qfF9EUU%2BN5Lj4g6ve1P0yem%2F0z7dhKQE2Ln2LMQSM2S8NFKTRijBSJbU8NV9tNA7Nts11YfJi%2FdgpI2MPvy1wOjqM4TOjiyDfQbL7x6qoQlN5DcKIb6osO0CT3fFeW2UOMuzKoNo4E5JdQQo6D7K9fAbEtQ92n%2FXgZD2mtoC5BLL6B7C2RIU1mdLQwb2HssVTHiEqKzoVhPS3twVH9b%2Bt5W9KUylge25PPtDF%2BIXx5ZzGvmFxHKgcJ71CkxjDReeA4pYW8qL1FORyzwYryrtLD2Rb0va%2B41l4QcSDhxqjN4E7n5%2BK8HGYk34T1JxS0N%2FjjNh7Xn6Xyo%2F7zbh5UBQZNdW0dzt9T3SG2ZNZ1Ms7k%2FT6T4Ebhzvbxpb6RJkc9DayD4woqEyguWjhjXYHQnjOFJVqDLiCendIDJxoXjAKMaeCW1VrxSQ1ZTIUKZvzlGmHOtf3JgLau9x9V5AudtMSZZ0%2FcVGTeUdxZ4kvIbbqb418zR2MZ%2F2ymlZseor2G3TFfDi4sF6RtZXEruZvmBO8tYpnHiwIhhN9rsubtmFV%2FwWF3MMbqlce2r1ZaGDo%2FNdR1KUGFEXuiv%2FXyIDxsPQdAy06%2FHNHu6zctgSn3aXIT7kyLd0j33XIg1pD76sgj%2FMAuE7P0QqD1at3Wdqy1AjRO3oDbLdsLqcVMavwl5lsKooAwgNLdjsvBdg66zmbI6smHuBChmMY4i0wHSbb3LhRDpOqseNizWus4HqTRQnB6VJgYcOHRZMX%2BT5ZrzX3M21klbrJrM6rxwnJqaAdJPRpFbzhQ0FSruXWRTi78IUrWkGxxrn43B86owxKuIsQY6sAEA58dzKk9zxP1Cnw0NXqqkeyQCV6eLSXeUdSBLwNGs2oBY13aTXE48D%2FShUml4MYNlMMatRGfnIEZo1n%2FBJm9deM7F%2Fakmo%2BqxhAk%2Fg0aFZHo6C%2BIjcHX5YMHhqRm08EVK%2BRXDSx4oZskNJntHiw%2FWxpVnz12t7LB2aoW4L6%2BWOsezRN2mH4SSd68jz8Z7OViNMbzAOnnX31PbZEP%2BWV6v09ZKAphkWW62QzeOpDGPnQ%3D%3D&X-Amz-Signature=9ac966f1c1854ba6ea701d0c6e5a009b554d5becd5ae7581e14c19b6e13ebd99&X-Amz-SignedHeaders=host",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1713518563077-fbc7de22-14b0-4018-8139-71e3cd78deb8",
+                                "transactionId": "1230809919932874752"
+                            },
+                            "result": {
+                                "details": {
+                                    "liveFace": {
+                                        "value": "yes",
+                                        "confidence": "high",
+                                        "score": 100
+                                    },
+                                    "qualityChecks": {
+                                        "blur": {
+                                            "score": 94,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyesClosed": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyewear": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "faceOccluded": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "hat": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "headTurned": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "maskPresent": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "multipleFaces": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "nudity": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        }
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "previousAttempts": [],
+                        "idImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-front.png",
+                        "selfieImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-selfie.png"
+                    },
+                    {
+                        "module": "",
+                        "moduleId": "module_facematch",
+                        "idImageUrl": "https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/matchFace/2024-04-19/eunzfd/1713518564774-c886f2ab-5373-4313-a057-6a2c383514ef/id.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAZRKK5ZMRTEF344O3%2F20240419%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240419T092248Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEA%2FD7sDd3W22vOXC5pMz990NShmCGdOtUBCjFoqxZWKsUCIQD68xedyPnkA0qq7f%2F084yM8Z3vh6NHVipu6EvXQ8V4oCq%2FBQgQEAEaDDY1NTY3NjUyNTM0NyIMxwi4%2FU9CP77posj2KpwFxK8E5csTwEBTKkEcKp37Ee8hj4PYSIHgmyYbotTh6qfZ%2BbZwXC%2FTwISwu75h6lXOpEH67qfF9EUU%2BN5Lj4g6ve1P0yem%2F0z7dhKQE2Ln2LMQSM2S8NFKTRijBSJbU8NV9tNA7Nts11YfJi%2FdgpI2MPvy1wOjqM4TOjiyDfQbL7x6qoQlN5DcKIb6osO0CT3fFeW2UOMuzKoNo4E5JdQQo6D7K9fAbEtQ92n%2FXgZD2mtoC5BLL6B7C2RIU1mdLQwb2HssVTHiEqKzoVhPS3twVH9b%2Bt5W9KUylge25PPtDF%2BIXx5ZzGvmFxHKgcJ71CkxjDReeA4pYW8qL1FORyzwYryrtLD2Rb0va%2B41l4QcSDhxqjN4E7n5%2BK8HGYk34T1JxS0N%2FjjNh7Xn6Xyo%2F7zbh5UBQZNdW0dzt9T3SG2ZNZ1Ms7k%2FT6T4Ebhzvbxpb6RJkc9DayD4woqEyguWjhjXYHQnjOFJVqDLiCendIDJxoXjAKMaeCW1VrxSQ1ZTIUKZvzlGmHOtf3JgLau9x9V5AudtMSZZ0%2FcVGTeUdxZ4kvIbbqb418zR2MZ%2F2ymlZseor2G3TFfDi4sF6RtZXEruZvmBO8tYpnHiwIhhN9rsubtmFV%2FwWF3MMbqlce2r1ZaGDo%2FNdR1KUGFEXuiv%2FXyIDxsPQdAy06%2FHNHu6zctgSn3aXIT7kyLd0j33XIg1pD76sgj%2FMAuE7P0QqD1at3Wdqy1AjRO3oDbLdsLqcVMavwl5lsKooAwgNLdjsvBdg66zmbI6smHuBChmMY4i0wHSbb3LhRDpOqseNizWus4HqTRQnB6VJgYcOHRZMX%2BT5ZrzX3M21klbrJrM6rxwnJqaAdJPRpFbzhQ0FSruXWRTi78IUrWkGxxrn43B86owxKuIsQY6sAEA58dzKk9zxP1Cnw0NXqqkeyQCV6eLSXeUdSBLwNGs2oBY13aTXE48D%2FShUml4MYNlMMatRGfnIEZo1n%2FBJm9deM7F%2Fakmo%2BqxhAk%2Fg0aFZHo6C%2BIjcHX5YMHhqRm08EVK%2BRXDSx4oZskNJntHiw%2FWxpVnz12t7LB2aoW4L6%2BWOsezRN2mH4SSd68jz8Z7OViNMbzAOnnX31PbZEP%2BWV6v09ZKAphkWW62QzeOpDGPnQ%3D%3D&X-Amz-Signature=594174aa3c648e80c13dea5143d4c605f7f23db1d47913907e193440b57c62ba&X-Amz-SignedHeaders=host",
+                        "selfieImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1713518564774-c886f2ab-5373-4313-a057-6a2c383514ef",
+                                "transactionId": "1230809919932874752"
+                            },
+                            "result": {
+                                "details": {
+                                    "match": {
+                                        "value": "yes",
+                                        "score": 93,
+                                        "confidence": "high"
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "attempts": "1",
+                        "previousAttempts": [],
+                        "nidfrontImageUrl": "https://wiremock.sit.galaxyfinx.in/thanhleqa/thanhle-front.png"
+                    }
+                ],
+                "userDetails": {
+                    "facematchRequestId": "1713518564774-c886f2ab-5373-4313-a057-6a2c383514ef",
+                    "facematchAction": "pass",
+                    "selfieAction": "pass",
+                    "selfieRequestId": "1713518563077-fbc7de22-14b0-4018-8139-71e3cd78deb8"
+                }
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hyperverge/jmeter"
+        }
+    }
+}
