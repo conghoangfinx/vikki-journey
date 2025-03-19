@@ -3087,7 +3087,7 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
