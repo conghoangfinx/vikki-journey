@@ -132,7 +132,7 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${__P(threads,1)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${__P(rampups, 30)}</stringProp>
         <stringProp name="ThreadGroup.duration">${__P(durations,600)}</stringProp>
@@ -145,7 +145,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Single">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Single" enabled="true">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -1630,7 +1630,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-sanhuynh-qa&quot;,&#xd;
+    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-thaopham-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
         &quot;url&quot;: &quot;/hyperverge/v1/link-kyc/results&quot;,&#xd;
@@ -1647,8 +1647,8 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             &quot;status&quot;: &quot;success&quot;,&#xd;
             &quot;statusCode&quot;: 200,&#xd;
             &quot;metadata&quot;: {&#xd;
-                &quot;requestId&quot;: &quot;effcc0a97efc83ef08a355078c05993d&quot;,&#xd;
-                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                &quot;requestId&quot;: &quot;1741148482497-3a4d4bdc-49ca-4fa1-abc0-082ccade1a38&quot;,&#xd;
+                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
             },&#xd;
             &quot;result&quot;: {&#xd;
                 &quot;workflowDetails&quot;: {&#xd;
@@ -1661,17 +1661,17 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;countrySelected&quot;: &quot;vnm&quot;,&#xd;
                         &quot;documentSelected&quot;: &quot;id&quot;,&#xd;
-                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
+                        &quot;attempts&quot;: &quot;0&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;front&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947421492-516d3214-ffcd-41e9-9870-a76caefc8866&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985727681-f982943b-e29f-4408-b8fe-b8d79c210116&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -1694,12 +1694,12 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;fullName&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;HUỲNH THỊ HIẾU SAN&quot;,&#xd;
+                                                &quot;value&quot;: &quot;PHẠM THANH THẢO&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
                                             &quot;dateOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;05-03-1992&quot;,&#xd;
+                                                &quot;value&quot;: &quot;15-05-2000&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1709,7 +1709,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfExpiry&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;05-03-2032&quot;,&#xd;
+                                                &quot;value&quot;: &quot;15-05-2025&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1724,14 +1724,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;address&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;87 Nguyễn Trãi Thuận Hòa, Thành phố Huế, Thừa Thiên Huế&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Ấp An Hòa Nhì Tân Bình, Châu Thành, Đồng Tháp&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;additionalInfo&quot;: &quot;87 nguyn tri thun ha tha thin hu&quot;,&#xd;
+                                                &quot;additionalInfo&quot;: &quot;&quot;,&#xd;
                                                 &quot;street&quot;: &quot;&quot;,&#xd;
                                                 &quot;houseNumber&quot;: &quot;&quot;,&#xd;
-                                                &quot;district&quot;: &quot;THÀNH PHỐ HUẾ&quot;,&#xd;
-                                                &quot;province&quot;: &quot;TỈNH THỪA THIÊN HUẾ&quot;,&#xd;
+                                                &quot;district&quot;: &quot;HUYỆN CHÂU THÀNH&quot;,&#xd;
+                                                &quot;province&quot;: &quot;TỈNH ĐỒNG THÁP&quot;,&#xd;
                                                 &quot;zipCode&quot;: &quot;&quot;&#xd;
                                             },&#xd;
                                             &quot;gender&quot;: {&#xd;
@@ -1755,7 +1755,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;yearOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;1992&quot;,&#xd;
+                                                &quot;value&quot;: &quot;2000&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1801,12 +1801,12 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;Hương Toàn Thị xã Hương Trà, Thừa Thiên Huế&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Tân Bình, Châu Thành, Đồng Tháp&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-14/eunzfd/1741947421492-516d3214-ffcd-41e9-9870-a76caefc8866/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMR6NNVHKHP%2F20250314%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250314T101703Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhAIhhkJMhvmzOdsEtXwWosXYjt09W927kg6xBKoyKsIFuAiBcb30PZrPSuqHjrjlXK%2B7v%2BqMA2JYLDkSaCGz6g709hCrTBQjq%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDY1NTY3NjUyNTM0NyIMgZhYps1W3FATLCrHKqcFTMzqsMHSqAsJehGMokmRA0iYUXvTkDXUcqc%2BGCK53ZFO2fdZXusU5iYi9EAzQw0pP%2F%2BDe%2FcT5JGFd%2FKglWHX8cCcFk0ddR%2BhJhAoT9qCPf3mZgOYBcUI%2F41f9NPj%2BVuKIeV6OqfeBxHGexkz08iZn01qn7VN47F6Vl1DuJ2EzTXob3IebFZtSX4lYtocgVEnHS2lEUdevZVk7jWscINqLFcK2uJ%2FoxtkI98uvl9%2BmRGieqv7FdyxvU0Jm4tsNiFslHQ%2BCZEiAbmFwVHGJEmQUCegZbkpKwIzbLElLoaGW4Uh6a%2Fqiw0Rn1%2BTHguv344b8pXdkRfcWYzT3m1YAc6x5MzbTtj6gmQ32lqjLt72uKL2%2F0ncT%2FcKjPGMMK0xHpkLZVTVgyjNNoCyrmjIPFI21MqQ4B5qUUdIYLcg3gWL4U1DQle1giCx8c2WkfHH77DENDbkWTnvhCtl4bzdBa%2FG3bhi3scX6i29JlZXxKA8SjYcet%2BccyS5n%2FKufXsU0IZUkOCHknCNvRI5DUBb0z9kNeejd1F7a7Wg1qUKSOKbwNtUH0Hn4zSLaWfKphC1ZbyxHCzhxWzuC7xY7quFAJNQFhCTIY79cO27GsUcCJtli8OLjxRrXvs1hTYXVj8747v%2FWiowQvzJenfnBdfgigRJp6fd2obulLXLdNvEyYl%2BAcNqYvb93ngJ4X9iKppFANgTJ9yxMZDTMaUrcDbmKtlXM1NP6hnpENN2V%2F26qf8p8nJkIMXcfbnFy2kJHKAMbhkLX2Ork1VxK3YpXd2avxGLK19vYjca4d%2BJN9NcF1WYQfgqKwwq8k%2Brnm%2F4fq1rNEzwDg8aqm8EIwrLAfF0LWmqcuJYIUZFqhlPxSB2m5RC9zbQfBifHbuVKfrAtPORT%2F9UlJJh8HzUmDC708%2B%2BBjqxAZAgfWyK55FmxOOMwDlYHdSCQ2w3jwDWPgL9e3KFw3LexDvH%2F8gR8QcrsiWf9aZiIWxQV3zFqp4KVEGAMMaXBe2jjmRoEc7jB4fy%2Fl8CDSX8MHUO8yS3TUQogAmb78qNbCfRJhTt2SOCO6VxWuCQtXURtDg%2Biyg6XPBfQ%2FoERDEjGRhcb6wseRMZWra0k3EEKdVUiAf7qQbhA%2F0pbURlo6hw8hYtQQJw6woBMEHQ3z%2FJaw%3D%3D&amp;X-Amz-Signature=eb5de2dccf349f545d70417646f33ddf6676fdd050e019eeb981f7799d168aad&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-font.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -1880,14 +1880,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;back&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-back.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-back.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-back.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-back.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947470198-5cf5bbf0-03fa-4c45-9455-9281ebc08cdf&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985735879-04bdddb1-9cc7-4e0d-859e-a3f1b6252104&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -1920,7 +1920,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfIssue&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;28-06-2021&quot;,&#xd;
+                                                &quot;value&quot;: &quot;09-08-2021&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2006,14 +2006,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM1920166993046192016699&lt;&lt;19203055F3203053VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;2HUYNH&lt;&lt;THI&lt;HIEU&lt;SAN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM3000141647087300014164&lt;&lt;80005153F2505152VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;0PHAM&lt;&lt;THANH&lt;THAO&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;046192016699&quot;,&#xd;
-                                                &quot;fullName&quot;: &quot;HUYNH THI HIEU SAN&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;087300014164&quot;,&#xd;
+                                                &quot;fullName&quot;: &quot;PHAM THANH THAO&quot;,&#xd;
                                                 &quot;gender&quot;: &quot;F&quot;,&#xd;
-                                                &quot;dateOfBirth&quot;: &quot;05-03-1992&quot;,&#xd;
-                                                &quot;dateOfExpiry&quot;: &quot;05-03-2032&quot;,&#xd;
+                                                &quot;dateOfBirth&quot;: &quot;15-05-2000&quot;,&#xd;
+                                                &quot;dateOfExpiry&quot;: &quot;15-05-2025&quot;,&#xd;
                                                 &quot;nationality&quot;: &quot;VNM&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
@@ -2022,7 +2022,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-14/eunzfd/1741947470198-5cf5bbf0-03fa-4c45-9455-9281ebc08cdf/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMR6NNVHKHP%2F20250314%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250314T101752Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhAIhhkJMhvmzOdsEtXwWosXYjt09W927kg6xBKoyKsIFuAiBcb30PZrPSuqHjrjlXK%2B7v%2BqMA2JYLDkSaCGz6g709hCrTBQjq%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDY1NTY3NjUyNTM0NyIMgZhYps1W3FATLCrHKqcFTMzqsMHSqAsJehGMokmRA0iYUXvTkDXUcqc%2BGCK53ZFO2fdZXusU5iYi9EAzQw0pP%2F%2BDe%2FcT5JGFd%2FKglWHX8cCcFk0ddR%2BhJhAoT9qCPf3mZgOYBcUI%2F41f9NPj%2BVuKIeV6OqfeBxHGexkz08iZn01qn7VN47F6Vl1DuJ2EzTXob3IebFZtSX4lYtocgVEnHS2lEUdevZVk7jWscINqLFcK2uJ%2FoxtkI98uvl9%2BmRGieqv7FdyxvU0Jm4tsNiFslHQ%2BCZEiAbmFwVHGJEmQUCegZbkpKwIzbLElLoaGW4Uh6a%2Fqiw0Rn1%2BTHguv344b8pXdkRfcWYzT3m1YAc6x5MzbTtj6gmQ32lqjLt72uKL2%2F0ncT%2FcKjPGMMK0xHpkLZVTVgyjNNoCyrmjIPFI21MqQ4B5qUUdIYLcg3gWL4U1DQle1giCx8c2WkfHH77DENDbkWTnvhCtl4bzdBa%2FG3bhi3scX6i29JlZXxKA8SjYcet%2BccyS5n%2FKufXsU0IZUkOCHknCNvRI5DUBb0z9kNeejd1F7a7Wg1qUKSOKbwNtUH0Hn4zSLaWfKphC1ZbyxHCzhxWzuC7xY7quFAJNQFhCTIY79cO27GsUcCJtli8OLjxRrXvs1hTYXVj8747v%2FWiowQvzJenfnBdfgigRJp6fd2obulLXLdNvEyYl%2BAcNqYvb93ngJ4X9iKppFANgTJ9yxMZDTMaUrcDbmKtlXM1NP6hnpENN2V%2F26qf8p8nJkIMXcfbnFy2kJHKAMbhkLX2Ork1VxK3YpXd2avxGLK19vYjca4d%2BJN9NcF1WYQfgqKwwq8k%2Brnm%2F4fq1rNEzwDg8aqm8EIwrLAfF0LWmqcuJYIUZFqhlPxSB2m5RC9zbQfBifHbuVKfrAtPORT%2F9UlJJh8HzUmDC708%2B%2BBjqxAZAgfWyK55FmxOOMwDlYHdSCQ2w3jwDWPgL9e3KFw3LexDvH%2F8gR8QcrsiWf9aZiIWxQV3zFqp4KVEGAMMaXBe2jjmRoEc7jB4fy%2Fl8CDSX8MHUO8yS3TUQogAmb78qNbCfRJhTt2SOCO6VxWuCQtXURtDg%2Biyg6XPBfQ%2FoERDEjGRhcb6wseRMZWra0k3EEKdVUiAf7qQbhA%2F0pbURlo6hw8hYtQQJw6woBMEHQ3z%2FJaw%3D%3D&amp;X-Amz-Signature=f13fe0dd1615cfabd9ba3eb11d856aeb27773a3c73e4476e8259a51d42cc8d55&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-back.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2066,13 +2066,13 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_selfie&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-selfie.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947479481-cf13ecf0-0a46-4851-a36d-de5f191202b6&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985750151-4e2c4448-2f11-4555-b4d7-2c941ad61620&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
@@ -2123,7 +2123,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                             &quot;confidence&quot;: &quot;high&quot;&#xd;
                                         },&#xd;
                                         &quot;nudity&quot;: {&#xd;
-                                            &quot;score&quot;: 100,&#xd;
+                                            &quot;score&quot;: 99,&#xd;
                                             &quot;value&quot;: &quot;no&quot;,&#xd;
                                             &quot;confidence&quot;: &quot;high&quot;&#xd;
                                         }&#xd;
@@ -2139,14 +2139,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_facematch&quot;,&#xd;
-                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png&quot;,&#xd;
-                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-selfie.png&quot;,&#xd;
+                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947481158-232dcb1b-6319-467e-b72a-bad2af6f4f19&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985751857-1ccc8f74-c1f8-4964-86ea-7f7fdbb0e49d&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
@@ -2163,13 +2163,63 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                             }&#xd;
                         },&#xd;
                         &quot;attempts&quot;: &quot;1&quot;&#xd;
+                    },&#xd;
+                    {&#xd;
+                        &quot;module&quot;: &quot;&quot;,&#xd;
+                        &quot;nidfrontImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-selfie.png&quot;,&#xd;
+                        &quot;apiResponse&quot;: {&#xd;
+                            &quot;statusCode&quot;: 200,&#xd;
+                            &quot;metaData&quot;: {&#xd;
+                                &quot;requestId&quot;: &quot;1741147593183-c45b0c19-03be-4e5b-8de5-aeb59447cc96&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
+                            },&#xd;
+                            &quot;result&quot;: {&#xd;
+                                &quot;data&quot;: {&#xd;
+                                    &quot;transactionId&quot;: &quot;1346016306446659584&quot;,&#xd;
+                                    &quot;requestId&quot;: &quot;1741147593183-c45b0c19-03be-4e5b-8de5-aeb59447cc96&quot;,&#xd;
+                                    &quot;isEnrolled&quot;: {&#xd;
+                                        &quot;value&quot;: &quot;no&quot;,&#xd;
+                                        &quot;reason&quot;: &quot;Input parameter is no&quot;&#xd;
+                                    },&#xd;
+                                    &quot;suspiciousMatches&quot;: {&#xd;
+                                        &quot;internalCount&quot;: 0,&#xd;
+                                        &quot;externalCount&quot;: 0,&#xd;
+                                        &quot;internal&quot;: [],&#xd;
+                                        &quot;external&quot;: []&#xd;
+                                    },&#xd;
+                                    &quot;matches&quot;: {&#xd;
+                                        &quot;internalCount&quot;: 1,&#xd;
+                                        &quot;externalCount&quot;: 0,&#xd;
+                                        &quot;internal&quot;: [&#xd;
+                                            {&#xd;
+                                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;,&#xd;
+                                                &quot;customerId&quot;: &quot;NA&quot;,&#xd;
+                                                &quot;enrolDate&quot;: &quot;03-03-2025&quot;&#xd;
+                                            }&#xd;
+                                        ],&#xd;
+                                        &quot;external&quot;: []&#xd;
+                                    },&#xd;
+                                    &quot;blocklist&quot;: {&#xd;
+                                        &quot;internalCount&quot;: 0,&#xd;
+                                        &quot;internal&quot;: []&#xd;
+                                    },&#xd;
+                                    &quot;dashboardUrl&quot;: &quot;https://www.orion-console.hyperverge.co/reviewportal/1741147593183-c45b0c19-03be-4e5b-8de5-aeb59447cc96&quot;&#xd;
+                                },&#xd;
+                                &quot;summary&quot;: {&#xd;
+                                    &quot;value&quot;: &quot;Verified&quot;,&#xd;
+                                    &quot;action&quot;: &quot;Pass&quot;&#xd;
+                                }&#xd;
+                            }&#xd;
+                        },&#xd;
+                        &quot;attempts&quot;: &quot;0&quot;&#xd;
                     }&#xd;
                 ],&#xd;
                 &quot;userDetails&quot;: {&#xd;
-                    &quot;selfieRequestId&quot;: &quot;1741947479481-cf13ecf0-0a46-4851-a36d-de5f191202b6&quot;,&#xd;
                     &quot;facematchAction&quot;: &quot;pass&quot;,&#xd;
-                    &quot;facematchRequestId&quot;: &quot;1741947481158-232dcb1b-6319-467e-b72a-bad2af6f4f19&quot;,&#xd;
-                    &quot;selfieAction&quot;: &quot;pass&quot;&#xd;
+                    &quot;selfieAction&quot;: &quot;pass&quot;,&#xd;
+                    &quot;facematchRequestId&quot;: &quot;1740985751857-1ccc8f74-c1f8-4964-86ea-7f7fdbb0e49d&quot;,&#xd;
+                    &quot;selfieRequestId&quot;: &quot;1740985750151-4e2c4448-2f11-4555-b4d7-2c941ad61620&quot;&#xd;
                 }&#xd;
             }&#xd;
         },&#xd;
@@ -2316,7 +2366,7 @@ if (idHyperVergeOCRNew) {
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-sanhuynh-qa&quot;,&#xd;
+    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-thaopham-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
         &quot;url&quot;: &quot;/hyperverge/v1/link-kyc/results&quot;,&#xd;
@@ -2333,8 +2383,8 @@ if (idHyperVergeOCRNew) {
             &quot;status&quot;: &quot;success&quot;,&#xd;
             &quot;statusCode&quot;: 200,&#xd;
             &quot;metadata&quot;: {&#xd;
-                &quot;requestId&quot;: &quot;effcc0a97efc83ef08a355078c05993d&quot;,&#xd;
-                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                &quot;requestId&quot;: &quot;1741148482497-3a4d4bdc-49ca-4fa1-abc0-082ccade1a38&quot;,&#xd;
+                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
             },&#xd;
             &quot;result&quot;: {&#xd;
                 &quot;workflowDetails&quot;: {&#xd;
@@ -2347,17 +2397,17 @@ if (idHyperVergeOCRNew) {
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;countrySelected&quot;: &quot;vnm&quot;,&#xd;
                         &quot;documentSelected&quot;: &quot;id&quot;,&#xd;
-                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
+                        &quot;attempts&quot;: &quot;0&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;front&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947421492-516d3214-ffcd-41e9-9870-a76caefc8866&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985727681-f982943b-e29f-4408-b8fe-b8d79c210116&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -2380,12 +2430,12 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;fullName&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;HUỲNH THỊ HIẾU SAN&quot;,&#xd;
+                                                &quot;value&quot;: &quot;PHẠM THANH THẢO&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
                                             &quot;dateOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;05-03-1992&quot;,&#xd;
+                                                &quot;value&quot;: &quot;15-05-2000&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2395,7 +2445,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfExpiry&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;05-03-2032&quot;,&#xd;
+                                                &quot;value&quot;: &quot;15-05-2025&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2410,14 +2460,14 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;address&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;87 Nguyễn Trãi Thuận Hòa, Thành phố Huế, Thừa Thiên Huế&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Ấp An Hòa Nhì Tân Bình, Châu Thành, Đồng Tháp&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;additionalInfo&quot;: &quot;87 nguyn tri thun ha tha thin hu&quot;,&#xd;
+                                                &quot;additionalInfo&quot;: &quot;&quot;,&#xd;
                                                 &quot;street&quot;: &quot;&quot;,&#xd;
                                                 &quot;houseNumber&quot;: &quot;&quot;,&#xd;
-                                                &quot;district&quot;: &quot;THÀNH PHỐ HUẾ&quot;,&#xd;
-                                                &quot;province&quot;: &quot;TỈNH THỪA THIÊN HUẾ&quot;,&#xd;
+                                                &quot;district&quot;: &quot;HUYỆN CHÂU THÀNH&quot;,&#xd;
+                                                &quot;province&quot;: &quot;TỈNH ĐỒNG THÁP&quot;,&#xd;
                                                 &quot;zipCode&quot;: &quot;&quot;&#xd;
                                             },&#xd;
                                             &quot;gender&quot;: {&#xd;
@@ -2441,7 +2491,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;yearOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;1992&quot;,&#xd;
+                                                &quot;value&quot;: &quot;2000&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2487,12 +2537,12 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;Hương Toàn Thị xã Hương Trà, Thừa Thiên Huế&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Tân Bình, Châu Thành, Đồng Tháp&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-14/eunzfd/1741947421492-516d3214-ffcd-41e9-9870-a76caefc8866/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMR6NNVHKHP%2F20250314%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250314T101703Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhAIhhkJMhvmzOdsEtXwWosXYjt09W927kg6xBKoyKsIFuAiBcb30PZrPSuqHjrjlXK%2B7v%2BqMA2JYLDkSaCGz6g709hCrTBQjq%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDY1NTY3NjUyNTM0NyIMgZhYps1W3FATLCrHKqcFTMzqsMHSqAsJehGMokmRA0iYUXvTkDXUcqc%2BGCK53ZFO2fdZXusU5iYi9EAzQw0pP%2F%2BDe%2FcT5JGFd%2FKglWHX8cCcFk0ddR%2BhJhAoT9qCPf3mZgOYBcUI%2F41f9NPj%2BVuKIeV6OqfeBxHGexkz08iZn01qn7VN47F6Vl1DuJ2EzTXob3IebFZtSX4lYtocgVEnHS2lEUdevZVk7jWscINqLFcK2uJ%2FoxtkI98uvl9%2BmRGieqv7FdyxvU0Jm4tsNiFslHQ%2BCZEiAbmFwVHGJEmQUCegZbkpKwIzbLElLoaGW4Uh6a%2Fqiw0Rn1%2BTHguv344b8pXdkRfcWYzT3m1YAc6x5MzbTtj6gmQ32lqjLt72uKL2%2F0ncT%2FcKjPGMMK0xHpkLZVTVgyjNNoCyrmjIPFI21MqQ4B5qUUdIYLcg3gWL4U1DQle1giCx8c2WkfHH77DENDbkWTnvhCtl4bzdBa%2FG3bhi3scX6i29JlZXxKA8SjYcet%2BccyS5n%2FKufXsU0IZUkOCHknCNvRI5DUBb0z9kNeejd1F7a7Wg1qUKSOKbwNtUH0Hn4zSLaWfKphC1ZbyxHCzhxWzuC7xY7quFAJNQFhCTIY79cO27GsUcCJtli8OLjxRrXvs1hTYXVj8747v%2FWiowQvzJenfnBdfgigRJp6fd2obulLXLdNvEyYl%2BAcNqYvb93ngJ4X9iKppFANgTJ9yxMZDTMaUrcDbmKtlXM1NP6hnpENN2V%2F26qf8p8nJkIMXcfbnFy2kJHKAMbhkLX2Ork1VxK3YpXd2avxGLK19vYjca4d%2BJN9NcF1WYQfgqKwwq8k%2Brnm%2F4fq1rNEzwDg8aqm8EIwrLAfF0LWmqcuJYIUZFqhlPxSB2m5RC9zbQfBifHbuVKfrAtPORT%2F9UlJJh8HzUmDC708%2B%2BBjqxAZAgfWyK55FmxOOMwDlYHdSCQ2w3jwDWPgL9e3KFw3LexDvH%2F8gR8QcrsiWf9aZiIWxQV3zFqp4KVEGAMMaXBe2jjmRoEc7jB4fy%2Fl8CDSX8MHUO8yS3TUQogAmb78qNbCfRJhTt2SOCO6VxWuCQtXURtDg%2Biyg6XPBfQ%2FoERDEjGRhcb6wseRMZWra0k3EEKdVUiAf7qQbhA%2F0pbURlo6hw8hYtQQJw6woBMEHQ3z%2FJaw%3D%3D&amp;X-Amz-Signature=eb5de2dccf349f545d70417646f33ddf6676fdd050e019eeb981f7799d168aad&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-font.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2566,14 +2616,14 @@ if (idHyperVergeOCRNew) {
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;back&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-back.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-back.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-back.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-back.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947470198-5cf5bbf0-03fa-4c45-9455-9281ebc08cdf&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985735879-04bdddb1-9cc7-4e0d-859e-a3f1b6252104&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -2606,7 +2656,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfIssue&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;28-06-2021&quot;,&#xd;
+                                                &quot;value&quot;: &quot;09-08-2021&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2692,14 +2742,14 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM1920166993046192016699&lt;&lt;19203055F3203053VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;2HUYNH&lt;&lt;THI&lt;HIEU&lt;SAN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM3000141647087300014164&lt;&lt;80005153F2505152VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;0PHAM&lt;&lt;THANH&lt;THAO&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;046192016699&quot;,&#xd;
-                                                &quot;fullName&quot;: &quot;HUYNH THI HIEU SAN&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;087300014164&quot;,&#xd;
+                                                &quot;fullName&quot;: &quot;PHAM THANH THAO&quot;,&#xd;
                                                 &quot;gender&quot;: &quot;F&quot;,&#xd;
-                                                &quot;dateOfBirth&quot;: &quot;05-03-1992&quot;,&#xd;
-                                                &quot;dateOfExpiry&quot;: &quot;05-03-2032&quot;,&#xd;
+                                                &quot;dateOfBirth&quot;: &quot;15-05-2000&quot;,&#xd;
+                                                &quot;dateOfExpiry&quot;: &quot;15-05-2025&quot;,&#xd;
                                                 &quot;nationality&quot;: &quot;VNM&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
@@ -2708,7 +2758,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://prod-audit-portal-sgp.s3.ap-southeast-1.amazonaws.com/gkyc-ap-southeast-1/readId/2025-03-14/eunzfd/1741947470198-5cf5bbf0-03fa-4c45-9455-9281ebc08cdf/cropped.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=ASIAZRKK5ZMR6NNVHKHP%2F20250314%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250314T101752Z&amp;X-Amz-Expires=900&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIhAIhhkJMhvmzOdsEtXwWosXYjt09W927kg6xBKoyKsIFuAiBcb30PZrPSuqHjrjlXK%2B7v%2BqMA2JYLDkSaCGz6g709hCrTBQjq%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDY1NTY3NjUyNTM0NyIMgZhYps1W3FATLCrHKqcFTMzqsMHSqAsJehGMokmRA0iYUXvTkDXUcqc%2BGCK53ZFO2fdZXusU5iYi9EAzQw0pP%2F%2BDe%2FcT5JGFd%2FKglWHX8cCcFk0ddR%2BhJhAoT9qCPf3mZgOYBcUI%2F41f9NPj%2BVuKIeV6OqfeBxHGexkz08iZn01qn7VN47F6Vl1DuJ2EzTXob3IebFZtSX4lYtocgVEnHS2lEUdevZVk7jWscINqLFcK2uJ%2FoxtkI98uvl9%2BmRGieqv7FdyxvU0Jm4tsNiFslHQ%2BCZEiAbmFwVHGJEmQUCegZbkpKwIzbLElLoaGW4Uh6a%2Fqiw0Rn1%2BTHguv344b8pXdkRfcWYzT3m1YAc6x5MzbTtj6gmQ32lqjLt72uKL2%2F0ncT%2FcKjPGMMK0xHpkLZVTVgyjNNoCyrmjIPFI21MqQ4B5qUUdIYLcg3gWL4U1DQle1giCx8c2WkfHH77DENDbkWTnvhCtl4bzdBa%2FG3bhi3scX6i29JlZXxKA8SjYcet%2BccyS5n%2FKufXsU0IZUkOCHknCNvRI5DUBb0z9kNeejd1F7a7Wg1qUKSOKbwNtUH0Hn4zSLaWfKphC1ZbyxHCzhxWzuC7xY7quFAJNQFhCTIY79cO27GsUcCJtli8OLjxRrXvs1hTYXVj8747v%2FWiowQvzJenfnBdfgigRJp6fd2obulLXLdNvEyYl%2BAcNqYvb93ngJ4X9iKppFANgTJ9yxMZDTMaUrcDbmKtlXM1NP6hnpENN2V%2F26qf8p8nJkIMXcfbnFy2kJHKAMbhkLX2Ork1VxK3YpXd2avxGLK19vYjca4d%2BJN9NcF1WYQfgqKwwq8k%2Brnm%2F4fq1rNEzwDg8aqm8EIwrLAfF0LWmqcuJYIUZFqhlPxSB2m5RC9zbQfBifHbuVKfrAtPORT%2F9UlJJh8HzUmDC708%2B%2BBjqxAZAgfWyK55FmxOOMwDlYHdSCQ2w3jwDWPgL9e3KFw3LexDvH%2F8gR8QcrsiWf9aZiIWxQV3zFqp4KVEGAMMaXBe2jjmRoEc7jB4fy%2Fl8CDSX8MHUO8yS3TUQogAmb78qNbCfRJhTt2SOCO6VxWuCQtXURtDg%2Biyg6XPBfQ%2FoERDEjGRhcb6wseRMZWra0k3EEKdVUiAf7qQbhA%2F0pbURlo6hw8hYtQQJw6woBMEHQ3z%2FJaw%3D%3D&amp;X-Amz-Signature=f13fe0dd1615cfabd9ba3eb11d856aeb27773a3c73e4476e8259a51d42cc8d55&amp;X-Amz-SignedHeaders=host&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-back.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2752,13 +2802,13 @@ if (idHyperVergeOCRNew) {
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_selfie&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-selfie.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947479481-cf13ecf0-0a46-4851-a36d-de5f191202b6&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985750151-4e2c4448-2f11-4555-b4d7-2c941ad61620&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
@@ -2809,7 +2859,7 @@ if (idHyperVergeOCRNew) {
                                             &quot;confidence&quot;: &quot;high&quot;&#xd;
                                         },&#xd;
                                         &quot;nudity&quot;: {&#xd;
-                                            &quot;score&quot;: 100,&#xd;
+                                            &quot;score&quot;: 99,&#xd;
                                             &quot;value&quot;: &quot;no&quot;,&#xd;
                                             &quot;confidence&quot;: &quot;high&quot;&#xd;
                                         }&#xd;
@@ -2825,14 +2875,14 @@ if (idHyperVergeOCRNew) {
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_facematch&quot;,&#xd;
-                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-front.png&quot;,&#xd;
-                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/sanhuynhqa/sanhuynh-selfie.png&quot;,&#xd;
+                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1741947481158-232dcb1b-6319-467e-b72a-bad2af6f4f19&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1350049962386579456&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1740985751857-1ccc8f74-c1f8-4964-86ea-7f7fdbb0e49d&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
@@ -2849,13 +2899,63 @@ if (idHyperVergeOCRNew) {
                             }&#xd;
                         },&#xd;
                         &quot;attempts&quot;: &quot;1&quot;&#xd;
+                    },&#xd;
+                    {&#xd;
+                        &quot;module&quot;: &quot;&quot;,&#xd;
+                        &quot;nidfrontImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-front.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/thaophamqa/thaopham-selfie.png&quot;,&#xd;
+                        &quot;apiResponse&quot;: {&#xd;
+                            &quot;statusCode&quot;: 200,&#xd;
+                            &quot;metaData&quot;: {&#xd;
+                                &quot;requestId&quot;: &quot;1741147593183-c45b0c19-03be-4e5b-8de5-aeb59447cc96&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;&#xd;
+                            },&#xd;
+                            &quot;result&quot;: {&#xd;
+                                &quot;data&quot;: {&#xd;
+                                    &quot;transactionId&quot;: &quot;1346016306446659584&quot;,&#xd;
+                                    &quot;requestId&quot;: &quot;1741147593183-c45b0c19-03be-4e5b-8de5-aeb59447cc96&quot;,&#xd;
+                                    &quot;isEnrolled&quot;: {&#xd;
+                                        &quot;value&quot;: &quot;no&quot;,&#xd;
+                                        &quot;reason&quot;: &quot;Input parameter is no&quot;&#xd;
+                                    },&#xd;
+                                    &quot;suspiciousMatches&quot;: {&#xd;
+                                        &quot;internalCount&quot;: 0,&#xd;
+                                        &quot;externalCount&quot;: 0,&#xd;
+                                        &quot;internal&quot;: [],&#xd;
+                                        &quot;external&quot;: []&#xd;
+                                    },&#xd;
+                                    &quot;matches&quot;: {&#xd;
+                                        &quot;internalCount&quot;: 1,&#xd;
+                                        &quot;externalCount&quot;: 0,&#xd;
+                                        &quot;internal&quot;: [&#xd;
+                                            {&#xd;
+                                                &quot;transactionId&quot;: &quot;1346016306446659584&quot;,&#xd;
+                                                &quot;customerId&quot;: &quot;NA&quot;,&#xd;
+                                                &quot;enrolDate&quot;: &quot;03-03-2025&quot;&#xd;
+                                            }&#xd;
+                                        ],&#xd;
+                                        &quot;external&quot;: []&#xd;
+                                    },&#xd;
+                                    &quot;blocklist&quot;: {&#xd;
+                                        &quot;internalCount&quot;: 0,&#xd;
+                                        &quot;internal&quot;: []&#xd;
+                                    },&#xd;
+                                    &quot;dashboardUrl&quot;: &quot;https://www.orion-console.hyperverge.co/reviewportal/1741147593183-c45b0c19-03be-4e5b-8de5-aeb59447cc96&quot;&#xd;
+                                },&#xd;
+                                &quot;summary&quot;: {&#xd;
+                                    &quot;value&quot;: &quot;Verified&quot;,&#xd;
+                                    &quot;action&quot;: &quot;Pass&quot;&#xd;
+                                }&#xd;
+                            }&#xd;
+                        },&#xd;
+                        &quot;attempts&quot;: &quot;0&quot;&#xd;
                     }&#xd;
                 ],&#xd;
                 &quot;userDetails&quot;: {&#xd;
-                    &quot;selfieRequestId&quot;: &quot;1741947479481-cf13ecf0-0a46-4851-a36d-de5f191202b6&quot;,&#xd;
                     &quot;facematchAction&quot;: &quot;pass&quot;,&#xd;
-                    &quot;facematchRequestId&quot;: &quot;1741947481158-232dcb1b-6319-467e-b72a-bad2af6f4f19&quot;,&#xd;
-                    &quot;selfieAction&quot;: &quot;pass&quot;&#xd;
+                    &quot;selfieAction&quot;: &quot;pass&quot;,&#xd;
+                    &quot;facematchRequestId&quot;: &quot;1740985751857-1ccc8f74-c1f8-4964-86ea-7f7fdbb0e49d&quot;,&#xd;
+                    &quot;selfieRequestId&quot;: &quot;1740985750151-4e2c4448-2f11-4555-b4d7-2c941ad61620&quot;&#xd;
                 }&#xd;
             }&#xd;
         },&#xd;
@@ -2987,7 +3087,7 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3002,7 +3102,7 @@ if (idHyperVergeOCR) {
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hdb-biometric-sanhuynh-qa&quot;,&#xd;
+    &quot;name&quot;: &quot;jmeter-hdb-biometric-thaopham-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
         &quot;url&quot;: &quot;/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}&quot;,&#xd;
@@ -3011,38 +3111,38 @@ if (idHyperVergeOCR) {
     &quot;response&quot;: {&#xd;
         &quot;status&quot;: 200,&#xd;
         &quot;jsonBody&quot;: {&#xd;
-            &quot;transaction_id&quot;: &quot;be22a6a1-de84-4838-b12a-bca6d6c76332&quot;,&#xd;
-            &quot;log_id&quot;: &quot;d35b1787-045c-11f0-a1aa-c31aa14d4e3b-0b3b6e22-apigateway-service-84d657594f-swv8t&quot;,&#xd;
-            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6ImJlMjJhNmExLWRlODQtNDgzOC1iMTJhLWJjYTZkNmM3NjMzMiIsImxvZ19pZCI6ImQzNWIxNzg3LTA0NWMtMTFmMC1hMWFhLWMzMWFhMTRkNGUzYi0wYjNiNmUyMi1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMTIvOTYyOTY0MmItZmYwYy0xMWVmLWFlMGItYTNiNmJhYWVkMTFhLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMTIvMDMvMjAyNSAxMzozODoyNCIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzEyLzk2ZWE2YTNjLWZmMGMtMTFlZi1hZTBiLWMxNDA4NDNjYzhjNi5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIxMi8wMy8yMDI1IDEzOjM4OjI0Iiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiI5ZWY2OTk4NS1mYmMyLTRiOWItYTZjYy05ZjAzNDYxMWUxZWYiLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiSMawxqFuZyBUb8OgbiwgSMawxqFuZyBUcsOgLCBUaOG7q2EgVGhpw6puIEh14bq/IiwicmVjZW50X2xvY2F0aW9uIjoiODcgTmd1eeG7hW4gVHLDo2ksIFRodeG6rW4gSMOyYSwgVGjDoG5oIHBo4buRIEh14bq/LCBUaOG7q2EgVGhpw6puIEh14bq/IiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik7hu68iLCJkYWRfbmFtZSI6Ikh14buzbmggVMSDbmcgTcOjbyIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJQaOG6rXQgZ2nDoW8iLCJiaXJ0aF9kYXkiOiIwNS8wMy8xOTkyIiwiZmVhdHVyZXMiOiJO4buRdCBydeG7k2kgQzoxIGNtIHRyw6puIHRyxrDhu5tjIMSRdcO0aSBtw6B5IHRyw6FpIiwidmFsaWRfZGF0ZSI6IjA1LzAzLzIwMzIiLCJzcG91c2VfbmFtZSI6IiIsIm1yeiI6IltJRFZOTTE5MjAxNjY5OTMwNDYxOTIwMTY2OTk8PDEsIDkyMDMwNTVGMzIwMzA1M1ZOTTw8PDw8PDw8PDw8MiwgSFVZTkg8PFRISTxISUVVPFNBTjw8PDw8PDw8PDw8XSIsIm5hdGlvbmFsaXR5IjoiVmnhu4d0IE5hbSIsImlzc3VlX2RhdGUiOiIyOC8wNi8yMDIxIiwibmFtZSI6Ikh14buzbmggVGjhu4sgSGnhur91IFNhbiIsIm9sZF9pZCI6IjE5MTc2NzY3MCIsImlkIjoiMDQ2MTkyMDE2Njk5IiwibW9tX25hbWUiOiJQaGFuIFRo4buLIFBow6FvIn1dfX0=&quot;,&#xd;
-            &quot;data_sign&quot;: &quot;FTwys5JI4EYQkLj+HyFZQw6kdcP6idFHZYYJHs9GftSp1ad6uWW5NaEa5hA3pl4idgIxqQb9UlHJs+f40ffP8EYLwT7JQgKu/1GkVbBVNrta9ZMGdOtKtt8wapScIADcQsXz2VTOb33Nr1aU/TH4FtW9+dJDc0v2bBokDHIfl33Cl8tYtl97p0onSGdPwzLN4B5sv6zAxqXgaJPjUbaw25/xFuOXXbj9XsyvmlSRztkLSEGh1QoquK/3nmMcmYJ5gDcB3SpRcgS/yCgobmB3aGTsLjLtYEfD3QWF//cijBapK5UeW1GqxaDUti36NMAP3nfmLmSXLnuu9VR7o355dQ==&quot;,&#xd;
+            &quot;transaction_id&quot;: &quot;4d86a898-542a-4f07-a5d3-29e6d2662659&quot;,&#xd;
+            &quot;log_id&quot;: &quot;362cf514-0461-11f0-9ba6-4bc3e2e25db9-14af1350-apigateway-service-84d657594f-svzwm&quot;,&#xd;
+            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6IjRkODZhODk4LTU0MmEtNGYwNy1hNWQzLTI5ZTZkMjY2MjY1OSIsImxvZ19pZCI6IjM2MmNmNTE0LTA0NjEtMTFmMC05YmE2LTRiYzNlMmUyNWRiOS0xNGFmMTM1MC1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMDUvODkxY2I0MWUtZjlhZS0xMWVmLWFlMGItZmZlMTk0Mjc0NjI5LmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMDUvMDMvMjAyNSAxNzo0MjozNCIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzA1LzhhMDViM2Y4LWY5YWUtMTFlZi1hZTQ0LWJiYzhmZjUxZWFmMC5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIwNS8wMy8yMDI1IDE3OjQyOjM0Iiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiJjMmVjY2M3Ni0xOTZlLTRjNGEtYjFjOS1mM2U5NWRiMzEyMjciLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiVMOibiBCw6xuaCwgQ2jDonUgVGjDoG5oLCDEkOG7k25nIFRow6FwIiwicmVjZW50X2xvY2F0aW9uIjoiVOG7lSAwOSwg4bqkcCBBbiBIw7JhIE5ow6wsIFTDom4gQsOsbmgsIENow6J1IFRow6BuaCwgxJDhu5NuZyBUaMOhcCIsImV0aG5pYyI6IktpbmgiLCJnZW5kZXIiOiJO4buvIiwiZGFkX25hbWUiOiJQaOG6oW0gVGhhbmggTmjDoG4iLCJyZXN1bHRfYzA2Ijp7InNpZ25hdHVyZSI6IktvMjdsT3B0VFl1OFRPNklWWnJSd0xlVGJQSlFvMGpkbmNicUdLTlNCeThob1NrWWQzSHk2dXg1VFIrTTJxRVlzeVlPZk1iaXBNNnQ0L0QyU2wrcXFrOEZUQlNYZ05DVmtMUWJMM2FwVnJKV3hSRzQrb1MxNENxdlk4bWVXRGlKaHRGTytOZ1lJeWNvTFNZSTFDZzFuYnIyd3gwd05TSWlhZHJjRmdZS0F4QjNObDd0cGVDU25NeUJLS1VmNkRpdHRTc3pwaWtmTG8rb0Rtdi9lMVJPdWRWU0NFb2c5K1NXZjN6ckU2cWZFWmtLNGV3ZTJ0OGJCUUdTNGlhaUZFanhhempvODlycGFkNjhaVUhuaENBc2ZDL1d0aXBRbkx4TEEySytSVnlsUkRCK002SSthKzZoUlFtYWZFdjM0cEpWR3hBT0Uza3VoWnBqanlQSml0QUxtdz09IiwicmVzcG9uZHMiOnsicmVzdWx0Ijp0cnVlLCJyZXNwb25zZV9pZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwiZXhpdGNvZGUiOjAsInRpbWUiOjAsIm1lc3NhZ2UiOiJ2YWxpZCBpZGNhcmQiLCJyZXNwb25zZUlkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifX0sInJlbGlnaW9uIjoiS2jDtG5nIiwiYmlydGhfZGF5IjoiMTUvMDUvMjAwMCIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIHRyw6puIHRyxrDhu5tjIG3DqXAgdHLDoWkiLCJ2YWxpZF9kYXRlIjoiMTUvMDUvMjAyNSIsInNwb3VzZV9uYW1lIjoiIiwibXJ6IjoiW0lEVk5NMzAwMDE0MTY0NzA4NzMwMDAxNDE2NDw8OCwgMDAwNTE1M0YyNTA1MTUyVk5NPDw8PDw8PDw8PDwwLCBQSEFNPDxUSEFOSDxUSEFPPDw8PDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjA5LzA4LzIwMjEiLCJuYW1lIjoiUGjhuqFtIFRoYW5oIFRo4bqjbyIsIm9sZF9pZCI6IjM0MTk3Mzk0NiIsImlkIjoiMDg3MzAwMDE0MTY0IiwibW9tX25hbWUiOiJOZ3V54buFbiBLaW0gVGjDunkifV19fQ==&quot;,&#xd;
+            &quot;data_sign&quot;: &quot;ZVoP3wjfhbhxC9O1E7VHNPYPQKvCvfro2lHwGsG5X20AN/9FxKl6v0rMbrQC+cgEYs9+N3Jop7oaAnf2Zszv21LZoCELhXeTMtV4ZcbSiFaDKlPe8wagFehg6lHI87Knwry/n5tqnJYpPca7L4lAYc9NQfdlbwLhT4ccwJdmeWSbydG2436hT7QuL8oR+eT3TAnWJPVHc2jEukGRtjDlbs0Hz61ygVIR0SOIxcWSRAd98uiFLYEeQoig9tKwtVk1hld6wAk3o+th9v1RAi0QAwUJHIRg+DI8aa9tNlaLItc0pLlUvKs5C1XdX3O86rzVeXCYuP/PLZz1IVqobm4H6A==&quot;,&#xd;
             &quot;message&quot;: &quot;IDG-00000000&quot;,&#xd;
             &quot;object&quot;: {&#xd;
                 &quot;customer_faces&quot;: [&#xd;
                     {&#xd;
-                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250312/9629642b-ff0c-11ef-ae0b-a3b6baaed11a.jpeg&quot;,&#xd;
+                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250305/891cb41e-f9ae-11ef-ae0b-ffe194274629.jpeg&quot;,&#xd;
                         &quot;group_customer&quot;: &quot;Face selfie&quot;,&#xd;
                         &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
                         &quot;verify_status&quot;: 0,&#xd;
-                        &quot;created_date&quot;: &quot;12/03/2025 13:38:24&quot;,&#xd;
+                        &quot;created_date&quot;: &quot;05/03/2025 17:42:34&quot;,&#xd;
                         &quot;status&quot;: 0&#xd;
                     },&#xd;
                     {&#xd;
-                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250312/96ea6a3c-ff0c-11ef-ae0b-c140843cc8c6.jpeg&quot;,&#xd;
+                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250305/8a05b3f8-f9ae-11ef-ae44-bbc8ff51eaf0.jpeg&quot;,&#xd;
                         &quot;group_customer&quot;: &quot;Face chip&quot;,&#xd;
                         &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
                         &quot;verify_status&quot;: 1,&#xd;
-                        &quot;created_date&quot;: &quot;12/03/2025 13:38:24&quot;,&#xd;
+                        &quot;created_date&quot;: &quot;05/03/2025 17:42:34&quot;,&#xd;
                         &quot;status&quot;: 1&#xd;
                     }&#xd;
                 ],&#xd;
-                &quot;uuid_customer&quot;: &quot;9ef69985-fbc2-4b9b-a6cc-9f034611e1ef&quot;,&#xd;
+                &quot;uuid_customer&quot;: &quot;c2eccc76-196e-4c4a-b1c9-f3e95db31227&quot;,&#xd;
                 &quot;customer_cards&quot;: [&#xd;
                     {&#xd;
-                        &quot;origin_location&quot;: &quot;Hương Toàn, Hương Trà, Thừa Thiên Huế&quot;,&#xd;
-                        &quot;recent_location&quot;: &quot;87 Nguyễn Trãi, Thuận Hòa, Thành phố Huế, Thừa Thiên Huế&quot;,&#xd;
+                        &quot;origin_location&quot;: &quot;Tân Bình, Châu Thành, Đồng Tháp&quot;,&#xd;
+                        &quot;recent_location&quot;: &quot;Tổ 09, Ấp An Hòa Nhì, Tân Bình, Châu Thành, Đồng Tháp&quot;,&#xd;
                         &quot;ethnic&quot;: &quot;Kinh&quot;,&#xd;
                         &quot;gender&quot;: &quot;Nữ&quot;,&#xd;
-                        &quot;dad_name&quot;: &quot;Huỳnh Tăng Mão&quot;,&#xd;
+                        &quot;dad_name&quot;: &quot;Phạm Thanh Nhàn&quot;,&#xd;
                         &quot;result_c06&quot;: {&#xd;
                             &quot;signature&quot;: &quot;Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==&quot;,&#xd;
                             &quot;responds&quot;: {&#xd;
@@ -3054,18 +3154,18 @@ if (idHyperVergeOCR) {
                                 &quot;responseId&quot;: &quot;vnpt-00000000-0000-0000-0000-000000000000&quot;&#xd;
                             }&#xd;
                         },&#xd;
-                        &quot;religion&quot;: &quot;Phật giáo&quot;,&#xd;
-                        &quot;birth_day&quot;: &quot;05/03/1992&quot;,&#xd;
-                        &quot;features&quot;: &quot;Nốt ruồi C:1 cm trên trước đuôi mày trái&quot;,&#xd;
-                        &quot;valid_date&quot;: &quot;05/03/2032&quot;,&#xd;
+                        &quot;religion&quot;: &quot;Không&quot;,&#xd;
+                        &quot;birth_day&quot;: &quot;15/05/2000&quot;,&#xd;
+                        &quot;features&quot;: &quot;Nốt ruồi trên trước mép trái&quot;,&#xd;
+                        &quot;valid_date&quot;: &quot;15/05/2025&quot;,&#xd;
                         &quot;spouse_name&quot;: &quot;&quot;,&#xd;
-                        &quot;mrz&quot;: &quot;[IDVNM1920166993046192016699&lt;&lt;1, 9203055F3203053VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;2, HUYNH&lt;&lt;THI&lt;HIEU&lt;SAN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;]&quot;,&#xd;
+                        &quot;mrz&quot;: &quot;[IDVNM3000141647087300014164&lt;&lt;8, 0005153F2505152VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;0, PHAM&lt;&lt;THANH&lt;THAO&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;]&quot;,&#xd;
                         &quot;nationality&quot;: &quot;Việt Nam&quot;,&#xd;
-                        &quot;issue_date&quot;: &quot;28/06/2021&quot;,&#xd;
-                        &quot;name&quot;: &quot;Huỳnh Thị Hiếu San&quot;,&#xd;
-                        &quot;old_id&quot;: &quot;191767670&quot;,&#xd;
+                        &quot;issue_date&quot;: &quot;09/08/2021&quot;,&#xd;
+                        &quot;name&quot;: &quot;Phạm Thanh Thảo&quot;,&#xd;
+                        &quot;old_id&quot;: &quot;341973946&quot;,&#xd;
                         &quot;id&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
-                        &quot;mom_name&quot;: &quot;Phan Thị Pháo&quot;&#xd;
+                        &quot;mom_name&quot;: &quot;Nguyễn Kim Thúy&quot;&#xd;
                     }&#xd;
                 ]&#xd;
             }&#xd;
