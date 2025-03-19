@@ -1,0 +1,558 @@
+{
+    "name": "jmeter-hyperverge-mocking-dientran-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hyperverge/v1/link-kyc/results",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": "$[?(@.transactionId == '${onboardingId}')]"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "status": "success",
+            "statusCode": 200,
+            "metadata": {
+                "requestId": "1732702372450-0580190d-cb55-4ddb-8a23-bd4c627ee620",
+                "transactionId": "1311273069761060864"
+            },
+            "result": {
+                "workflowDetails": {
+                    "workflowId": "document_verification",
+                    "version": 1
+                },
+                "applicationStatus": "auto_approved",
+                "results": [
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "front",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-front.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-front.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1732702283868-74dbe171-3c59-4711-afb7-db9822504d5b",
+                                "transactionId": "1311273069761060864"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_front",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "TRẦN QUANG ĐIỀN",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "23-01-1999",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "23-01-2039",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "Tổ 21 ,Ấp Trong Phước Hậu, Cần Giuộc, Long An",
+                                                "confidence": "low",
+                                                "score": 65,
+                                                "additionalInfo": "p trong phc hu cn giuc long an",
+                                                "street": "TỔ 21 ",
+                                                "houseNumber": "",
+                                                "district": "HUYỆN CẦN GIUỘC",
+                                                "province": "TỈNH LONG AN",
+                                                "zipCode": ""
+                                            },
+                                            "gender": {
+                                                "value": "M",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "idNumber": {
+                                                "value": "${idNumberOnboard}",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "1999",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "Việt Nam",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "mrzString": {
+                                                "value": "",
+                                                "idNumber": "",
+                                                "fullName": "",
+                                                "gender": "",
+                                                "dateOfBirth": "",
+                                                "dateOfExpiry": "",
+                                                "nationality": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "homeTown": {
+                                                "value": "Phước Hậu, Cần Giuộc, Long An",
+                                                "confidence": "high",
+                                                "score": 100
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-front.png",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            },
+                                            "faceNotDetected": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "tamperChecks": {
+                                            "photoTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "idNumberLengthMismatch": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "expiredID": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idProvinceCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idDOBGenderCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "manualReview",
+                                    "details": [
+                                        {
+                                            "code": "025",
+                                            "message": "Place of residence is unclear"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "1",
+                        "expectedDocumentSide": "back",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-back.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-back.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1732702291295-91647df1-4413-42d5-975b-3f0ba4e85796",
+                                "transactionId": "1311273069761060864"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_back",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "13-06-2024",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "",
+                                                "additionalInfo": "",
+                                                "street": "",
+                                                "houseNumber": "",
+                                                "district": "",
+                                                "province": "",
+                                                "zipCode": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "gender": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idNumber": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                                                "confidence": "high",
+                                                "score": 95
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "mrzString": {
+                                                "value": "IDVNM0990100939080099010093<<39901236M3901234VNM<<<<<<<<<<<8TRAN<<QUANG<DIEN<<<<<<<<<<<<<<",
+                                                "confidence": "high",
+                                                "score": 100,
+                                                "idNumber": "080099010093",
+                                                "fullName": "TRAN QUANG DIEN",
+                                                "gender": "M",
+                                                "dateOfBirth": "23-01-1999",
+                                                "dateOfExpiry": "23-01-2039",
+                                                "nationality": "VNM"
+                                            },
+                                            "homeTown": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-back.png",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "mrzTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "attempts": "1",
+                        "moduleId": "module_selfie",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1732702308697-d6f419c3-fe55-40da-9021-00aecae0f75f",
+                                "transactionId": "1311273069761060864"
+                            },
+                            "result": {
+                                "details": {
+                                    "liveFace": {
+                                        "value": "yes",
+                                        "confidence": "high",
+                                        "score": 100
+                                    },
+                                    "qualityChecks": {
+                                        "blur": {
+                                            "score": 95,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyesClosed": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyewear": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "faceOccluded": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "hat": {
+                                            "score": 99,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "headTurned": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "maskPresent": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "multipleFaces": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "nudity": {
+                                            "score": 100,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        }
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "moduleId": "module_facematch",
+                        "idImageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-front.png",
+                        "selfieImageUrl": "https://wiremock.sit.galaxyfinx.in/dientranqa/dientran-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1732702310675-d1c91353-825d-4ef9-b0e4-300344455210",
+                                "transactionId": "1311273069761060864"
+                            },
+                            "result": {
+                                "details": {
+                                    "match": {
+                                        "value": "yes",
+                                        "score": 98,
+                                        "confidence": "high"
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "attempts": "1"
+                    }
+                ],
+                "userDetails": {
+                    "selfieRequestId": "1732702308697-d6f419c3-fe55-40da-9021-00aecae0f75f",
+                    "facematchRequestId": "1732702310675-d1c91353-825d-4ef9-b0e4-300344455210",
+                    "selfieAction": "pass",
+                    "facematchAction": "pass"
+                }
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hyperverge/jmeter"
+        }
+    }
+}
