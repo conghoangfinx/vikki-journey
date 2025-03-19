@@ -1,0 +1,65 @@
+{
+    "name": "jmeter-hdb-biometric-hanguyen-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "14110919-39c5-4e6c-b1dd-6ce98b4e3e58",
+            "log_id": "2b64c9f2-049c-11f0-a1aa-29a3c5b23056-5859ebbc-apigateway-service-84d657594f-swv8t",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6IjE0MTEwOTE5LTM5YzUtNGU2Yy1iMWRkLTZjZTk4YjRlM2U1OCIsImxvZ19pZCI6IjJiNjRjOWYyLTA0OWMtMTFmMC1hMWFhLTI5YTNjNWIyMzA1Ni01ODU5ZWJiYy1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6InZla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNDA2MTQvNGU4Mjc1NDAtMmExZi0xMWVmLWE3ZDYtY2ZkNWUwYjk2ODBmLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2UgY2hpcCIsImNoYW5uZWwiOiJWaWtraSIsInZlcmlmeV9zdGF0dXMiOjEsImNyZWF0ZWRfZGF0ZSI6IjE0LzA2LzIwMjQgMDc6MzA6NDciLCJzdGF0dXMiOjF9XSwidXVpZF9jdXN0b21lciI6ImFkNjk5OGM3LTZjOGYtNDBhNS04NTY4LWZmYTViZjdhZDcyZCIsImN1c3RvbWVyX2NhcmRzIjpbeyJvcmlnaW5fbG9jYXRpb24iOiJRdeG7s25oIFRhbSwgUXXhu7NuaCBMxrB1LCBOZ2jhu4cgQW4iLCJpc3N1ZV9wbGFjZSI6IkPhu6RDIFRSxq/hu55ORyBD4bukQyBD4bqiTkggU8OBVCBRVeG6ok4gTMOdIEjDgE5IIENIw41OSCBW4buAIFRS4bqsVCBU4buwIFjDgyBI4buYSSIsInJlY2VudF9sb2NhdGlvbiI6IkPEg24gSOG7mSAyOTAyIEhoNGEgTGluaCDEkMOgbSwgSG/DoG5nIExp4buHdCwgSG/DoG5nIE1haSwgSMOgIE7hu5lpIiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik7hu68iLCJkYWRfbmFtZSI6Ik5ndXnhu4VuIEPDtG5nIFRoYW5oIiwicmVsaWdpb24iOiJLaMO0bmciLCJiaXJ0aF9kYXkiOiIwMi8wMy8xOTg4IiwiZmVhdHVyZXMiOiJO4buRdCBydeG7k2kgQzogMmNtIGTGsOG7m2kgbcOpcCBwaOG6o2kiLCJ2YWxpZF9kYXRlIjoiMDIvMDMvMjAyOCIsInNwb3VzZV9uYW1lIjoiTmd1eeG7hW4gSOG7k25nIE5o4bqtdCIsIm1yeiI6IltJRFZOTTE4ODAwMDQ4NjcwNDAxODgwMDA0ODY8PDksIDg4MDMwMjNGMjgwMzAyMVZOTTw8PDw8PDw8PDw8NCwgTkdVWUVOPDxUSEk8SEE8PDw8PDw8PDw8PDw8PDw8XSIsIm5hdGlvbmFsaXR5IjoiVmnhu4d0IE5hbSIsImlzc3VlX2RhdGUiOiIxMC8wNy8yMDIxIiwibmFtZSI6Ik5ndXnhu4VuIFRo4buLIEjDoCIsIm9sZF9pZCI6IiIsImlkIjoiMDQwMTg4MDAwNDg2IiwibW9tX25hbWUiOiJUaOG6oWNoIFRo4buLIFRodeG6rW4ifV19fQ==",
+            "data_sign": "TV2TIvjlsFQqXHihvDALEaEECSK0ke2W/pgqAM6aW28d1qFPWOi49Cb70uDjDyWwfLeBm+GsoTtq2GMCJ16mE3EZaysQjScfKsjbnBb1ogUGnvD/xTe1iKit9FLwte1xs4cESmZPj712fLXF4r+MscZO3TQzAR0AGijfa34ccpHGzHf47XGlq+nPzVfNb1gf851Nr5cGIOlGCgmEhzl52u08pPkLXymXf0cP8PJEEYuVC6kjwjvgtLLhmoY55C4hsNlTr8vmKqrG9HfSn4NPlx8+Jx/d91Qtne8PGmaIyQ3bPhXI4vjeJJbqt7YttXstTJ/YHORbjmua03XqxuJG4g==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20240614/4e827540-2a1f-11ef-a7d6-cfd5e0b9680f.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "Vikki",
+                        "verify_status": 1,
+                        "created_date": "14/06/2024 07:30:47",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "ad6998c7-6c8f-40a5-8568-ffa5bf7ad72d",
+                "customer_cards": [
+                    {
+                        "origin_location": "Quỳnh Tam, Quỳnh Lưu, Nghệ An",
+                        "issue_place": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                        "recent_location": "Căn Hộ 2902 Hh4a Linh Đàm, Hoàng Liệt, Hoàng Mai, Hà Nội",
+                        "ethnic": "Kinh",
+                        "gender": "Nữ",
+                        "dad_name": "Nguyễn Công Thanh",
+                        "religion": "Không",
+                        "birth_day": "02/03/1988",
+                        "features": "Nốt ruồi C: 2cm dưới mép phải",
+                        "valid_date": "02/03/2028",
+                        "spouse_name": "Nguyễn Hồng Nhật",
+                        "mrz": "[IDVNM1880004867040188000486<<9, 8803023F2803021VNM<<<<<<<<<<<4, NGUYEN<<THI<HA<<<<<<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "10/07/2021",
+                        "name": "Nguyễn Thị Hà",
+                        "old_id": "",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Thạch Thị Thuận"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
