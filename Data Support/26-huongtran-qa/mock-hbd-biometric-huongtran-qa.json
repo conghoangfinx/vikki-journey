@@ -1,0 +1,75 @@
+{
+    "name": "jmeter-hdb-biometric-huongtran-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "e7446ef2-f06b-4b1e-8ac0-1c51b92b6fa6",
+            "log_id": "bdde1f24-04ce-11f0-a1aa-6f0ea5aeb5a0-d9bc513a-apigateway-service-84d657594f-swv8t",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6ImU3NDQ2ZWYyLWYwNmItNGIxZS04YWMwLTFjNTFiOTJiNmZhNiIsImxvZ19pZCI6ImJkZGUxZjI0LTA0Y2UtMTFmMC1hMWFhLTZmMGVhNWFlYjVhMC1kOWJjNTEzYS1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNDEwMDIvNDQ1ZjUyMGMtODA5My0xMWVmLWExMDktOWQxN2M0NTQ0ZWE0LmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2UgY2hpcCIsImNoYW5uZWwiOiJWSUtLSSIsInZlcmlmeV9zdGF0dXMiOjEsImNyZWF0ZWRfZGF0ZSI6IjAyLzEwLzIwMjQgMTQ6NTI6MzAiLCJzdGF0dXMiOjF9XSwidXVpZF9jdXN0b21lciI6ImQ0ZjEwYzg1LThkNGMtNDVjYS1hYzQxLTNiNzVhNzMxZWFlMCIsImN1c3RvbWVyX2NhcmRzIjpbeyJvcmlnaW5fbG9jYXRpb24iOiJUaOG6oW5oIFTDom4sIFRow6BuaCBwaOG7kSBUw6J5IE5pbmgsIFTDonkgTmluaCIsInJlY2VudF9sb2NhdGlvbiI6IjMvMTksIFThu5UgMTEsIOG6pHAgVGjhuqFuaCBM4bujaSwgVGjhuqFuaCBUw6JuLCBUaMOgbmggcGjhu5EgVMOieSBOaW5oLCBUw6J5IE5pbmgiLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTuG7ryIsImRhZF9uYW1lIjoiVHLhuqduIFbEg24gUuG6qXkiLCJyZXN1bHRfYzA2Ijp7InNpZ25hdHVyZSI6IktvMjdsT3B0VFl1OFRPNklWWnJSd0xlVGJQSlFvMGpkbmNicUdLTlNCeThob1NrWWQzSHk2dXg1VFIrTTJxRVlzeVlPZk1iaXBNNnQ0L0QyU2wrcXFrOEZUQlNYZ05DVmtMUWJMM2FwVnJKV3hSRzQrb1MxNENxdlk4bWVXRGlKaHRGTytOZ1lJeWNvTFNZSTFDZzFuYnIyd3gwd05TSWlhZHJjRmdZS0F4QjNObDd0cGVDU25NeUJLS1VmNkRpdHRTc3pwaWtmTG8rb0Rtdi9lMVJPdWRWU0NFb2c5K1NXZjN6ckU2cWZFWmtLNGV3ZTJ0OGJCUUdTNGlhaUZFanhhempvODlycGFkNjhaVUhuaENBc2ZDL1d0aXBRbkx4TEEySytSVnlsUkRCK002SSthKzZoUlFtYWZFdjM0cEpWR3hBT0Uza3VoWnBqanlQSml0QUxtdz09IiwicmVzcG9uZHMiOnsicmVzdWx0Ijp0cnVlLCJyZXNwb25zZV9pZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwiZXhpdGNvZGUiOjAsInRpbWUiOjAsIm1lc3NhZ2UiOiJ2YWxpZCBpZGNhcmQiLCJyZXNwb25zZUlkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifX0sInJlbGlnaW9uIjoiQ2FvIMSQw6BpIiwiYmlydGhfZGF5IjoiMDUvMDcvMTk5NyIsImZlYXR1cmVzIjoiU+G6uW8gY2jhuqVtIGMxY20gdHLDqm4gc2F1IGPDoW5oIG3FqWkgcGjhuqNpIiwidmFsaWRfZGF0ZSI6IjA1LzA3LzIwMzciLCJzcG91c2VfbmFtZSI6IlRyxrDGoW5nIFF1YW5nIFBow6F0IiwibXJ6IjoiW0lEVk5NMTk3MDAyMTQyNDA3MjE5NzAwMjE0Mjw8NywgOTcwNzA1OEYzNzA3MDU2Vk5NPDw8PDw8PDw8PDwyLCBUUkFOPDxUSEk8VEhVPEhVT05HPDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjI4LzA2LzIwMjIiLCJuYW1lIjoiVHLhuqduIFRo4buLIFRodSBIxrDhu51uZyIsIm9sZF9pZCI6IjI5MTE4MzM1MyIsImlkIjoiMDcyMTk3MDAyMTQyIiwibW9tX25hbWUiOiJOZ3V54buFbiBUaOG7iyBZ4bq/biJ9XX19",
+            "data_sign": "PfHnjAvE6wYFZz33MryEuBDPi7TtTXR8aVjNkgsMDP1qpCvD3L2Qv7J1mSEF2C/vaVlNVPuQaWL6g1jSC4g84KBggGK2cIDMQjQvR7gY1fQGaxa2tznshRNQSjALaB1EBSo+tUn4AebRPylMIRjbcwMIlhcV1k4oTc6etg+g1yQXEuauv8f4AoMR2dksZNRX+p13eREwERSRsHqCiKtHUKn9BXBfvUv6lwNxKdUJrvHg1QagYnJDOx3kxg5XCCyJhD4pQ5OgDgvYsgx+yZhMlLf9Z9+AlYHIrNPLr9mfBBEmNwAYhZGFaXgpz74ijFZ5veHK5xQpN98K9RWTxJKx/w==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20241002/445f520c-8093-11ef-a109-9d17c4544ea4.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "02/10/2024 14:52:30",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "d4f10c85-8d4c-45ca-ac41-3b75a731eae0",
+                "customer_cards": [
+                    {
+                        "origin_location": "Thạnh Tân, Thành phố Tây Ninh, Tây Ninh",
+                        "recent_location": "3/19, Tổ 11, Ấp Thạnh Lợi, Thạnh Tân, Thành phố Tây Ninh, Tây Ninh",
+                        "ethnic": "Kinh",
+                        "gender": "Nữ",
+                        "dad_name": "Trần Văn Rẩy",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Cao Đài",
+                        "birth_day": "05/07/1997",
+                        "features": "Sẹo chấm c1cm trên sau cánh mũi phải",
+                        "valid_date": "05/07/2037",
+                        "spouse_name": "Trương Quang Phát",
+                        "mrz": "[IDVNM1970021424072197002142<<7, 9707058F3707056VNM<<<<<<<<<<<2, TRAN<<THI<THU<HUONG<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "28/06/2022",
+                        "name": "Trần Thị Thu Hường",
+                        "old_id": "291183353",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Nguyễn Thị Yến"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}
