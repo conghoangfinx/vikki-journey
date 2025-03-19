@@ -1,0 +1,558 @@
+{
+    "name": "jmeter-hyperverge-mocking-namho-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hyperverge/v1/link-kyc/results",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": "$[?(@.transactionId == '${onboardingId}')]"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "status": "success",
+            "statusCode": 200,
+            "metadata": {
+                "requestId": "55d17932da1eeefde0097f96b0401125",
+                "transactionId": "1339503896623968256"
+            },
+            "result": {
+                "workflowDetails": {
+                    "workflowId": "document_verification",
+                    "version": 1
+                },
+                "applicationStatus": "auto_approved",
+                "results": [
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "2",
+                        "expectedDocumentSide": "front",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-front.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-front.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1739433067295-1c43a38a-2004-48ba-beee-9e5d2a2851f6",
+                                "transactionId": "1339503896623968256"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_front",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "HỒ NGUYỄN HẢI NAM",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "21-04-1996",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "21-04-2036",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "237/18 Hoàng Diệu, Phường 08, Quận 4, Hồ Chí Minh",
+                                                "confidence": "high",
+                                                "score": 100,
+                                                "additionalInfo": "phng 08 h ch minh",
+                                                "street": "237/18 HOÀNG DIỆU",
+                                                "houseNumber": "",
+                                                "district": "QUẬN 4",
+                                                "province": "THÀNH PHỐ HỒ CHÍ MINH",
+                                                "zipCode": ""
+                                            },
+                                            "gender": {
+                                                "value": "M",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "idNumber": {
+                                                "value": "${idNumberOnboard}",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "1996",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "Việt Nam",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "mrzString": {
+                                                "value": "",
+                                                "idNumber": "",
+                                                "fullName": "",
+                                                "gender": "",
+                                                "dateOfBirth": "",
+                                                "dateOfExpiry": "",
+                                                "nationality": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "homeTown": {
+                                                "value": "Phường 8, Thành phố Vĩnh Long, Vĩnh Long",
+                                                "confidence": "high",
+                                                "score": 100
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-front.png",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            },
+                                            "faceNotDetected": {
+                                                "value": "no",
+                                                "score": 99,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "tamperChecks": {
+                                            "photoTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "idNumberLengthMismatch": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "expiredID": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idProvinceCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idDOBGenderCodeInvalid": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "countrySelected": "vnm",
+                        "documentSelected": "id",
+                        "attempts": "2",
+                        "expectedDocumentSide": "back",
+                        "moduleId": "id_card_validation",
+                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-back.png",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-back.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1739433085260-2ae22123-d16c-4836-bb62-bb05b5de751a",
+                                "transactionId": "1339503896623968256"
+                            },
+                            "result": {
+                                "details": [
+                                    {
+                                        "idType": "cccd_chip_back",
+                                        "fieldsExtracted": {
+                                            "firstName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "middleName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "lastName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fullName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "dateOfIssue": {
+                                                "value": "17-12-2021",
+                                                "confidence": "high",
+                                                "score": 100
+                                            },
+                                            "dateOfExpiry": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "countryCode": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "type": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "address": {
+                                                "value": "",
+                                                "additionalInfo": "",
+                                                "street": "",
+                                                "houseNumber": "",
+                                                "district": "",
+                                                "province": "",
+                                                "zipCode": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "gender": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "idNumber": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "placeOfIssue": {
+                                                "value": "CỤC TRƯỞNG CỤC CẢNH SÁT QUẢN LÝ HÀNH CHÍNH VỀ TRẬT TỰ XÃ HỘI",
+                                                "confidence": "high",
+                                                "score": 95
+                                            },
+                                            "yearOfBirth": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "age": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "fatherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "motherName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "husbandName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "spouseName": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "nationality": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            },
+                                            "mrzString": {
+                                                "value": "IDVNM0960245031079096024503<<19604216M3604214VNM<<<<<<<<<<<4HO<<NGUYEN<HAI<NAM<<<<<<<<<<<<",
+                                                "confidence": "high",
+                                                "score": 100,
+                                                "idNumber": "079096024503",
+                                                "fullName": "HO NGUYEN HAI NAM",
+                                                "gender": "M",
+                                                "dateOfBirth": "21-04-1996",
+                                                "dateOfExpiry": "21-04-2036",
+                                                "nationality": "VNM"
+                                            },
+                                            "homeTown": {
+                                                "value": "",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "croppedImageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-back.png",
+                                        "isWrongSide": "no",
+                                        "qualityChecks": {
+                                            "blur": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "glare": {
+                                                "value": "no",
+                                                "score": 10,
+                                                "confidence": "high"
+                                            },
+                                            "blackAndWhite": {
+                                                "value": "no",
+                                                "score": 100,
+                                                "confidence": "high"
+                                            },
+                                            "partialId": {
+                                                "value": "no",
+                                                "score": 97,
+                                                "confidence": "high"
+                                            }
+                                        },
+                                        "ruleChecks": {
+                                            "mrzTampered": {
+                                                "value": "no",
+                                                "score": 0,
+                                                "confidence": "high"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "attempts": "1",
+                        "moduleId": "module_selfie",
+                        "imageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1739433107967-998a61de-d921-45ef-937b-812c8c0586ce",
+                                "transactionId": "1339503896623968256"
+                            },
+                            "result": {
+                                "details": {
+                                    "liveFace": {
+                                        "value": "yes",
+                                        "confidence": "high",
+                                        "score": 99
+                                    },
+                                    "qualityChecks": {
+                                        "blur": {
+                                            "score": 94,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyesClosed": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "eyewear": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "faceOccluded": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "hat": {
+                                            "score": 99,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "headTurned": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "maskPresent": {
+                                            "score": 0,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        },
+                                        "multipleFaces": {
+                                            "value": "no",
+                                            "score": 0,
+                                            "confidence": "high"
+                                        },
+                                        "nudity": {
+                                            "score": 96,
+                                            "value": "no",
+                                            "confidence": "high"
+                                        }
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "module": "",
+                        "moduleId": "module_facematch",
+                        "idImageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-front.png",
+                        "selfieImageUrl": "https://wiremock.sit.galaxyfinx.in/namhoqa/namho-selfie.png",
+                        "apiResponse": {
+                            "status": "success",
+                            "statusCode": 200,
+                            "metadata": {
+                                "requestId": "1739433109670-fbd96992-68a7-497d-8991-0c1bf4065e30",
+                                "transactionId": "1339503896623968256"
+                            },
+                            "result": {
+                                "details": {
+                                    "match": {
+                                        "value": "yes",
+                                        "score": 80,
+                                        "confidence": "high"
+                                    }
+                                },
+                                "summary": {
+                                    "action": "pass",
+                                    "details": []
+                                }
+                            }
+                        },
+                        "attempts": "1"
+                    }
+                ],
+                "userDetails": {
+                    "facematchAction": "pass",
+                    "selfieAction": "pass",
+                    "facematchRequestId": "1739433109670-fbd96992-68a7-497d-8991-0c1bf4065e30",
+                    "selfieRequestId": "1739433107967-998a61de-d921-45ef-937b-812c8c0586ce"
+                }
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hyperverge/jmeter"
+        }
+    }
+}
