@@ -58,14 +58,14 @@
           </elementProp>
           <elementProp name="idNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">idNumberOnboard</stringProp>
-            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.value">001098034158</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc"></stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -1247,13 +1247,13 @@ log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account" enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Register Phone" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Register Phone">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/mobile/verify</stringProp>
@@ -1281,7 +1281,7 @@ log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="x-request-id" elementType="Header">
                   <stringProp name="Header.name">x-request-id</stringProp>
@@ -1330,7 +1330,7 @@ log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Set Onboarding ID" enabled="true">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Set Onboarding ID">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -1380,7 +1380,7 @@ if (onboardingId) {
 }</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
-            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -1389,6 +1389,8 @@ if (onboardingId) {
 
 // ✅ Tạo deviceId ngẫu nhiên
 def deviceId = UUID.randomUUID().toString()
+//def deviceId = &quot;348014C9-2408-4818-BFAD-1C6F9E3D2022&quot;
+
 vars.put(&quot;deviceId&quot;, deviceId)
 
 log.info(&quot;\n---------- GENERATE DATA ----------&quot;)
@@ -1405,7 +1407,7 @@ log.info(&quot;✅ Generated Device ID: &quot; + deviceId)
             </JSR223PreProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 Verify OTP" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 Verify OTP">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">v3/onboarding/mobile/${onboardingId}/otp/verify</stringProp>
@@ -1615,7 +1617,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2351,7 +2353,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3863,7 +3865,7 @@ vars.put(&quot;declinedCheck&quot;, declinedCheck ? declinedCheck.join(&quot;,&q
 // ✅ Ghi log Payload, Needs Review Check, Declined Check
 //log.info(&quot; Payload: &quot; + payload);
 
-// ✅ Xử lý `kycStatus` với `switch-case`
+// ✅ Xử lý kycStatus với switch-case
 switch (kycStatus) {
     case &quot;APPROVED&quot;:
         vars.put(&quot;isTriggerFinalCheck&quot;, &quot;true&quot;);
@@ -3878,11 +3880,21 @@ switch (kycStatus) {
 
     case &quot;NEEDS_REVIEW&quot;:
         log.info(&quot; KYC NEEDS REVIEW: &quot; + needsReviewCheck);
+
+		if (needsReviewCheck.contains(&quot;selfieCheck&quot;)) {
+			log.info(&quot;Wait response 5s from HyperVerge&quot;);
+            Thread.sleep(6000);
+            return;
+        }
+
+        
         if (needsReviewCheck.isEmpty()) {
             vars.put(&quot;isTriggerFinalCheck&quot;, &quot;true&quot;);
             log.info(&quot; No further review required. Triggering final check.&quot;);
         }
         break;
+
+	
 
     default:
 //        log.warn(&quot;️ KYC Status: &quot; + kycStatus + &quot; - Continuing review process.&quot;); 
@@ -3896,9 +3908,7 @@ switch (kycStatus) {
 //def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
 //vars.put(&quot;attempts&quot;, String.valueOf(attempts));
 
-//log.info(&quot; KYC Check Attempt: &quot; + attempts);
-
-</stringProp>
+//log.info(&quot; KYC Check Attempt: &quot; + attempts);</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
@@ -4448,7 +4458,7 @@ if (accountCreationStatusOnboarded == &quot;FAILED&quot;) {
     log.error(&quot;❌ Account creation FAILED.&quot;);
 //    log.error(&quot;❌ Will trigger re-run after 2 minutes.&quot;);
     log.error(&quot;❌ Will trigger re-run after 2s.&quot;);
-    Thread.sleep(2000);
+    Thread.sleep(120000);
 }
 
 // ✅ Nếu status là &quot;IN_PROGRESS&quot;, chờ trước lần thử tiếp theo

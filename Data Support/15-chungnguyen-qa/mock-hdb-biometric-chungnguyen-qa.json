@@ -1,0 +1,91 @@
+{
+    "name": "jmeter-hdb-biometric-chungnguyen-qa",
+    "persistent": true,
+    "request": {
+        "url": "/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "transaction_id": "e2cc52f3-c947-4e25-ae7e-0236edba4944",
+            "log_id": "e0fd714a-087f-11f0-a1aa-3b469d5e1827-e7b04c59-apigateway-service-84d657594f-swv8t",
+            "data_base64": "eyJ0cmFuc2FjdGlvbl9pZCI6ImUyY2M1MmYzLWM5NDctNGUyNS1hZTdlLTAyMzZlZGJhNDk0NCIsImxvZ19pZCI6ImUwZmQ3MTRhLTA4N2YtMTFmMC1hMWFhLTNiNDY5ZDVlMTgyNy1lN2IwNGM1OS1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9hNWVmMWFiMi0wNGE5LTExZjAtYWUwYi0wYjE3MTczODI1N2EuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIxOS8wMy8yMDI1IDE3OjA1OjE4Iiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMyMi9iZGI1MWU2Yi0wNmViLTExZjAtYWU0NC1mYjQ3NGIxNDE4NmMuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIyMi8wMy8yMDI1IDE0OjAzOjQ5Iiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9hNmYzZTA4My0wNGE5LTExZjAtYWUwYi1lM2Q4MGZlMjlkMzEuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBjaGlwIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MSwiY3JlYXRlZF9kYXRlIjoiMTkvMDMvMjAyNSAxNzowNToxNyIsInN0YXR1cyI6MX1dLCJ1dWlkX2N1c3RvbWVyIjoiNjYxNmY3NGUtODg3MC00MWNiLWE2ZDktNGRiNzllNzE2Y2E2IiwiY3VzdG9tZXJfY2FyZHMiOlt7Im9yaWdpbl9sb2NhdGlvbiI6IkRpw6puIFPGoW4sIERpw6puIEtow6FuaCwgS2jDoW5oIEjDsmEiLCJyZWNlbnRfbG9jYXRpb24iOiJUaMO0biBUw6J5IDEsIERpw6puIFPGoW4sIERpw6puIEtow6FuaCwgS2jDoW5oIEjDsmEiLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTmFtIiwiZGFkX25hbWUiOiJOZ3V54buFbiBI4buvdSBQaMaw4bubYyIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJLaMO0bmciLCJiaXJ0aF9kYXkiOiIyNy8wNC8xOTkzIiwiZmVhdHVyZXMiOiJT4bq5byBjaOG6pW0gQzoyY20gc2F1IG3DqXAgcGjhuqNpIiwidmFsaWRfZGF0ZSI6IjI3LzA0LzIwMzMiLCJzcG91c2VfbmFtZSI6IiIsIm1yeiI6IltJRFZOTTA5MzAwNzUwMDIwNTYwOTMwMDc1MDA8PDMsIDkzMDQyNzNNMzMwNDI3MVZOTTw8PDw8PDw8PDw8NCwgTkdVWUVOPDxIVVU8Q0hVTkc8PDw8PDw8PDw8PDw8XSIsIm5hdGlvbmFsaXR5IjoiVmnhu4d0IE5hbSIsImlzc3VlX2RhdGUiOiIyMC8xMi8yMDIyIiwibmFtZSI6Ik5ndXnhu4VuIEjhu691IENodW5nIiwib2xkX2lkIjoiMjI1NTUzOTgzIiwiaWQiOiIwNTYwOTMwMDc1MDAiLCJtb21fbmFtZSI6IlRy4bqnbiBUaOG7iyBCw6oifV19fQ==",
+            "data_sign": "Wl8A3JL3xtb03QBTbiCDSHfoojZvpN+mSxHjYivdd9YiAM1rky+lMvSb/bpm4y1UFnRQYVZgeF9Juu1BcUrMzOxwhAqqpRhUHWn+6paffc8rDgZV8SV64YT2xx2jHOG9yqMOxZvS+Wf0YgyXXehcsTX4RuDj0NJikvlN5miEVWR+eGWJqo/psw0//QQHO3eOLm8ecgfAf9O3U/XFnv7oYvGFHkWyvBiPpsdCo3FGMY+WPSAzoqJ7kOh16BNWK6zPYWAHfE0YFBqo7pelwe0IGTfT7m2GWy0Rv+xVRzCJ7/6ZGTtXk+wkvV5Pw3LmJxYCwKpxRvvQD/l26nxToiVvBQ==",
+            "message": "IDG-00000000",
+            "object": {
+                "customer_faces": [
+                    {
+                        "image_url": "ekyc-cic/vekycupload/dd5f8b98-8f81-426a-9562-cb8b10aee405/20250319/a5ef1ab2-04a9-11f0-ae0b-0b171738257a.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "19/03/2025 17:05:18",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/dd5f8b98-8f81-426a-9562-cb8b10aee405/20250322/bdb51e6b-06eb-11f0-ae44-fb474b14186c.jpeg",
+                        "group_customer": "Face selfie",
+                        "channel": "VIKKI",
+                        "verify_status": 0,
+                        "created_date": "22/03/2025 14:03:49",
+                        "status": 0
+                    },
+                    {
+                        "image_url": "ekyc-cic/vekycupload/dd5f8b98-8f81-426a-9562-cb8b10aee405/20250319/a6f3e083-04a9-11f0-ae0b-e3d80fe29d31.jpeg",
+                        "group_customer": "Face chip",
+                        "channel": "VIKKI",
+                        "verify_status": 1,
+                        "created_date": "19/03/2025 17:05:17",
+                        "status": 1
+                    }
+                ],
+                "uuid_customer": "6616f74e-8870-41cb-a6d9-4db79e716ca6",
+                "customer_cards": [
+                    {
+                        "origin_location": "Diên Sơn, Diên Khánh, Khánh Hòa",
+                        "recent_location": "Thôn Tây 1, Diên Sơn, Diên Khánh, Khánh Hòa",
+                        "ethnic": "Kinh",
+                        "gender": "Nam",
+                        "dad_name": "Nguyễn Hữu Phước",
+                        "result_c06": {
+                            "signature": "Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==",
+                            "responds": {
+                                "result": true,
+                                "response_id": "vnpt-00000000-0000-0000-0000-000000000000",
+                                "exitcode": 0,
+                                "time": 0,
+                                "message": "valid idcard",
+                                "responseId": "vnpt-00000000-0000-0000-0000-000000000000"
+                            }
+                        },
+                        "religion": "Không",
+                        "birth_day": "27/04/1993",
+                        "features": "Sẹo chấm C:2cm sau mép phải",
+                        "valid_date": "27/04/2033",
+                        "spouse_name": "",
+                        "mrz": "[IDVNM0930075002056093007500<<3, 9304273M3304271VNM<<<<<<<<<<<4, NGUYEN<<HUU<CHUNG<<<<<<<<<<<<<]",
+                        "nationality": "Việt Nam",
+                        "issue_date": "20/12/2022",
+                        "name": "Nguyễn Hữu Chung",
+                        "old_id": "225553983",
+                        "id": "${idNumberOnboard}",
+                        "mom_name": "Trần Thị Bê"
+                    }
+                ]
+            }
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "transformers": [
+            "response-template"
+        ]
+    },
+    "priority": 2,
+    "metadata": {
+        "wiremock-gui": {
+            "folder": "/mappings/hdb-biometric/jmeter"
+        }
+    }
+}

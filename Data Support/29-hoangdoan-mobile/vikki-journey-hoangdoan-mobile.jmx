@@ -4531,7 +4531,7 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </hashTree>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
@@ -4665,6 +4665,163 @@ try {
     log.info(&quot;Case ID: &quot; + caseIDProspect);
 
     log.info(&quot;\n✅ Lấy thông tin Prospect thành công! \n&quot;);
+
+} catch (Exception e1) {
+    log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
+}</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to CSV" enabled="true">
+            <intProp name="HTTPSampler.concurrentPool">6</intProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="x-request-id" elementType="Header">
+                  <stringProp name="Header.name">x-request-id</stringProp>
+                  <stringProp name="Header.value">dcb51815-7759-41d8-8fd6-46b32e241acf</stringProp>
+                </elementProp>
+                <elementProp name="gtw-authorization" elementType="Header">
+                  <stringProp name="Header.name">gtw-authorization</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="baggage" elementType="Header">
+                  <stringProp name="Header.name">baggage</stringProp>
+                  <stringProp name="Header.value">sentry-environment=uat,sentry-transaction=StartupScreen,sentry-public_key=a8650128baf78c0abc77876f8736238f,sentry-trace_id=ae79a0eed0354e439ab2d6820a04d617,sentry-sample_rate=0.85</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="sentry-trace" elementType="Header">
+                  <stringProp name="Header.name">sentry-trace</stringProp>
+                  <stringProp name="Header.value">ae79a0eed0354e439ab2d6820a04d617-ae34fb51315f7476-1</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="x-open-id" elementType="Header">
+                  <stringProp name="Header.name">x-open-id</stringProp>
+                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">X-KEY</stringProp>
+                  <stringProp name="Header.value">${adminKey}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+
+log.info(&quot; \n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+
+// ✅ Lấy thông tin từ request trước đó
+def responseCode = prev.getResponseCode();
+def responseMessage = prev.getResponseMessage();
+def responseTime = prev.getTime(); // Response time in milliseconds
+def requestUrl = prev.getURL().toString(); // Lấy URL của request
+def response = prev.getResponseDataAsString().trim();
+
+// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
+
+// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+// ✅ Parse JSON an toàn
+def jsonResponse;
+try {
+    jsonResponse = new JsonSlurper().parseText(response);
+} catch (Exception e) {
+    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+try {
+    log.info(&quot;\nProspect ID: &quot; + vars.get(&quot;onboardingId&quot;));
+
+    // ✅ Trích xuất dữ liệu Prospect từ payload một cách an toàn
+    def payload = jsonResponse?.payload ?: [:];
+
+    def fullnameProspect = payload?.customerDetails?.fullName ?: &quot;N/A&quot;;
+    vars.put(&quot;fullnameProspect&quot;, fullnameProspect);
+    log.info(&quot;Full Name: &quot; + fullnameProspect);
+
+    def phoneNumberProspect = payload?.phoneNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;phoneNumberProspect&quot;, phoneNumberProspect);
+    log.info(&quot;Phone Number: &quot; + phoneNumberProspect);
+
+    def idNumberProspect = payload?.customerDetails?.idNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;idNumberProspect&quot;, idNumberProspect);
+    log.info(&quot;ID Number: &quot; + idNumberProspect);
+
+    def cifNumberProspect = payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;cifNumberProspect&quot;, cifNumberProspect);
+    log.info(&quot;CIF Number: &quot; + cifNumberProspect);
+
+    def vikkiAccountNumberProspect = payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;vikkiAccountNumberProspect&quot;, vikkiAccountNumberProspect);
+    log.info(&quot;Vikki Account Number: &quot; + vikkiAccountNumberProspect);
+
+    def hdbCifNumberProspect = payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;;
+    vars.put(&quot;hdbCifNumberProspect&quot;, hdbCifNumberProspect);
+    log.info(&quot;HDBank CIF Number: &quot; + hdbCifNumberProspect);
+
+    def caseIDProspect = payload?.caseId ?: &quot;N/A&quot;;
+    vars.put(&quot;caseIDProspect&quot;, caseIDProspect);
+    log.info(&quot;Case ID: &quot; + caseIDProspect);
+
+    log.info(&quot;\n✅ Lấy thông tin Prospect thành công! \n&quot;);
+
+    // ✅ Ghi thông tin vào file CSV
+    def filePath = &quot;${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}/${__BeanShell(File.separator,)}/prospect_data.csv&quot;;
+    def file = new File(filePath);
+
+    // Kiểm tra nếu file không tồn tại, tạo mới và thêm header
+    if (!file.exists()) {
+        file.createNewFile();
+        file.append(&quot;Prospect ID, Full Name, Phone Number, ID Number, CIF Number, Vikki Account Number, HDBank CIF Number, Case ID, Response Time (ms), Request URL\n&quot;);
+    }
+
+    // Ghi dữ liệu vào file CSV
+    def data = &quot;${vars.get(&quot;onboardingId&quot;)}, ${fullnameProspect}, ${phoneNumberProspect}, ${idNumberProspect}, ${cifNumberProspect}, ${vikkiAccountNumberProspect}, ${hdbCifNumberProspect}, ${caseIDProspect}, ${responseTime}, ${requestUrl}\n&quot;;
+    file.append(data);
 
 } catch (Exception e1) {
     log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
