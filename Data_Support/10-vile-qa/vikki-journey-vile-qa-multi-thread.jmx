@@ -132,8 +132,8 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding" enabled="true">
-        <stringProp name="ThreadGroup.num_threads">${__P(threads,1)}</stringProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding">
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,10)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${__P(rampups, 30)}</stringProp>
         <stringProp name="ThreadGroup.duration">${__P(durations,600)}</stringProp>
         <longProp name="ThreadGroup.delay">5</longProp>
@@ -145,7 +145,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Single" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Single" enabled="false">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -187,7 +187,7 @@ vars.put(&quot;idNumberOnboard&quot;, idNumberOnboard)
 </stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Multiple" enabled="false">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Multiple">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -215,8 +215,8 @@ def randomPart = String.format(&quot;%02d&quot;, rand.nextInt(100))  // 2 số n
 
 // ✅ Kiểm tra và tạo số điện thoại nếu chưa có giá trị
 //def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + randomPart + formattedTimeHHmm
-//def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + String.format(&quot;%02d&quot;, threadNum) + formattedTimeHHmm
-def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + formattedTimess + formattedTimeHHmm
+def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + String.format(&quot;%02d&quot;, threadNum) + formattedTimeHHmm
+//def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + formattedTimess + formattedTimeHHmm
 
 // ✅ Kiểm tra và tạo số căn cước nếu chưa có giá trị
 def idNumberOnboard = vars.get(&quot;idNumberOnboard&quot;) ?: String.format(&quot;%02d&quot;, threadNum) + formattedDate
@@ -1615,7 +1615,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2301,7 +2301,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2987,7 +2987,7 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4432,7 +4432,7 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </hashTree>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
@@ -4494,86 +4494,117 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-log.info(&quot; \n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
 def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
-
+log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;);
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    log.error(&quot; Full Response: \n&quot; + response);
+    log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;);
+    log.error(&quot;Full Response: \n${response}&quot;);
     return;
 }
 
 // ✅ Parse JSON an toàn
-def jsonResponse;
-try {
-    jsonResponse = new JsonSlurper().parseText(response);
-} catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
-    log.error(&quot; Full Response: \n&quot; + response);
+def jsonResponse = parseJson(response);
+if (jsonResponse == null) {
     return;
 }
 
-try {
-    log.info(&quot;\nProspect ID: &quot; + vars.get(&quot;onboardingId&quot;));
+// Trích xuất thông tin Prospect
+def prospectData = extractProspectData(jsonResponse);
 
-    // ✅ Trích xuất dữ liệu Prospect từ payload một cách an toàn
+// Log thông tin prospect
+log.info(&quot;Prospect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;);
+prospectData.each { key, value -&gt;
+    log.info(&quot;${key}: ${value}&quot;);
+}
+
+// Ghi thông tin vào file CSV
+writeToCSV(prospectData);
+
+// Hàm parse JSON
+def parseJson(String response) {
+    try {
+        return new JsonSlurper().parseText(response);
+    } catch (Exception e) {
+        log.error(&quot;❌ Lỗi parse JSON: ${e.getMessage()}&quot;);
+        log.error(&quot;Full Response: \n${response}&quot;);
+        return null;
+    }
+}
+
+// Hàm trích xuất dữ liệu Prospect từ JSON response
+def extractProspectData(def jsonResponse) {
     def payload = jsonResponse?.payload ?: [:];
+    return [
+        &quot;Full Name&quot;           : payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
+        &quot;Phone Number&quot;        : payload?.phoneNumber ?: &quot;N/A&quot;,
+        &quot;ID Number&quot;           : payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
+        &quot;CIF Number&quot;          : payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
+        &quot;Vikki Account Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
+        &quot;HDBank CIF Number&quot;   : payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
+        &quot;Case ID&quot;             : payload?.caseId ?: &quot;N/A&quot;
+    ]
+}
 
-    def fullnameProspect = payload?.customerDetails?.fullName ?: &quot;N/A&quot;;
-    vars.put(&quot;fullnameProspect&quot;, fullnameProspect);
-    log.info(&quot;Full Name: &quot; + fullnameProspect);
+// Hàm ghi dữ liệu vào file CSV
+def writeToCSV(def prospectData) {
+    def filePath = &quot;${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}/${__BeanShell(File.separator,)}/vile-qa-onboarding-data.csv&quot;;
+    def file = new File(filePath);
 
-    def phoneNumberProspect = payload?.phoneNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;phoneNumberProspect&quot;, phoneNumberProspect);
-    log.info(&quot;Phone Number: &quot; + phoneNumberProspect);
+    // Kiểm tra nếu file không tồn tại, tạo mới và thêm header
+    if (!file.exists()) {
+        file.createNewFile();
+        file.append(&quot;Prospect ID, Full Name, Phone Number, ID Number, CIF Number, Vikki Account Number, HDBank CIF Number, Case ID, Date\n&quot;);
+    }
 
-    def idNumberProspect = payload?.customerDetails?.idNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;idNumberProspect&quot;, idNumberProspect);
-    log.info(&quot;ID Number: &quot; + idNumberProspect);
+    // Convert dữ liệu thành chuỗi trước khi ghi vào CSV
+    def data = convertToCSVString(prospectData);
 
-    def cifNumberProspect = payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;cifNumberProspect&quot;, cifNumberProspect);
-    log.info(&quot;CIF Number: &quot; + cifNumberProspect);
+    // Ghi dữ liệu vào file CSV
+    file.append(data);
+}
 
-    def vikkiAccountNumberProspect = payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;vikkiAccountNumberProspect&quot;, vikkiAccountNumberProspect);
-    log.info(&quot;Vikki Account Number: &quot; + vikkiAccountNumberProspect);
+// Hàm chuyển đổi dữ liệu thành chuỗi CSV
+def convertToCSVString(def prospectData) {
+    def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;;
+    def fullName = prospectData[&quot;Full Name&quot;];
+    def phoneNumber = prospectData[&quot;Phone Number&quot;];
+    def idNumber = prospectData[&quot;ID Number&quot;];
+    def cifNumber = prospectData[&quot;CIF Number&quot;];
+    def vikkiAccountNumber = prospectData[&quot;Vikki Account Number&quot;];
+    def hdbCifNumber = prospectData[&quot;HDBank CIF Number&quot;];
+    def caseId = prospectData[&quot;Case ID&quot;];
 
-    def hdbCifNumberProspect = payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;hdbCifNumberProspect&quot;, hdbCifNumberProspect);
-    log.info(&quot;HDBank CIF Number: &quot; + hdbCifNumberProspect);
+  // Lấy ngày giờ hiện tại (có hiển thị giây)
+    def dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  // Định dạng bao gồm giờ, phút và giây
+    def currentDate = dateFormat.format(new Date());  // Lấy ngày giờ hiện tại
 
-    def caseIDProspect = payload?.caseId ?: &quot;N/A&quot;;
-    vars.put(&quot;caseIDProspect&quot;, caseIDProspect);
-    log.info(&quot;Case ID: &quot; + caseIDProspect);
-
-    log.info(&quot;\n✅ Lấy thông tin Prospect thành công! \n&quot;);
-
-} catch (Exception e1) {
-    log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
-}</stringProp>
+    // Tạo chuỗi CSV với ngày giờ
+    return &quot;&apos;${onboardingId},${fullName},${phoneNumber},${idNumber},${cifNumber},${vikkiAccountNumber},&apos;${hdbCifNumber},${caseId},${currentDate}\n&quot;;
+}
+</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] Hyperverge OCR - Delete" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] Hyperverge OCR - Delete">
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.path">__admin/mappings/${idHyperVergeOCRNew}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>

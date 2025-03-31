@@ -10,7 +10,7 @@
       <stringProp name="TestPlan.user_define_classpath">./lib</stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -58,14 +58,14 @@
           </elementProp>
           <elementProp name="idNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">idNumberOnboard</stringProp>
-            <stringProp name="Argument.value">001098034158</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc"></stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -229,6 +229,239 @@ vars.put(&quot;idNumberOnboard&quot;, idNumberOnboard)
 </stringProp>
         </JSR223PreProcessor>
         <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="0. Clear Card" enabled="true">
+          <stringProp name="IfController.condition">true</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tìm Lead và Xóa" enabled="true">
+            <stringProp name="HTTPSampler.domain">113.161.76.226</stringProp>
+            <stringProp name="HTTPSampler.port">8087</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">/hdb-lead-card-management/api/lead/find_lead</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+    &quot;inputData&quot;: [&#xd;
+        &quot;${idNumberOnboard}&quot;&#xd;
+    ],&#xd;
+    &quot;searchLeadDetailMethod&quot;: &quot;NATIONAL_ID&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">x-api-key</stringProp>
+                  <stringProp name="Header.value">szt995RHr033WwY616SWj831YAS346bK</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">log.info(&quot; \n ---------- SEARCH CARD LEAD AND DELETE ----------&quot;);
+
+import groovy.json.JsonSlurper;
+import org.apache.jmeter.samplers.SampleResult;
+import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
+import org.apache.jmeter.protocol.http.control.HeaderManager;
+import org.apache.jmeter.protocol.http.control.Header;
+import org.apache.jmeter.threads.JMeterContext;
+
+// ✅ Lấy thông tin từ request trước đó
+def responseTime = prev.getTime(); // Response time in milliseconds
+def requestUrl = prev.getURL().toString(); // Lấy URL của request
+
+// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
+
+// ✅ Lấy response JSON từ request trước đó
+def response = prev.getResponseDataAsString().trim();
+def jsonSlurper = new JsonSlurper();
+def jsonResponse;
+
+// ✅ Parse JSON an toàn
+try {
+    jsonResponse = jsonSlurper.parseText(response);
+} catch (Exception e) {
+    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+// ✅ Kiểm tra nếu có leads trong response
+if (jsonResponse?.leads?.size() &gt; 0) {
+    def leadIds = jsonResponse.leads.collect { it.leadId };
+    vars.put(&quot;leadIds&quot;, leadIds.join(&quot;,&quot;)); // Lưu danh sách leadId vào biến JMeter
+    
+    log.info(&quot;🔹 Danh sách leadIds đã trích xuất: &quot; + leadIds);
+
+    // ✅ Gửi yêu cầu xóa từng leadId
+    leadIds.each { leadId -&gt;
+        log.info(&quot;🛑 Đang gửi yêu cầu xóa leadId: &quot; + leadId);
+        
+        // ✅ Tạo HTTP Sampler để gửi request động
+        def sampler = new HTTPSamplerProxy();
+        sampler.setDomain(&quot;113.161.76.226&quot;);
+        sampler.setPort(8087);
+        sampler.setProtocol(&quot;http&quot;);
+        sampler.setPath(&quot;/hdb-lead-card-management/api/lead/remove_lead&quot;);
+        sampler.setMethod(&quot;PUT&quot;);
+        
+        // ✅ Thiết lập Header Manager
+        def headerManager = new HeaderManager();
+        headerManager.add(new Header(&quot;Content-Type&quot;, &quot;application/json&quot;));
+        headerManager.add(new Header(&quot;x-api-key&quot;, &quot;szt995RHr033WwY616SWj831YAS346bK&quot;));
+        sampler.setHeaderManager(headerManager);
+
+        // ✅ Thiết lập Body
+        def requestBody = &apos;{&quot;leads&quot;: [&quot;&apos; + leadId + &apos;&quot;]}&apos;;
+        sampler.addNonEncodedArgument(&quot;&quot;, requestBody, &quot;&quot;);
+        sampler.setPostBodyRaw(true);
+
+        // ✅ Gửi request bằng SampleResult
+        def sampleResult = sampler.sample();
+        
+        // ✅ Ghi log kết quả
+        log.info(&quot; Request: DELETE Lead ID: &quot; + leadId);
+        log.info(&quot; Response Code: &quot; + sampleResult.getResponseCode());
+        log.info(&quot; Response Message: &quot; + sampleResult.getResponseMessage());
+
+        if (sampleResult.getResponseCode() != &quot;200&quot;) {
+            log.warn(&quot;❌ Lỗi khi xóa leadId: &quot; + leadId + &quot; | Response: &quot; + sampleResult.getResponseDataAsString());
+        } else {
+            log.info(&quot;✅ Đã xóa thành công leadId: &quot; + leadId);
+        }
+    }
+} else {
+    log.warn(&quot;✅ Không có lead nào được tìm thấy!&quot;);
+}</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tìm và Đóng CIF WAY4" enabled="true">
+            <stringProp name="HTTPSampler.domain">113.161.76.226</stringProp>
+            <stringProp name="HTTPSampler.port">8087</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">/hdb-lead-card-management/api/client/get_client_by_identity_card_number?idCard=${idNumberOnboard}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">log.info(&quot; \n ---------- SEARCH CARD WAY4 AND DELETE ----------&quot;);
+
+import groovy.json.JsonSlurper;
+import org.apache.jmeter.samplers.SampleResult;
+import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
+import org.apache.jmeter.protocol.http.control.HeaderManager;
+import org.apache.jmeter.protocol.http.control.Header;
+import org.apache.jmeter.threads.JMeterContext;
+
+
+// ✅ Lấy thông tin từ request trước đó
+def responseTime = prev.getTime(); // Response time in milliseconds
+def requestUrl = prev.getURL().toString(); // Lấy URL của request
+
+// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
+log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
+
+// ✅ Lấy response JSON từ request trước đó
+def response = prev.getResponseDataAsString().trim();
+def jsonSlurper = new JsonSlurper();
+def jsonResponse;
+
+// ✅ Parse JSON an toàn
+try {
+    jsonResponse = jsonSlurper.parseText(response);
+} catch (Exception e) {
+    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
+    log.error(&quot; Full Response: \n&quot; + response);
+    return;
+}
+
+// ✅ Kiểm tra nếu có dữ liệu `way4Clients` trong response
+if (jsonResponse?.way4Clients?.size() &gt; 0) {
+    def clientIds = jsonResponse.way4Clients.collect { it.id };
+    vars.put(&quot;clientIds&quot;, clientIds.join(&quot;,&quot;)); // Lưu danh sách clientId vào biến JMeter
+    
+    log.info(&quot;🔹 Danh sách clientIds đã trích xuất: &quot; + clientIds);
+
+    // ✅ Gửi yêu cầu DELETE từng clientId
+    clientIds.each { clientId -&gt;
+        log.info(&quot;🛑 Đang gửi yêu cầu xóa clientId: &quot; + clientId);
+        
+        // ✅ Tạo HTTP Sampler cho từng request DELETE
+        def sampler = new HTTPSamplerProxy();
+        sampler.setDomain(&quot;113.161.76.226&quot;);
+        sampler.setPort(8087);
+        sampler.setProtocol(&quot;http&quot;);
+        sampler.setPath(&quot;/hdb-lead-card-management/api/client/close_way4_cif?clientId=&quot; + clientId);
+        sampler.setMethod(&quot;DELETE&quot;);
+
+        // ✅ Thiết lập Header Manager
+        def headerManager = new HeaderManager();
+        headerManager.add(new Header(&quot;x-api-key&quot;, &quot;szt995RHr033WwY616SWj831YAS346bK&quot;));
+        sampler.setHeaderManager(headerManager);
+
+        // ✅ Gửi request bằng SampleResult
+        def sampleResult = sampler.sample();
+        
+        // ✅ Ghi log kết quả
+        log.info(&quot; Request: DELETE clientId: &quot; + clientId);
+        log.info(&quot; Response Code: &quot; + sampleResult.getResponseCode());
+        log.info(&quot; Response Message: &quot; + sampleResult.getResponseMessage());
+
+        if (sampleResult.getResponseCode() != &quot;200&quot;) {
+            log.warn(&quot;❌ Lỗi khi xóa clientId: &quot; + clientId + &quot; | Response: &quot; + sampleResult.getResponseDataAsString());
+        } else {
+            log.info(&quot;✅ Đã xóa thành công clientId: &quot; + clientId);
+        }
+    }
+} else {
+    log.warn(&quot;✅ Không có client-ID nào trong way4Clients!&quot;);
+}</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">x-api-key</stringProp>
+                  <stringProp name="Header.value">szt995RHr033WwY616SWj831YAS346bK</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1. Check and Clear Account" enabled="true">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
@@ -1156,8 +1389,6 @@ if (onboardingId) {
 
 // ✅ Tạo deviceId ngẫu nhiên
 def deviceId = UUID.randomUUID().toString()
-//def deviceId = &quot;348014C9-2408-4818-BFAD-1C6F9E3D2022&quot;
-
 vars.put(&quot;deviceId&quot;, deviceId)
 
 log.info(&quot;\n---------- GENERATE DATA ----------&quot;)
@@ -1284,7 +1515,7 @@ if (accessToken) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3 Set Resume Point">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3 Set Resume Point" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/kyc/set-resume-point</stringProp>
@@ -1384,7 +1615,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1399,7 +1630,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-conghoang-qa&quot;,&#xd;
+    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-vile-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
         &quot;url&quot;: &quot;/hyperverge/v1/link-kyc/results&quot;,&#xd;
@@ -1416,8 +1647,8 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             &quot;status&quot;: &quot;success&quot;,&#xd;
             &quot;statusCode&quot;: 200,&#xd;
             &quot;metadata&quot;: {&#xd;
-                &quot;requestId&quot;: &quot;1742361340009-ffa72089-02d2-40fa-985b-756cc4d9ae12&quot;,&#xd;
-                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                &quot;requestId&quot;: &quot;7c959bfc8bddbdd00852bda53b34dde8&quot;,&#xd;
+                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
             },&#xd;
             &quot;result&quot;: {&#xd;
                 &quot;workflowDetails&quot;: {&#xd;
@@ -1433,14 +1664,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;front&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352078056-b269611c-f19b-4b72-8dcb-8465c166db18&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765672005-83c79997-3008-4c36-bf44-624177afd0f1&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -1463,12 +1694,12 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;fullName&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;HOÀNG CHÍ CÔNG&quot;,&#xd;
+                                                &quot;value&quot;: &quot;LÊ THANH TRÚC VI&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
                                             &quot;dateOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;20-10-1998&quot;,&#xd;
+                                                &quot;value&quot;: &quot;11-01-1996&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1478,7 +1709,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfExpiry&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;20-10-2038&quot;,&#xd;
+                                                &quot;value&quot;: &quot;11-01-2036&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1493,18 +1724,18 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;address&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;Đội 9, Thôn Nghĩa Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Khóm 2 Châu Phú A, Thành phố Châu Đốc, An Giang&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
-                                                &quot;score&quot;: 100,&#xd;
-                                                &quot;additionalInfo&quot;: &quot;thn ngha xuy x m c h ni&quot;,&#xd;
-                                                &quot;street&quot;: &quot;ĐỘI 9&quot;,&#xd;
+                                                &quot;score&quot;: 99,&#xd;
+                                                &quot;additionalInfo&quot;: &quot;khm 2 chu ph a an giang&quot;,&#xd;
+                                                &quot;street&quot;: &quot;&quot;,&#xd;
                                                 &quot;houseNumber&quot;: &quot;&quot;,&#xd;
-                                                &quot;district&quot;: &quot;HUYỆN MỸ ĐỨC&quot;,&#xd;
-                                                &quot;province&quot;: &quot;THÀNH PHỐ HÀ NỘI&quot;,&#xd;
+                                                &quot;district&quot;: &quot;THÀNH PHỐ CHÂU ĐỐC&quot;,&#xd;
+                                                &quot;province&quot;: &quot;TỈNH AN GIANG&quot;,&#xd;
                                                 &quot;zipCode&quot;: &quot;&quot;&#xd;
                                             },&#xd;
                                             &quot;gender&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;M&quot;,&#xd;
+                                                &quot;value&quot;: &quot;F&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1524,7 +1755,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;yearOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;1998&quot;,&#xd;
+                                                &quot;value&quot;: &quot;1996&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1570,12 +1801,12 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Châu Phú A, Thành phố Châu Đốc, An Giang&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
-                                                &quot;score&quot;: 100&#xd;
+                                                &quot;score&quot;: 99&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -1640,8 +1871,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                     &quot;details&quot;: []&#xd;
                                 }&#xd;
                             }&#xd;
-                        },&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        }&#xd;
                     },&#xd;
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
@@ -1650,14 +1880,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;back&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-back.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-back.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352084870-78c6e11a-148b-46eb-8a58-bea23d855356&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765687038-3edf06c9-bed4-4308-913c-ee27e0f47170&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -1690,7 +1920,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfIssue&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;03-07-2023&quot;,&#xd;
+                                                &quot;value&quot;: &quot;13-01-2022&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -1776,14 +2006,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM0980341588001098034158&lt;&lt;99810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM1960214393089196021439&lt;&lt;69601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;001098034158&quot;,&#xd;
-                                                &quot;fullName&quot;: &quot;HOANG CHI CONG&quot;,&#xd;
-                                                &quot;gender&quot;: &quot;M&quot;,&#xd;
-                                                &quot;dateOfBirth&quot;: &quot;20-10-1998&quot;,&#xd;
-                                                &quot;dateOfExpiry&quot;: &quot;20-10-2038&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;089196021439&quot;,&#xd;
+                                                &quot;fullName&quot;: &quot;LE THANH TRUC VI&quot;,&#xd;
+                                                &quot;gender&quot;: &quot;F&quot;,&#xd;
+                                                &quot;dateOfBirth&quot;: &quot;11-01-1996&quot;,&#xd;
+                                                &quot;dateOfExpiry&quot;: &quot;11-01-2036&quot;,&#xd;
                                                 &quot;nationality&quot;: &quot;VNM&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
@@ -1792,7 +2022,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-back.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -1830,20 +2060,19 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                     &quot;details&quot;: []&#xd;
                                 }&#xd;
                             }&#xd;
-                        },&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        }&#xd;
                     },&#xd;
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_selfie&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352098892-4c1cad77-3d21-4291-bea6-fc202950fc19&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765699987-aab2e3b7-56ec-4893-944c-bc5893ba66e9&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
@@ -1854,7 +2083,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                     },&#xd;
                                     &quot;qualityChecks&quot;: {&#xd;
                                         &quot;blur&quot;: {&#xd;
-                                            &quot;score&quot;: 95,&#xd;
+                                            &quot;score&quot;: 94,&#xd;
                                             &quot;value&quot;: &quot;no&quot;,&#xd;
                                             &quot;confidence&quot;: &quot;high&quot;&#xd;
                                         },&#xd;
@@ -1905,26 +2134,25 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                     &quot;details&quot;: []&#xd;
                                 }&#xd;
                             }&#xd;
-                        },&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        }&#xd;
                     },&#xd;
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_facematch&quot;,&#xd;
-                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
-                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
+                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352100657-63699cc7-c8eb-4576-ada0-14fd4def8aa4&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765702427-ce0196a2-8ec9-4017-b73f-bb0aae633c45&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
                                     &quot;match&quot;: {&#xd;
                                         &quot;value&quot;: &quot;yes&quot;,&#xd;
-                                        &quot;score&quot;: 98,&#xd;
+                                        &quot;score&quot;: 93,&#xd;
                                         &quot;confidence&quot;: &quot;high&quot;&#xd;
                                     }&#xd;
                                 },&#xd;
@@ -1934,60 +2162,14 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                 }&#xd;
                             }&#xd;
                         },&#xd;
-                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
-                    },&#xd;
-                    {&#xd;
-                        &quot;module&quot;: &quot;&quot;,&#xd;
-                        &quot;nidfrontImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
-                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
-                        &quot;apiResponse&quot;: {&#xd;
-                            &quot;statusCode&quot;: 200,&#xd;
-                            &quot;metaData&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352161074-2484344c-9271-4145-b183-0c62321f6dcd&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
-                            },&#xd;
-                            &quot;result&quot;: {&#xd;
-                                &quot;data&quot;: {&#xd;
-                                    &quot;transactionId&quot;: &quot;1351747252413558784&quot;,&#xd;
-                                    &quot;requestId&quot;: &quot;1742352161074-2484344c-9271-4145-b183-0c62321f6dcd&quot;,&#xd;
-                                    &quot;isEnrolled&quot;: {&#xd;
-                                        &quot;value&quot;: &quot;yes&quot;,&#xd;
-                                        &quot;reason&quot;: &quot;Input parameter is \&quot;yes\&quot;&quot;&#xd;
-                                    },&#xd;
-                                    &quot;suspiciousMatches&quot;: {&#xd;
-                                        &quot;internalCount&quot;: 0,&#xd;
-                                        &quot;externalCount&quot;: 0,&#xd;
-                                        &quot;internal&quot;: [],&#xd;
-                                        &quot;external&quot;: []&#xd;
-                                    },&#xd;
-                                    &quot;matches&quot;: {&#xd;
-                                        &quot;internalCount&quot;: 0,&#xd;
-                                        &quot;externalCount&quot;: 0,&#xd;
-                                        &quot;internal&quot;: [],&#xd;
-                                        &quot;external&quot;: []&#xd;
-                                    },&#xd;
-                                    &quot;blocklist&quot;: {&#xd;
-                                        &quot;internalCount&quot;: 0,&#xd;
-                                        &quot;internal&quot;: []&#xd;
-                                    },&#xd;
-                                    &quot;dashboardUrl&quot;: &quot;https://www.orion-console.hyperverge.co/reviewportal/1742352161074-2484344c-9271-4145-b183-0c62321f6dcd&quot;&#xd;
-                                },&#xd;
-                                &quot;summary&quot;: {&#xd;
-                                    &quot;value&quot;: &quot;No record found&quot;,&#xd;
-                                    &quot;action&quot;: &quot;Pass&quot;&#xd;
-                                }&#xd;
-                            }&#xd;
-                        },&#xd;
-                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        &quot;attempts&quot;: &quot;1&quot;&#xd;
                     }&#xd;
                 ],&#xd;
                 &quot;userDetails&quot;: {&#xd;
                     &quot;facematchAction&quot;: &quot;pass&quot;,&#xd;
-                    &quot;selfieRequestId&quot;: &quot;1742352098892-4c1cad77-3d21-4291-bea6-fc202950fc19&quot;,&#xd;
-                    &quot;facematchRequestId&quot;: &quot;1742352100657-63699cc7-c8eb-4576-ada0-14fd4def8aa4&quot;,&#xd;
-                    &quot;selfieAction&quot;: &quot;pass&quot;&#xd;
+                    &quot;facematchRequestId&quot;: &quot;1741765702427-ce0196a2-8ec9-4017-b73f-bb0aae633c45&quot;,&#xd;
+                    &quot;selfieAction&quot;: &quot;pass&quot;,&#xd;
+                    &quot;selfieRequestId&quot;: &quot;1741765699987-aab2e3b7-56ec-4893-944c-bc5893ba66e9&quot;&#xd;
                 }&#xd;
             }&#xd;
         },&#xd;
@@ -2004,8 +2186,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             &quot;folder&quot;: &quot;/mappings/hyperverge/jmeter&quot;&#xd;
         }&#xd;
     }&#xd;
-}&#xd;
-</stringProp>
+}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -2120,7 +2301,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2135,7 +2316,7 @@ if (idHyperVergeOCRNew) {
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-conghoang-qa&quot;,&#xd;
+    &quot;name&quot;: &quot;jmeter-hyperverge-mocking-vile-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
         &quot;url&quot;: &quot;/hyperverge/v1/link-kyc/results&quot;,&#xd;
@@ -2152,8 +2333,8 @@ if (idHyperVergeOCRNew) {
             &quot;status&quot;: &quot;success&quot;,&#xd;
             &quot;statusCode&quot;: 200,&#xd;
             &quot;metadata&quot;: {&#xd;
-                &quot;requestId&quot;: &quot;1742361340009-ffa72089-02d2-40fa-985b-756cc4d9ae12&quot;,&#xd;
-                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                &quot;requestId&quot;: &quot;7c959bfc8bddbdd00852bda53b34dde8&quot;,&#xd;
+                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
             },&#xd;
             &quot;result&quot;: {&#xd;
                 &quot;workflowDetails&quot;: {&#xd;
@@ -2169,14 +2350,14 @@ if (idHyperVergeOCRNew) {
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;front&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352078056-b269611c-f19b-4b72-8dcb-8465c166db18&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765672005-83c79997-3008-4c36-bf44-624177afd0f1&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -2199,12 +2380,12 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;fullName&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;HOÀNG CHÍ CÔNG&quot;,&#xd;
+                                                &quot;value&quot;: &quot;LÊ THANH TRÚC VI&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
                                             &quot;dateOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;20-10-1998&quot;,&#xd;
+                                                &quot;value&quot;: &quot;11-01-1996&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2214,7 +2395,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfExpiry&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;20-10-2038&quot;,&#xd;
+                                                &quot;value&quot;: &quot;11-01-2036&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2229,18 +2410,18 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;address&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;Đội 9, Thôn Nghĩa Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Khóm 2 Châu Phú A, Thành phố Châu Đốc, An Giang&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
-                                                &quot;score&quot;: 100,&#xd;
-                                                &quot;additionalInfo&quot;: &quot;thn ngha xuy x m c h ni&quot;,&#xd;
-                                                &quot;street&quot;: &quot;ĐỘI 9&quot;,&#xd;
+                                                &quot;score&quot;: 99,&#xd;
+                                                &quot;additionalInfo&quot;: &quot;khm 2 chu ph a an giang&quot;,&#xd;
+                                                &quot;street&quot;: &quot;&quot;,&#xd;
                                                 &quot;houseNumber&quot;: &quot;&quot;,&#xd;
-                                                &quot;district&quot;: &quot;HUYỆN MỸ ĐỨC&quot;,&#xd;
-                                                &quot;province&quot;: &quot;THÀNH PHỐ HÀ NỘI&quot;,&#xd;
+                                                &quot;district&quot;: &quot;THÀNH PHỐ CHÂU ĐỐC&quot;,&#xd;
+                                                &quot;province&quot;: &quot;TỈNH AN GIANG&quot;,&#xd;
                                                 &quot;zipCode&quot;: &quot;&quot;&#xd;
                                             },&#xd;
                                             &quot;gender&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;M&quot;,&#xd;
+                                                &quot;value&quot;: &quot;F&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2260,7 +2441,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;yearOfBirth&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;1998&quot;,&#xd;
+                                                &quot;value&quot;: &quot;1996&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2306,12 +2487,12 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                                                &quot;value&quot;: &quot;Châu Phú A, Thành phố Châu Đốc, An Giang&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
-                                                &quot;score&quot;: 100&#xd;
+                                                &quot;score&quot;: 99&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2376,8 +2557,7 @@ if (idHyperVergeOCRNew) {
                                     &quot;details&quot;: []&#xd;
                                 }&#xd;
                             }&#xd;
-                        },&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        }&#xd;
                     },&#xd;
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
@@ -2386,14 +2566,14 @@ if (idHyperVergeOCRNew) {
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;expectedDocumentSide&quot;: &quot;back&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;id_card_validation&quot;,&#xd;
-                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-back.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-back.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352084870-78c6e11a-148b-46eb-8a58-bea23d855356&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765687038-3edf06c9-bed4-4308-913c-ee27e0f47170&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: [&#xd;
@@ -2426,7 +2606,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;dateOfIssue&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;03-07-2023&quot;,&#xd;
+                                                &quot;value&quot;: &quot;13-01-2022&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100&#xd;
                                             },&#xd;
@@ -2512,14 +2692,14 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM0980341588001098034158&lt;&lt;99810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM1960214393089196021439&lt;&lt;69601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;001098034158&quot;,&#xd;
-                                                &quot;fullName&quot;: &quot;HOANG CHI CONG&quot;,&#xd;
-                                                &quot;gender&quot;: &quot;M&quot;,&#xd;
-                                                &quot;dateOfBirth&quot;: &quot;20-10-1998&quot;,&#xd;
-                                                &quot;dateOfExpiry&quot;: &quot;20-10-2038&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;089196021439&quot;,&#xd;
+                                                &quot;fullName&quot;: &quot;LE THANH TRUC VI&quot;,&#xd;
+                                                &quot;gender&quot;: &quot;F&quot;,&#xd;
+                                                &quot;dateOfBirth&quot;: &quot;11-01-1996&quot;,&#xd;
+                                                &quot;dateOfExpiry&quot;: &quot;11-01-2036&quot;,&#xd;
                                                 &quot;nationality&quot;: &quot;VNM&quot;&#xd;
                                             },&#xd;
                                             &quot;homeTown&quot;: {&#xd;
@@ -2528,7 +2708,7 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             }&#xd;
                                         },&#xd;
-                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-back.png&quot;,&#xd;
+                                        &quot;croppedImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-back.png&quot;,&#xd;
                                         &quot;isWrongSide&quot;: &quot;no&quot;,&#xd;
                                         &quot;qualityChecks&quot;: {&#xd;
                                             &quot;blur&quot;: {&#xd;
@@ -2566,20 +2746,19 @@ if (idHyperVergeOCRNew) {
                                     &quot;details&quot;: []&#xd;
                                 }&#xd;
                             }&#xd;
-                        },&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        }&#xd;
                     },&#xd;
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;attempts&quot;: &quot;1&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_selfie&quot;,&#xd;
-                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
+                        &quot;imageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352098892-4c1cad77-3d21-4291-bea6-fc202950fc19&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765699987-aab2e3b7-56ec-4893-944c-bc5893ba66e9&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
@@ -2590,7 +2769,7 @@ if (idHyperVergeOCRNew) {
                                     },&#xd;
                                     &quot;qualityChecks&quot;: {&#xd;
                                         &quot;blur&quot;: {&#xd;
-                                            &quot;score&quot;: 95,&#xd;
+                                            &quot;score&quot;: 94,&#xd;
                                             &quot;value&quot;: &quot;no&quot;,&#xd;
                                             &quot;confidence&quot;: &quot;high&quot;&#xd;
                                         },&#xd;
@@ -2641,26 +2820,25 @@ if (idHyperVergeOCRNew) {
                                     &quot;details&quot;: []&#xd;
                                 }&#xd;
                             }&#xd;
-                        },&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        }&#xd;
                     },&#xd;
                     {&#xd;
                         &quot;module&quot;: &quot;&quot;,&#xd;
                         &quot;moduleId&quot;: &quot;module_facematch&quot;,&#xd;
-                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
-                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
+                        &quot;idImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-front.png&quot;,&#xd;
+                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/vileqa/vile-selfie.png&quot;,&#xd;
                         &quot;apiResponse&quot;: {&#xd;
                             &quot;status&quot;: &quot;success&quot;,&#xd;
                             &quot;statusCode&quot;: 200,&#xd;
                             &quot;metadata&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352100657-63699cc7-c8eb-4576-ada0-14fd4def8aa4&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
+                                &quot;requestId&quot;: &quot;1741765702427-ce0196a2-8ec9-4017-b73f-bb0aae633c45&quot;,&#xd;
+                                &quot;transactionId&quot;: &quot;1349287706873978880&quot;&#xd;
                             },&#xd;
                             &quot;result&quot;: {&#xd;
                                 &quot;details&quot;: {&#xd;
                                     &quot;match&quot;: {&#xd;
                                         &quot;value&quot;: &quot;yes&quot;,&#xd;
-                                        &quot;score&quot;: 98,&#xd;
+                                        &quot;score&quot;: 93,&#xd;
                                         &quot;confidence&quot;: &quot;high&quot;&#xd;
                                     }&#xd;
                                 },&#xd;
@@ -2670,60 +2848,14 @@ if (idHyperVergeOCRNew) {
                                 }&#xd;
                             }&#xd;
                         },&#xd;
-                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
-                    },&#xd;
-                    {&#xd;
-                        &quot;module&quot;: &quot;&quot;,&#xd;
-                        &quot;nidfrontImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-front.png&quot;,&#xd;
-                        &quot;selfieImageUrl&quot;: &quot;https://wiremock.sit.galaxyfinx.in/conghoangqa/conghoang-selfie.png&quot;,&#xd;
-                        &quot;apiResponse&quot;: {&#xd;
-                            &quot;statusCode&quot;: 200,&#xd;
-                            &quot;metaData&quot;: {&#xd;
-                                &quot;requestId&quot;: &quot;1742352161074-2484344c-9271-4145-b183-0c62321f6dcd&quot;,&#xd;
-                                &quot;transactionId&quot;: &quot;1351747252413558784&quot;&#xd;
-                            },&#xd;
-                            &quot;result&quot;: {&#xd;
-                                &quot;data&quot;: {&#xd;
-                                    &quot;transactionId&quot;: &quot;1351747252413558784&quot;,&#xd;
-                                    &quot;requestId&quot;: &quot;1742352161074-2484344c-9271-4145-b183-0c62321f6dcd&quot;,&#xd;
-                                    &quot;isEnrolled&quot;: {&#xd;
-                                        &quot;value&quot;: &quot;yes&quot;,&#xd;
-                                        &quot;reason&quot;: &quot;Input parameter is \&quot;yes\&quot;&quot;&#xd;
-                                    },&#xd;
-                                    &quot;suspiciousMatches&quot;: {&#xd;
-                                        &quot;internalCount&quot;: 0,&#xd;
-                                        &quot;externalCount&quot;: 0,&#xd;
-                                        &quot;internal&quot;: [],&#xd;
-                                        &quot;external&quot;: []&#xd;
-                                    },&#xd;
-                                    &quot;matches&quot;: {&#xd;
-                                        &quot;internalCount&quot;: 0,&#xd;
-                                        &quot;externalCount&quot;: 0,&#xd;
-                                        &quot;internal&quot;: [],&#xd;
-                                        &quot;external&quot;: []&#xd;
-                                    },&#xd;
-                                    &quot;blocklist&quot;: {&#xd;
-                                        &quot;internalCount&quot;: 0,&#xd;
-                                        &quot;internal&quot;: []&#xd;
-                                    },&#xd;
-                                    &quot;dashboardUrl&quot;: &quot;https://www.orion-console.hyperverge.co/reviewportal/1742352161074-2484344c-9271-4145-b183-0c62321f6dcd&quot;&#xd;
-                                },&#xd;
-                                &quot;summary&quot;: {&#xd;
-                                    &quot;value&quot;: &quot;No record found&quot;,&#xd;
-                                    &quot;action&quot;: &quot;Pass&quot;&#xd;
-                                }&#xd;
-                            }&#xd;
-                        },&#xd;
-                        &quot;attempts&quot;: &quot;1&quot;,&#xd;
-                        &quot;previousAttempts&quot;: []&#xd;
+                        &quot;attempts&quot;: &quot;1&quot;&#xd;
                     }&#xd;
                 ],&#xd;
                 &quot;userDetails&quot;: {&#xd;
                     &quot;facematchAction&quot;: &quot;pass&quot;,&#xd;
-                    &quot;selfieRequestId&quot;: &quot;1742352098892-4c1cad77-3d21-4291-bea6-fc202950fc19&quot;,&#xd;
-                    &quot;facematchRequestId&quot;: &quot;1742352100657-63699cc7-c8eb-4576-ada0-14fd4def8aa4&quot;,&#xd;
-                    &quot;selfieAction&quot;: &quot;pass&quot;&#xd;
+                    &quot;facematchRequestId&quot;: &quot;1741765702427-ce0196a2-8ec9-4017-b73f-bb0aae633c45&quot;,&#xd;
+                    &quot;selfieAction&quot;: &quot;pass&quot;,&#xd;
+                    &quot;selfieRequestId&quot;: &quot;1741765699987-aab2e3b7-56ec-4893-944c-bc5893ba66e9&quot;&#xd;
                 }&#xd;
             }&#xd;
         },&#xd;
@@ -2740,8 +2872,7 @@ if (idHyperVergeOCRNew) {
             &quot;folder&quot;: &quot;/mappings/hyperverge/jmeter&quot;&#xd;
         }&#xd;
     }&#xd;
-}&#xd;
-</stringProp>
+}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -2856,7 +2987,7 @@ if (idHyperVergeOCR) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 [MOCK] HDB biometric" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2871,7 +3002,7 @@ if (idHyperVergeOCR) {
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-    &quot;name&quot;: &quot;jmeter-hdb-biometric-conghoang-qa&quot;,&#xd;
+    &quot;name&quot;: &quot;jmeter-hdb-biometric-vile-qa&quot;,&#xd;
     &quot;persistent&quot;: true,&#xd;
     &quot;request&quot;: {&#xd;
         &quot;url&quot;: &quot;/hdb-biometric/face-service/v1/customer/list-filter?card_id=${idNumberOnboard}&quot;,&#xd;
@@ -2880,38 +3011,38 @@ if (idHyperVergeOCR) {
     &quot;response&quot;: {&#xd;
         &quot;status&quot;: 200,&#xd;
         &quot;jsonBody&quot;: {&#xd;
-            &quot;transaction_id&quot;: &quot;90ccf7ac-ac2a-41ef-aa48-4ef851792c99&quot;,&#xd;
-            &quot;log_id&quot;: &quot;87759442-0480-11f0-9ba6-4b0f69551108-d999a0fb-apigateway-service-84d657594f-svzwm&quot;,&#xd;
-            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6IjkwY2NmN2FjLWFjMmEtNDFlZi1hYTQ4LTRlZjg1MTc5MmM5OSIsImxvZ19pZCI6Ijg3NzU5NDQyLTA0ODAtMTFmMC05YmE2LTRiMGY2OTU1MTEwOC1kOTk5YTBmYi1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zdnp3bSIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9jZTUwZjg1MC0wNDZiLTExZjAtYWU0NC1kMTBkNzA4ZTJjNDQuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBzZWxmaWUiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjowLCJjcmVhdGVkX2RhdGUiOiIxOS8wMy8yMDI1IDA5OjQyOjM4Iiwic3RhdHVzIjowfSx7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2RkNWY4Yjk4LThmODEtNDI2YS05NTYyLWNiOGIxMGFlZTQwNS8yMDI1MDMxOS9jZWY4ZjgyMS0wNDZiLTExZjAtYWU0NC02OWI1NTBlMzlmZTMuanBlZyIsImdyb3VwX2N1c3RvbWVyIjoiRmFjZSBjaGlwIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MSwiY3JlYXRlZF9kYXRlIjoiMTkvMDMvMjAyNSAwOTo0MjozNiIsInN0YXR1cyI6MX1dLCJ1dWlkX2N1c3RvbWVyIjoiZWJjYWRjYjktY2U2NC00ZGRlLTg4MzAtNzdhODNmNmQ3Yjc3IiwiY3VzdG9tZXJfY2FyZHMiOlt7Im9yaWdpbl9sb2NhdGlvbiI6Ilh1eSBYw6EsIE3hu7kgxJDhu6ljLCBIw6AgTuG7mWkiLCJyZWNlbnRfbG9jYXRpb24iOiLEkOG7mWkgOSwgVGjDtG4gTmdoxKlhLCBYdXkgWMOhLCBN4bu5IMSQ4bupYywgSMOgIE7hu5lpIiwiZXRobmljIjoiS2luaCIsImdlbmRlciI6Ik5hbSIsImRhZF9uYW1lIjoiSG/DoG5nIFbEg24gQ2hp4bq/biIsInJlc3VsdF9jMDYiOnsic2lnbmF0dXJlIjoiS28yN2xPcHRUWXU4VE82SVZaclJ3TGVUYlBKUW8wamRuY2JxR0tOU0J5OGhvU2tZZDNIeTZ1eDVUUitNMnFFWXN5WU9mTWJpcE02dDQvRDJTbCtxcWs4RlRCU1hnTkNWa0xRYkwzYXBWckpXeFJHNCtvUzE0Q3F2WThtZVdEaUpodEZPK05nWUl5Y29MU1lJMUNnMW5icjJ3eDB3TlNJaWFkcmNGZ1lLQXhCM05sN3RwZUNTbk15QktLVWY2RGl0dFNzenBpa2ZMbytvRG12L2UxUk91ZFZTQ0VvZzkrU1dmM3pyRTZxZkVaa0s0ZXdlMnQ4YkJRR1M0aWFpRkVqeGF6am84OXJwYWQ2OFpVSG5oQ0FzZkMvV3RpcFFuTHhMQTJLK1JWeWxSREIrTTZJK2ErNmhSUW1hZkV2MzRwSlZHeEFPRTNrdWhacGpqeVBKaXRBTG13PT0iLCJyZXNwb25kcyI6eyJyZXN1bHQiOnRydWUsInJlc3BvbnNlX2lkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJleGl0Y29kZSI6MCwidGltZSI6MCwibWVzc2FnZSI6InZhbGlkIGlkY2FyZCIsInJlc3BvbnNlSWQiOiJ2bnB0LTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCJ9fSwicmVsaWdpb24iOiJDw7RuZyBnacOhbyIsImJpcnRoX2RheSI6IjIwLzEwLzE5OTgiLCJmZWF0dXJlcyI6Ik7hu5F0IHJ14buTaSBDOiAyY20gZMaw4bubaSBzYXUgbcOpcCBwaOG6o2kiLCJ2YWxpZF9kYXRlIjoiMjAvMTAvMjAzOCIsInNwb3VzZV9uYW1lIjoiIiwibXJ6IjoiW0lEVk5NMDk4MDM0MTU4ODAwMTA5ODAzNDE1ODw8OSwgOTgxMDIwNE0zODEwMjAyVk5NPDw8PDw8PDw8PDw4LCBIT0FORzw8Q0hJPENPTkc8PDw8PDw8PDw8PDw8PDxdIiwibmF0aW9uYWxpdHkiOiJWaeG7h3QgTmFtIiwiaXNzdWVfZGF0ZSI6IjAzLzA3LzIwMjMiLCJuYW1lIjoiSG/DoG5nIENow60gQ8O0bmciLCJvbGRfaWQiOiIwMTc0NDYyNTQiLCJpZCI6IjAwMTA5ODAzNDE1OCIsIm1vbV9uYW1lIjoiTmd1eeG7hW4gVGjhu4sgU29uIn1dfX0=&quot;,&#xd;
-            &quot;data_sign&quot;: &quot;kDkBrEZeP4OJmt0fWSBqZNeb9kGsvF7EI+YAzZS/kO8keHw60cHV5UuzrL5wUK7SnK8ozC/ohrcNWuZBdw/FI9NLKb3gaDMRsK8qIpZEGjDzSA8Gla6yGqNnT9++LgBdjk5N7uVDbaMwBoC9pOxKLBdY0pa12Vz/c9i0/u3dxTtnDN1ZmA6kdTpfAlgvSzfYRM8jQV4CLuLyCtlcYcaAdA23aisb/5oI0/eAOCMd7NIx12cPxMyO1nr4YGOdt8e7guJf6Su1PM5iT5+E7uyjMbm/RWE4qfcE2ZKhD/s7sY4LqnxF125bL4rF8nWAAVYzTO+r4VeJf6nGSfyksQKNow==&quot;,&#xd;
+            &quot;transaction_id&quot;: &quot;7f39dfcd-1b0e-4b5a-a908-5c39be679ee0&quot;,&#xd;
+            &quot;log_id&quot;: &quot;5ee642c1-04d1-11f0-a1aa-b10258cd03a8-07e57027-apigateway-service-84d657594f-swv8t&quot;,&#xd;
+            &quot;data_base64&quot;: &quot;eyJ0cmFuc2FjdGlvbl9pZCI6IjdmMzlkZmNkLTFiMGUtNGI1YS1hOTA4LTVjMzliZTY3OWVlMCIsImxvZ19pZCI6IjVlZTY0MmMxLTA0ZDEtMTFmMC1hMWFhLWIxMDI1OGNkMDNhOC0wN2U1NzAyNy1hcGlnYXRld2F5LXNlcnZpY2UtODRkNjU3NTk0Zi1zd3Y4dCIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDAiLCJvYmplY3QiOnsiY3VzdG9tZXJfZmFjZXMiOlt7ImltYWdlX3VybCI6ImVreWMtY2ljL3Zla3ljdXBsb2FkL2lkZ3YyLXR5cGUzMS1kNjNkOGRiNC0yMzIyLTRmNzYtYjVkZi1iYzQzZDM3YzdjMTMvMjAyNTAzMTIvYjE3NmYwYjctZmYxNi0xMWVmLWFlMGItYmIwMTRlMjZkNTRlLmpwZWciLCJncm91cF9jdXN0b21lciI6IkZhY2Ugc2VsZmllIiwiY2hhbm5lbCI6IlZJS0tJIiwidmVyaWZ5X3N0YXR1cyI6MCwiY3JlYXRlZF9kYXRlIjoiMTIvMDMvMjAyNSAxNDo1MDo1NCIsInN0YXR1cyI6MH0seyJpbWFnZV91cmwiOiJla3ljLWNpYy92ZWt5Y3VwbG9hZC9pZGd2Mi10eXBlMzEtZDYzZDhkYjQtMjMyMi00Zjc2LWI1ZGYtYmM0M2QzN2M3YzEzLzIwMjUwMzEyL2I1YmFiNGU4LWZmMTYtMTFlZi1hZTBiLWM5ODNhZjdlNjkzYS5qcGVnIiwiZ3JvdXBfY3VzdG9tZXIiOiJGYWNlIGNoaXAiLCJjaGFubmVsIjoiVklLS0kiLCJ2ZXJpZnlfc3RhdHVzIjoxLCJjcmVhdGVkX2RhdGUiOiIxMi8wMy8yMDI1IDE0OjUwOjU0Iiwic3RhdHVzIjoxfV0sInV1aWRfY3VzdG9tZXIiOiI2OTdlYTFmMi01NTdlLTRkZDAtOWVlMy1lOTQxZGE2ZGM4YTUiLCJjdXN0b21lcl9jYXJkcyI6W3sib3JpZ2luX2xvY2F0aW9uIjoiQ2jDonUgUGjDuiBBLCBDaMOidSDEkOG7kWMsIEFuIEdpYW5nIiwicmVjZW50X2xvY2F0aW9uIjoiU+G7kSAxMTAvMi8xLCBUcuG6p24gSMawbmcgxJDhuqFvLCBU4buVIDE3LCBLaMOzbSAyLCBDaMOidSBQaMO6IEEsIENow6J1IMSQ4buRYywgQW4gR2lhbmciLCJldGhuaWMiOiJLaW5oIiwiZ2VuZGVyIjoiTuG7ryIsImRhZF9uYW1lIjoiTMOqIEhvw6BuZyBWxakiLCJyZXN1bHRfYzA2Ijp7InNpZ25hdHVyZSI6IktvMjdsT3B0VFl1OFRPNklWWnJSd0xlVGJQSlFvMGpkbmNicUdLTlNCeThob1NrWWQzSHk2dXg1VFIrTTJxRVlzeVlPZk1iaXBNNnQ0L0QyU2wrcXFrOEZUQlNYZ05DVmtMUWJMM2FwVnJKV3hSRzQrb1MxNENxdlk4bWVXRGlKaHRGTytOZ1lJeWNvTFNZSTFDZzFuYnIyd3gwd05TSWlhZHJjRmdZS0F4QjNObDd0cGVDU25NeUJLS1VmNkRpdHRTc3pwaWtmTG8rb0Rtdi9lMVJPdWRWU0NFb2c5K1NXZjN6ckU2cWZFWmtLNGV3ZTJ0OGJCUUdTNGlhaUZFanhhempvODlycGFkNjhaVUhuaENBc2ZDL1d0aXBRbkx4TEEySytSVnlsUkRCK002SSthKzZoUlFtYWZFdjM0cEpWR3hBT0Uza3VoWnBqanlQSml0QUxtdz09IiwicmVzcG9uZHMiOnsicmVzdWx0Ijp0cnVlLCJyZXNwb25zZV9pZCI6InZucHQtMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwiZXhpdGNvZGUiOjAsInRpbWUiOjAsIm1lc3NhZ2UiOiJ2YWxpZCBpZGNhcmQiLCJyZXNwb25zZUlkIjoidm5wdC0wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifX0sInJlbGlnaW9uIjoiUGjhuq10IGdpw6FvIiwiYmlydGhfZGF5IjoiMTEvMDEvMTk5NiIsImZlYXR1cmVzIjoiTuG7kXQgcnXhu5NpIEM6MmNtIHRyw6puIHNhdSDEkeG6p3UgbeG6r3QgcGjhuqNpIiwidmFsaWRfZGF0ZSI6IjExLzAxLzIwMzYiLCJzcG91c2VfbmFtZSI6IiIsIm1yeiI6IltJRFZOTTE5NjAyMTQzOTMwODkxOTYwMjE0Mzk8PDYsIDk2MDExMTJGMzYwMTExMFZOTTw8PDw8PDw8PDw8NCwgTEU8PFRIQU5IPFRSVUM8Vkk8PDw8PDw8PDw8PDw8XSIsIm5hdGlvbmFsaXR5IjoiVmnhu4d0IE5hbSIsImlzc3VlX2RhdGUiOiIxMy8wMS8yMDIyIiwibmFtZSI6IkzDqiBUaGFuaCBUcsO6YyBWaSIsIm9sZF9pZCI6IjM1MjI3MzQwMCIsImlkIjoiMDg5MTk2MDIxNDM5IiwibW9tX25hbWUiOiJMw6JtIFRo4buLIEtpbSBMb2FuIn1dfX0=&quot;,&#xd;
+            &quot;data_sign&quot;: &quot;NHVh+05y87Lby/oeGD+z+Pzhyvxr+qumNLIzdLpvWs2fK3bZty0y0+p9YrBEYwwweirQFYUJU7U+vQMpa3xIFdDj6jF3mlHPAxWJUQ66XuLYdNbRaMIwQ3jdxhf2HinGnjHHL/kQdd1txYZuv9kSEKqBfz+2mPIX8eDeVHw6eq6Y0yJxcxNKbuC97PyG4v1qRUY/tJU3TdKJijJgzif/P4xw4/BRlCPPvrkJmMGwYbNlPcI8px05+bxkOhvkOmcGGUbEN6LEfkH6NowUwaPq+kXtWaXJT1esnby9YgaVdVW9fiyOE7SwoxX/lU/jcsEo67vQd6vZgdalGfMvEonirA==&quot;,&#xd;
             &quot;message&quot;: &quot;IDG-00000000&quot;,&#xd;
             &quot;object&quot;: {&#xd;
                 &quot;customer_faces&quot;: [&#xd;
                     {&#xd;
-                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/dd5f8b98-8f81-426a-9562-cb8b10aee405/20250319/ce50f850-046b-11f0-ae44-d10d708e2c44.jpeg&quot;,&#xd;
+                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250312/b176f0b7-ff16-11ef-ae0b-bb014e26d54e.jpeg&quot;,&#xd;
                         &quot;group_customer&quot;: &quot;Face selfie&quot;,&#xd;
                         &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
                         &quot;verify_status&quot;: 0,&#xd;
-                        &quot;created_date&quot;: &quot;19/03/2025 09:42:38&quot;,&#xd;
+                        &quot;created_date&quot;: &quot;12/03/2025 14:50:54&quot;,&#xd;
                         &quot;status&quot;: 0&#xd;
                     },&#xd;
                     {&#xd;
-                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/dd5f8b98-8f81-426a-9562-cb8b10aee405/20250319/cef8f821-046b-11f0-ae44-69b550e39fe3.jpeg&quot;,&#xd;
+                        &quot;image_url&quot;: &quot;ekyc-cic/vekycupload/idgv2-type31-d63d8db4-2322-4f76-b5df-bc43d37c7c13/20250312/b5bab4e8-ff16-11ef-ae0b-c983af7e693a.jpeg&quot;,&#xd;
                         &quot;group_customer&quot;: &quot;Face chip&quot;,&#xd;
                         &quot;channel&quot;: &quot;VIKKI&quot;,&#xd;
                         &quot;verify_status&quot;: 1,&#xd;
-                        &quot;created_date&quot;: &quot;19/03/2025 09:42:36&quot;,&#xd;
+                        &quot;created_date&quot;: &quot;12/03/2025 14:50:54&quot;,&#xd;
                         &quot;status&quot;: 1&#xd;
                     }&#xd;
                 ],&#xd;
-                &quot;uuid_customer&quot;: &quot;ebcadcb9-ce64-4dde-8830-77a83f6d7b77&quot;,&#xd;
+                &quot;uuid_customer&quot;: &quot;697ea1f2-557e-4dd0-9ee3-e941da6dc8a5&quot;,&#xd;
                 &quot;customer_cards&quot;: [&#xd;
                     {&#xd;
-                        &quot;origin_location&quot;: &quot;Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
-                        &quot;recent_location&quot;: &quot;Đội 9, Thôn Nghĩa, Xuy Xá, Mỹ Đức, Hà Nội&quot;,&#xd;
+                        &quot;origin_location&quot;: &quot;Châu Phú A, Châu Đốc, An Giang&quot;,&#xd;
+                        &quot;recent_location&quot;: &quot;Số 110/2/1, Trần Hưng Đạo, Tổ 17, Khóm 2, Châu Phú A, Châu Đốc, An Giang&quot;,&#xd;
                         &quot;ethnic&quot;: &quot;Kinh&quot;,&#xd;
-                        &quot;gender&quot;: &quot;Nam&quot;,&#xd;
-                        &quot;dad_name&quot;: &quot;Hoàng Văn Chiến&quot;,&#xd;
+                        &quot;gender&quot;: &quot;Nữ&quot;,&#xd;
+                        &quot;dad_name&quot;: &quot;Lê Hoàng Vũ&quot;,&#xd;
                         &quot;result_c06&quot;: {&#xd;
                             &quot;signature&quot;: &quot;Ko27lOptTYu8TO6IVZrRwLeTbPJQo0jdncbqGKNSBy8hoSkYd3Hy6ux5TR+M2qEYsyYOfMbipM6t4/D2Sl+qqk8FTBSXgNCVkLQbL3apVrJWxRG4+oS14CqvY8meWDiJhtFO+NgYIycoLSYI1Cg1nbr2wx0wNSIiadrcFgYKAxB3Nl7tpeCSnMyBKKUf6DittSszpikfLo+oDmv/e1ROudVSCEog9+SWf3zrE6qfEZkK4ewe2t8bBQGS4iaiFEjxazjo89rpad68ZUHnhCAsfC/WtipQnLxLA2K+RVylRDB+M6I+a+6hRQmafEv34pJVGxAOE3kuhZpjjyPJitALmw==&quot;,&#xd;
                             &quot;responds&quot;: {&#xd;
@@ -2923,18 +3054,18 @@ if (idHyperVergeOCR) {
                                 &quot;responseId&quot;: &quot;vnpt-00000000-0000-0000-0000-000000000000&quot;&#xd;
                             }&#xd;
                         },&#xd;
-                        &quot;religion&quot;: &quot;Công giáo&quot;,&#xd;
-                        &quot;birth_day&quot;: &quot;20/10/1998&quot;,&#xd;
-                        &quot;features&quot;: &quot;Nốt ruồi C: 2cm dưới sau mép phải&quot;,&#xd;
-                        &quot;valid_date&quot;: &quot;20/10/2038&quot;,&#xd;
+                        &quot;religion&quot;: &quot;Phật giáo&quot;,&#xd;
+                        &quot;birth_day&quot;: &quot;11/01/1996&quot;,&#xd;
+                        &quot;features&quot;: &quot;Nốt ruồi C:2cm trên sau đầu mắt phải&quot;,&#xd;
+                        &quot;valid_date&quot;: &quot;11/01/2036&quot;,&#xd;
                         &quot;spouse_name&quot;: &quot;&quot;,&#xd;
-                        &quot;mrz&quot;: &quot;[IDVNM0980341588001098034158&lt;&lt;9, 9810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8, HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;]&quot;,&#xd;
+                        &quot;mrz&quot;: &quot;[IDVNM1960214393089196021439&lt;&lt;6, 9601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4, LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;]&quot;,&#xd;
                         &quot;nationality&quot;: &quot;Việt Nam&quot;,&#xd;
-                        &quot;issue_date&quot;: &quot;03/07/2023&quot;,&#xd;
-                        &quot;name&quot;: &quot;Hoàng Chí Công&quot;,&#xd;
-                        &quot;old_id&quot;: &quot;017446254&quot;,&#xd;
+                        &quot;issue_date&quot;: &quot;13/01/2022&quot;,&#xd;
+                        &quot;name&quot;: &quot;Lê Thanh Trúc Vi&quot;,&#xd;
+                        &quot;old_id&quot;: &quot;352273400&quot;,&#xd;
                         &quot;id&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
-                        &quot;mom_name&quot;: &quot;Nguyễn Thị Son&quot;&#xd;
+                        &quot;mom_name&quot;: &quot;Lâm Thị Kim Loan&quot;&#xd;
                     }&#xd;
                 ]&#xd;
             }&#xd;
@@ -3054,7 +3185,7 @@ if (hdbBiometricMockingId) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 Pre check KYC">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 Pre check KYC" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/kyc/pre-check-kyc</stringProp>
@@ -3154,7 +3285,7 @@ log.info(&quot;✅ Precheck KYC thành công! Response: &quot; + jsonResponse);<
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.7 Submit info">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.7 Submit info" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v4/onboarding/kyc/submit-info</stringProp>
@@ -3390,7 +3521,7 @@ if (cifNumber) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.9 Triger face dedup">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.9 Triger face dedup" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/kyc/check-face-dedup</stringProp>
@@ -3632,7 +3763,7 @@ vars.put(&quot;declinedCheck&quot;, declinedCheck ? declinedCheck.join(&quot;,&q
 // ✅ Ghi log Payload, Needs Review Check, Declined Check
 //log.info(&quot; Payload: &quot; + payload);
 
-// ✅ Xử lý kycStatus với switch-case
+// ✅ Xử lý `kycStatus` với `switch-case`
 switch (kycStatus) {
     case &quot;APPROVED&quot;:
         vars.put(&quot;isTriggerFinalCheck&quot;, &quot;true&quot;);
@@ -3647,21 +3778,11 @@ switch (kycStatus) {
 
     case &quot;NEEDS_REVIEW&quot;:
         log.info(&quot; KYC NEEDS REVIEW: &quot; + needsReviewCheck);
-
-		if (needsReviewCheck.contains(&quot;selfieCheck&quot;)) {
-			log.info(&quot;Wait response 5s from HyperVerge&quot;);
-            Thread.sleep(6000);
-            return;
-        }
-
-        
         if (needsReviewCheck.isEmpty()) {
             vars.put(&quot;isTriggerFinalCheck&quot;, &quot;true&quot;);
             log.info(&quot; No further review required. Triggering final check.&quot;);
         }
         break;
-
-	
 
     default:
 //        log.warn(&quot;️ KYC Status: &quot; + kycStatus + &quot; - Continuing review process.&quot;); 
@@ -3675,7 +3796,9 @@ switch (kycStatus) {
 //def attempts = Integer.parseInt(vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) + 1;
 //vars.put(&quot;attempts&quot;, String.valueOf(attempts));
 
-//log.info(&quot; KYC Check Attempt: &quot; + attempts);</stringProp>
+//log.info(&quot; KYC Check Attempt: &quot; + attempts);
+
+</stringProp>
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
@@ -3948,7 +4071,7 @@ log.info(&quot;✅ Manual Final Update thành công!&quot;);</stringProp>
               </hashTree>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.11 Update Status bypass OTP">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.11 Update Status bypass OTP" enabled="true">
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/config-service/v1/config/update</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -4094,7 +4217,7 @@ log.info(&quot;✅ Create Bypass OTP thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="2.13 Check account creation status">
+          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="2.13 Check account creation status" enabled="true">
             <stringProp name="WhileController.condition">${__groovy(
     def attempts = (vars.get(&quot;attemptsCreateAccount&quot;) ?: &quot;0&quot;) as Integer;
     def status = vars.get(&quot;accountCreationStatusOnboarded&quot;) ?: &quot;UNKNOWN&quot;;
@@ -4225,7 +4348,7 @@ if (accountCreationStatusOnboarded == &quot;FAILED&quot;) {
     log.error(&quot;❌ Account creation FAILED.&quot;);
 //    log.error(&quot;❌ Will trigger re-run after 2 minutes.&quot;);
     log.error(&quot;❌ Will trigger re-run after 2s.&quot;);
-    Thread.sleep(120000);
+    Thread.sleep(2000);
 }
 
 // ✅ Nếu status là &quot;IN_PROGRESS&quot;, chờ trước lần thử tiếp theo
@@ -4371,86 +4494,117 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">import groovy.json.JsonSlurper;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-log.info(&quot; \n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
 
 // ✅ Lấy thông tin từ request trước đó
 def responseCode = prev.getResponseCode();
 def responseMessage = prev.getResponseMessage();
-def responseTime = prev.getTime(); // Response time in milliseconds
-def requestUrl = prev.getURL().toString(); // Lấy URL của request
 def response = prev.getResponseDataAsString().trim();
 
 // ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info(requestUrl + &quot; | &quot; + responseTime + &quot;ms&quot;);
-
+log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;);
 
 // ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: &quot; + responseCode + &quot; | Message: &quot; + responseMessage);
-    log.error(&quot; Full Response: \n&quot; + response);
+    log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;);
+    log.error(&quot;Full Response: \n${response}&quot;);
     return;
 }
 
 // ✅ Parse JSON an toàn
-def jsonResponse;
-try {
-    jsonResponse = new JsonSlurper().parseText(response);
-} catch (Exception e) {
-    log.error(&quot;❌ Lỗi parse JSON: &quot; + e.getMessage());
-    log.error(&quot; Full Response: \n&quot; + response);
+def jsonResponse = parseJson(response);
+if (jsonResponse == null) {
     return;
 }
 
-try {
-    log.info(&quot;\nProspect ID: &quot; + vars.get(&quot;onboardingId&quot;));
+// Trích xuất thông tin Prospect
+def prospectData = extractProspectData(jsonResponse);
 
-    // ✅ Trích xuất dữ liệu Prospect từ payload một cách an toàn
+// Log thông tin prospect
+log.info(&quot;Prospect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;);
+prospectData.each { key, value -&gt;
+    log.info(&quot;${key}: ${value}&quot;);
+}
+
+// Ghi thông tin vào file CSV
+writeToCSV(prospectData);
+
+// Hàm parse JSON
+def parseJson(String response) {
+    try {
+        return new JsonSlurper().parseText(response);
+    } catch (Exception e) {
+        log.error(&quot;❌ Lỗi parse JSON: ${e.getMessage()}&quot;);
+        log.error(&quot;Full Response: \n${response}&quot;);
+        return null;
+    }
+}
+
+// Hàm trích xuất dữ liệu Prospect từ JSON response
+def extractProspectData(def jsonResponse) {
     def payload = jsonResponse?.payload ?: [:];
+    return [
+        &quot;Full Name&quot;           : payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
+        &quot;Phone Number&quot;        : payload?.phoneNumber ?: &quot;N/A&quot;,
+        &quot;ID Number&quot;           : payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
+        &quot;CIF Number&quot;          : payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
+        &quot;Vikki Account Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
+        &quot;HDBank CIF Number&quot;   : payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
+        &quot;Case ID&quot;             : payload?.caseId ?: &quot;N/A&quot;
+    ]
+}
 
-    def fullnameProspect = payload?.customerDetails?.fullName ?: &quot;N/A&quot;;
-    vars.put(&quot;fullnameProspect&quot;, fullnameProspect);
-    log.info(&quot;Full Name: &quot; + fullnameProspect);
+// Hàm ghi dữ liệu vào file CSV
+def writeToCSV(def prospectData) {
+    def filePath = &quot;${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}/${__BeanShell(File.separator,)}/vile-qa-onboarding-data.csv&quot;;
+    def file = new File(filePath);
 
-    def phoneNumberProspect = payload?.phoneNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;phoneNumberProspect&quot;, phoneNumberProspect);
-    log.info(&quot;Phone Number: &quot; + phoneNumberProspect);
+    // Kiểm tra nếu file không tồn tại, tạo mới và thêm header
+    if (!file.exists()) {
+        file.createNewFile();
+        file.append(&quot;Prospect ID, Full Name, Phone Number, ID Number, CIF Number, Vikki Account Number, HDBank CIF Number, Case ID, Date\n&quot;);
+    }
 
-    def idNumberProspect = payload?.customerDetails?.idNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;idNumberProspect&quot;, idNumberProspect);
-    log.info(&quot;ID Number: &quot; + idNumberProspect);
+    // Convert dữ liệu thành chuỗi trước khi ghi vào CSV
+    def data = convertToCSVString(prospectData);
 
-    def cifNumberProspect = payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;cifNumberProspect&quot;, cifNumberProspect);
-    log.info(&quot;CIF Number: &quot; + cifNumberProspect);
+    // Ghi dữ liệu vào file CSV
+    file.append(data);
+}
 
-    def vikkiAccountNumberProspect = payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;vikkiAccountNumberProspect&quot;, vikkiAccountNumberProspect);
-    log.info(&quot;Vikki Account Number: &quot; + vikkiAccountNumberProspect);
+// Hàm chuyển đổi dữ liệu thành chuỗi CSV
+def convertToCSVString(def prospectData) {
+    def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;;
+    def fullName = prospectData[&quot;Full Name&quot;];
+    def phoneNumber = prospectData[&quot;Phone Number&quot;];
+    def idNumber = prospectData[&quot;ID Number&quot;];
+    def cifNumber = prospectData[&quot;CIF Number&quot;];
+    def vikkiAccountNumber = prospectData[&quot;Vikki Account Number&quot;];
+    def hdbCifNumber = prospectData[&quot;HDBank CIF Number&quot;];
+    def caseId = prospectData[&quot;Case ID&quot;];
 
-    def hdbCifNumberProspect = payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;;
-    vars.put(&quot;hdbCifNumberProspect&quot;, hdbCifNumberProspect);
-    log.info(&quot;HDBank CIF Number: &quot; + hdbCifNumberProspect);
+  // Lấy ngày giờ hiện tại (có hiển thị giây)
+    def dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  // Định dạng bao gồm giờ, phút và giây
+    def currentDate = dateFormat.format(new Date());  // Lấy ngày giờ hiện tại
 
-    def caseIDProspect = payload?.caseId ?: &quot;N/A&quot;;
-    vars.put(&quot;caseIDProspect&quot;, caseIDProspect);
-    log.info(&quot;Case ID: &quot; + caseIDProspect);
-
-    log.info(&quot;\n✅ Lấy thông tin Prospect thành công! \n&quot;);
-
-} catch (Exception e1) {
-    log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
-}</stringProp>
+    // Tạo chuỗi CSV với ngày giờ
+    return &quot;&apos;${onboardingId},${fullName},${phoneNumber},${idNumber},${cifNumber},${vikkiAccountNumber},&apos;${hdbCifNumber},${caseId},${currentDate}\n&quot;;
+}
+</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] Hyperverge OCR - Delete">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] Hyperverge OCR - Delete" enabled="false">
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.path">__admin/mappings/${idHyperVergeOCRNew}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
