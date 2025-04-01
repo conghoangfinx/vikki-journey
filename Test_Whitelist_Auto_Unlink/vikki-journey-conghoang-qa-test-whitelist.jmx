@@ -117,7 +117,7 @@
           </elementProp>
           <elementProp name="phoneNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">phoneNumberOnboard</stringProp>
-            <stringProp name="Argument.value">990010199</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Prefix must 9900</stringProp>
           </elementProp>
@@ -152,8 +152,8 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding">
-        <stringProp name="ThreadGroup.num_threads">${__P(threads,10)}</stringProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding" enabled="true">
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,1)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${__P(rampups, 30)}</stringProp>
         <stringProp name="ThreadGroup.duration">${__P(durations,600)}</stringProp>
         <longProp name="ThreadGroup.delay">5</longProp>
@@ -165,7 +165,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Single">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Single" enabled="false">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -207,7 +207,7 @@ vars.put(&quot;idNumberOnboard&quot;, idNumberOnboard)
 </stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Multiple" enabled="false">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Multiple" enabled="true">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -1034,7 +1034,7 @@ log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account" enabled="true">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -1194,7 +1194,7 @@ log.info(&quot;✅ Generated Device ID: &quot; + deviceId)
             </JSR223PreProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 Verify OTP">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 Verify OTP" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">v3/onboarding/mobile/${onboardingId}/otp/verify</stringProp>
@@ -1404,7 +1404,7 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Create" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2140,7 +2140,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3225,7 +3225,7 @@ if (hdbBiometricMockingId) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] HDB Check &amp; Fraud - FALSE Auto Approve" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] HDB Check &amp; Fraud - FALSE Auto Approve" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9811,7 +9811,7 @@ log.info(&quot;✅ Facededup Trigger thành công! Response: &quot; + jsonRespon
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="2.10 While loop to get KYC status">
+          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="2.10 While loop to get KYC status" enabled="true">
             <stringProp name="WhileController.condition">${__groovy(
     def attempts = (vars.get(&quot;attempts&quot;) ?: &quot;0&quot;) as Integer;
     def kycStatus = vars.get(&quot;kycStatus&quot;);
@@ -9887,7 +9887,7 @@ log.info(&quot;✅ Facededup Trigger thành công! Response: &quot; + jsonRespon
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
                 <stringProp name="scriptLanguage">groovy</stringProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
@@ -9988,19 +9988,19 @@ switch (kycStatus) {
               </JSR223PostProcessor>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If needs review">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If needs review" enabled="true">
               <stringProp name="IfController.condition">${__groovy(vars.get(&quot;kycStatus&quot;).equals(&quot;NEEDS_REVIEW&quot;))}</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
               <boolProp name="IfController.useExpression">true</boolProp>
             </IfController>
             <hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If is not trigger final check">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If is not trigger final check" enabled="true">
                 <stringProp name="IfController.condition">${__groovy(vars.get(&quot;isTriggerFinalCheck&quot;) == null)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Build manual request">
+                <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Build manual request" enabled="true">
                   <stringProp name="scriptLanguage">groovy</stringProp>
                   <stringProp name="parameters"></stringProp>
                   <stringProp name="filename"></stringProp>
@@ -10151,7 +10151,7 @@ log.info(&quot;✅ Manual Update thành công!&quot;);</stringProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10.3 Manual Final update">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10.3 Manual Final update" enabled="true">
                   <intProp name="HTTPSampler.concurrentPool">6</intProp>
                   <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
                   <stringProp name="HTTPSampler.path">/v3/onboarding/admin/kyc/${onboardingId}/final-check</stringProp>
@@ -10759,7 +10759,7 @@ try {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to CSV">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to CSV" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
@@ -10772,7 +10772,576 @@ try {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="x-request-id" elementType="Header">
+                  <stringProp name="Header.name">x-request-id</stringProp>
+                  <stringProp name="Header.value">dcb51815-7759-41d8-8fd6-46b32e241acf</stringProp>
+                </elementProp>
+                <elementProp name="gtw-authorization" elementType="Header">
+                  <stringProp name="Header.name">gtw-authorization</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="baggage" elementType="Header">
+                  <stringProp name="Header.name">baggage</stringProp>
+                  <stringProp name="Header.value">sentry-environment=uat,sentry-transaction=StartupScreen,sentry-public_key=a8650128baf78c0abc77876f8736238f,sentry-trace_id=ae79a0eed0354e439ab2d6820a04d617,sentry-sample_rate=0.85</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="sentry-trace" elementType="Header">
+                  <stringProp name="Header.name">sentry-trace</stringProp>
+                  <stringProp name="Header.value">ae79a0eed0354e439ab2d6820a04d617-ae34fb51315f7476-1</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="x-open-id" elementType="Header">
+                  <stringProp name="Header.name">x-open-id</stringProp>
+                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">X-KEY</stringProp>
+                  <stringProp name="Header.value">${adminKey}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper;
+
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
+import org.apache.jmeter.services.FileServer;
+
+
+
+// Log thông tin ban đầu
+
+log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+
+
+
+// Lấy thông tin từ request trước đó
+
+def responseCode = prev.getResponseCode();
+
+def responseMessage = prev.getResponseMessage();
+
+def response = prev.getResponseDataAsString().trim();
+
+
+
+// Log thông tin cơ bản về request
+
+log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;);
+
+
+
+// Kiểm tra response code và log lỗi nếu không phải 200
+
+if (responseCode != &quot;200&quot;) {
+
+log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;);
+
+log.error(&quot;Full Response: \n${response}&quot;);
+
+return;
+
+}
+
+
+
+// Phân tích JSON response
+
+def jsonResponse = parseJsonResponse(response);
+
+if (jsonResponse == null) return;
+
+
+
+// Trích xuất thông tin Prospect
+
+def prospectData = extractProspectData(jsonResponse);
+
+
+
+// Log thông tin prospect
+
+logProspectInfo(prospectData);
+
+
+
+// Ghi dữ liệu vào file CSV
+
+writeToCSV(prospectData);
+
+
+
+// **Phân tích JSON response**
+
+def parseJsonResponse(String response) {
+
+try {
+
+return new JsonSlurper().parseText(response);
+
+} catch (Exception e) {
+
+log.error(&quot;❌ Lỗi khi phân tích JSON: ${e.message}&quot;);
+
+return null;
+
+}
+
+}
+
+
+
+// **Trích xuất dữ liệu Prospect từ JSON**
+
+def extractProspectData(def jsonResponse) {
+
+def payload = jsonResponse?.payload ?: [:];
+
+def kycState = payload?.kycState ?: [:];
+
+
+
+// Lấy thông tin prospect và review check
+
+def prospect = extractBasicProspectInfo(payload);
+
+def reviewCheckStr = generateReviewCheckStr(kycState);
+
+
+
+// Trả về dữ liệu prospect cùng với reviewCheckStr
+
+prospect[&quot;Review Check&quot;] = reviewCheckStr;
+
+return prospect;
+
+}
+
+
+
+// **Trích xuất thông tin cơ bản của Prospect**
+
+def extractBasicProspectInfo(def payload) {
+
+return [
+
+&quot;Full Name&quot; : payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
+
+&quot;Phone Number&quot; : payload?.phoneNumber ?: &quot;N/A&quot;,
+
+&quot;ID Number&quot; : payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
+
+&quot;CIF Number&quot; : payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
+
+&quot;Vikki Account Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
+
+&quot;HDBank CIF Number&quot; : payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
+
+&quot;Case ID&quot; : payload?.caseId ?: &quot;N/A&quot;
+
+]
+
+}
+
+
+
+// **Kiểm tra trạng thái KYC và tạo danh sách các mục cần kiểm tra**
+
+def generateReviewCheckStr(def kycState) {
+
+def reviewCheckStr = kycState.findAll { it.value != &quot;AUTO_APPROVED&quot; }
+
+.collect { &quot;${it.key}:${it.value}&quot; }
+
+.join(&quot;|&quot;) ?: &quot;N/A&quot;;
+
+// log.info(&quot;Final needsReviewCheck: ${reviewCheckStr}&quot;);
+
+return reviewCheckStr;
+
+}
+
+
+
+// **Log thông tin Prospect**
+
+def logProspectInfo(def prospectData) {
+
+log.info(&quot;\n&quot; + &quot;Prospect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;);
+
+prospectData.each { key, value -&gt;
+
+log.info(&quot;${key}: ${value}&quot;);
+
+}
+
+}
+
+
+
+// **Ghi thông tin vào file CSV**
+
+def writeToCSV(def prospectData) {
+
+def filePath = getCsvFilePath();
+
+def file = new File(filePath);
+
+
+
+// Kiểm tra nếu file không tồn tại, tạo mới và thêm header
+
+if (!file.exists()) {
+
+createCsvFileWithHeader(file);
+
+}
+
+
+
+// Convert dữ liệu thành chuỗi trước khi ghi vào CSV
+
+def data = convertToCSVString(prospectData);
+
+
+
+// Log dữ liệu trước khi ghi vào file
+
+// log.info(&quot;\nWriting data to CSV: ${data}&quot;);
+
+
+
+// Ghi dữ liệu vào file CSV
+
+file.append(data);
+
+}
+
+
+
+// **Lấy đường dẫn file CSV**
+
+def getCsvFilePath() {
+
+return &quot;${FileServer.getFileServer().getBaseDir()}/${File.separator}conghoang_onboarding_data.csv&quot;;
+
+}
+
+
+
+// **Tạo file CSV nếu chưa tồn tại và thêm header**
+
+def createCsvFileWithHeader(File file) {
+
+file.createNewFile();
+
+file.append(&quot;Prospect ID, Full Name, Phone Number, ID Number, CIF Number, Vikki Account Number, HDBank CIF Number, Case ID, Date, Review Check\n&quot;);
+
+}
+
+
+
+// **Chuyển dữ liệu thành chuỗi CSV**
+
+def convertToCSVString(def prospectData) {
+
+def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;;
+
+def fullName = prospectData[&quot;Full Name&quot;];
+
+def phoneNumber = prospectData[&quot;Phone Number&quot;];
+
+def idNumber = prospectData[&quot;ID Number&quot;];
+
+def cifNumber = prospectData[&quot;CIF Number&quot;];
+
+def vikkiAccountNumber = prospectData[&quot;Vikki Account Number&quot;];
+
+def hdbCifNumber = prospectData[&quot;HDBank CIF Number&quot;];
+
+def caseId = prospectData[&quot;Case ID&quot;];
+
+def reviewCheckStr = prospectData[&quot;Review Check&quot;];
+
+
+
+// Lấy ngày giờ hiện tại
+
+def currentDate = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(new Date());
+
+
+
+// Tạo chuỗi CSV
+
+return &quot;&apos;${onboardingId},${fullName},${phoneNumber},&apos;${idNumber},${cifNumber},${vikkiAccountNumber},&apos;${hdbCifNumber},${caseId},&apos;${currentDate},${reviewCheckStr}\n&quot;;
+
+}</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to XLSX - 1" enabled="false">
+            <intProp name="HTTPSampler.concurrentPool">6</intProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="x-request-id" elementType="Header">
+                  <stringProp name="Header.name">x-request-id</stringProp>
+                  <stringProp name="Header.value">dcb51815-7759-41d8-8fd6-46b32e241acf</stringProp>
+                </elementProp>
+                <elementProp name="gtw-authorization" elementType="Header">
+                  <stringProp name="Header.name">gtw-authorization</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="baggage" elementType="Header">
+                  <stringProp name="Header.name">baggage</stringProp>
+                  <stringProp name="Header.value">sentry-environment=uat,sentry-transaction=StartupScreen,sentry-public_key=a8650128baf78c0abc77876f8736238f,sentry-trace_id=ae79a0eed0354e439ab2d6820a04d617,sentry-sample_rate=0.85</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="sentry-trace" elementType="Header">
+                  <stringProp name="Header.name">sentry-trace</stringProp>
+                  <stringProp name="Header.value">ae79a0eed0354e439ab2d6820a04d617-ae34fb51315f7476-1</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="x-open-id" elementType="Header">
+                  <stringProp name="Header.name">x-open-id</stringProp>
+                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">X-KEY</stringProp>
+                  <stringProp name="Header.value">${adminKey}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.apache.jmeter.services.FileServer;
+
+// Log thông tin ban đầu
+log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+
+// Lấy thông tin từ request trước đó
+def responseCode = prev.getResponseCode();
+def responseMessage = prev.getResponseMessage();
+def response = prev.getResponseDataAsString().trim();
+
+// Log thông tin cơ bản về request
+log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;);
+
+// Kiểm tra response code và log lỗi nếu không phải 200
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;);
+    log.error(&quot;Full Response: \n${response}&quot;);
+    return;
+}
+
+// Phân tích JSON response
+def jsonResponse = parseJsonResponse(response);
+if (jsonResponse == null) return;
+
+// Trích xuất thông tin Prospect
+def prospectData = extractProspectData(jsonResponse);
+
+// Log thông tin prospect
+logProspectInfo(prospectData);
+
+// Ghi dữ liệu vào file Excel
+writeToExcel(prospectData);
+
+// **Phân tích JSON response**
+def parseJsonResponse(String response) {
+    try {
+        return new JsonSlurper().parseText(response);
+    } catch (Exception e) {
+        log.error(&quot;❌ Lỗi khi phân tích JSON: ${e.message}&quot;);
+        return null;
+    }
+}
+
+// **Trích xuất dữ liệu Prospect từ JSON**
+def extractProspectData(def jsonResponse) {
+    def payload = jsonResponse?.payload ?: [:];
+    def kycState = payload?.kycState ?: [:];
+    def prospect = extractBasicProspectInfo(payload);
+    def reviewCheckStr = generateReviewCheckStr(kycState);
+    prospect[&quot;Review Check&quot;] = reviewCheckStr;
+    return prospect;
+}
+
+// **Trích xuất thông tin cơ bản của Prospect**
+def extractBasicProspectInfo(def payload) {
+    return [
+        &quot;Full Name&quot; : payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
+        &quot;Phone Number&quot; : payload?.phoneNumber ?: &quot;N/A&quot;,
+        &quot;ID Number&quot; : payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
+        &quot;CIF Number&quot; : payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
+        &quot;Vikki Account Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
+        &quot;HDBank CIF Number&quot; : payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
+        &quot;Case ID&quot; : payload?.caseId ?: &quot;N/A&quot;
+    ];
+}
+
+// **Kiểm tra trạng thái KYC và tạo danh sách các mục cần kiểm tra**
+def generateReviewCheckStr(def kycState) {
+    return kycState.findAll { it.value != &quot;AUTO_APPROVED&quot; }
+        .collect { &quot;${it.key}:${it.value}&quot; }
+        .join(&quot;|&quot;) ?: &quot;N/A&quot;;
+}
+
+// **Log thông tin Prospect**
+def logProspectInfo(def prospectData) {
+    log.info(&quot;\nProspect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;);
+    prospectData.each { key, value -&gt;
+        log.info(&quot;${key}: ${value}&quot;);
+    }
+}
+
+// **Ghi thông tin vào file Excel**
+def writeToExcel(def prospectData) {
+    def filePath = getExcelFilePath();
+    def file = new File(filePath);
+    
+    Workbook workbook;
+    Sheet sheet;
+    if (file.exists()) {
+        workbook = WorkbookFactory.create(file);
+        sheet = workbook.getSheetAt(0);
+    } else {
+        workbook = new XSSFWorkbook();
+        sheet = workbook.createSheet(&quot;Prospects&quot;);
+        createExcelHeader(sheet);
+    }
+    
+    appendExcelRow(sheet, prospectData);
+    
+    FileOutputStream outputStream = new FileOutputStream(filePath);
+    workbook.write(outputStream);
+    outputStream.close();
+    workbook.close();
+}
+
+// **Lấy đường dẫn file Excel**
+def getExcelFilePath() {
+    return &quot;${FileServer.getFileServer().getBaseDir()}/${File.separator}conghoang_onboarding_data.xlsx&quot;;
+}
+
+// **Tạo header cho file Excel nếu chưa tồn tại**
+def createExcelHeader(Sheet sheet) {
+    Row headerRow = sheet.createRow(0);
+    String[] headers = [&quot;Prospect ID&quot;, &quot;Full Name&quot;, &quot;Phone Number&quot;, &quot;ID Number&quot;, &quot;CIF Number&quot;, &quot;Vikki Account Number&quot;, &quot;HDBank CIF Number&quot;, &quot;Case ID&quot;, &quot;Date&quot;, &quot;Review Check&quot;];
+    headers.eachWithIndex { header, index -&gt;
+        headerRow.createCell(index).setCellValue(header);
+    }
+}
+
+// **Thêm dòng dữ liệu mới vào file Excel**
+def appendExcelRow(Sheet sheet, def prospectData) {
+    int lastRowNum = sheet.getLastRowNum();
+    Row row = sheet.createRow(lastRowNum + 1);
+    
+    def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;;
+    def currentDate = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(new Date());
+    
+    String[] values = [
+        onboardingId,
+        prospectData[&quot;Full Name&quot;],
+        prospectData[&quot;Phone Number&quot;],
+        prospectData[&quot;ID Number&quot;],
+        prospectData[&quot;CIF Number&quot;],
+        prospectData[&quot;Vikki Account Number&quot;],
+        prospectData[&quot;HDBank CIF Number&quot;],
+        prospectData[&quot;Case ID&quot;],
+        currentDate,
+        prospectData[&quot;Review Check&quot;]
+    ];
+    
+    values.eachWithIndex { value, index -&gt;
+        row.createCell(index).setCellValue(value);
+    }
+}
+</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to XLSX">
+            <intProp name="HTTPSampler.concurrentPool">6</intProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="x-request-id" elementType="Header">
                   <stringProp name="Header.name">x-request-id</stringProp>
@@ -10826,112 +11395,207 @@ try {
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">import groovy.json.JsonSlurper;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+              <stringProp name="script">import groovy.json.JsonSlurper
+import org.apache.poi.ss.usermodel.*
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.*
+import java.text.SimpleDateFormat
+import java.util.Date
+import org.apache.jmeter.services.FileServer
 
-log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;);
+log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;)
 
-// ✅ Lấy thông tin từ request trước đó
-def responseCode = prev.getResponseCode();
-def responseMessage = prev.getResponseMessage();
-def response = prev.getResponseDataAsString().trim();
+// Lấy thông tin response
+def responseCode = prev.getResponseCode()
+def responseMessage = prev.getResponseMessage()
+def response = prev.getResponseDataAsString().trim()
 
-// ✅ Log thông tin cơ bản về request để hỗ trợ trace issue
-log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;);
+log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;)
 
-// ✅ Nếu response code != 200, log lỗi &amp; toàn bộ response để debug
 if (responseCode != &quot;200&quot;) {
-    log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;);
-    log.error(&quot;Full Response: \n${response}&quot;);
-    return;
+    log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
 }
 
-// ✅ Parse JSON an toàn
-def jsonResponse = parseJson(response);
-if (jsonResponse == null) {
-    return;
-}
+// Phân tích JSON response
+def jsonResponse = parseJson(response)
+if (!jsonResponse) return
 
-// Trích xuất thông tin Prospect
-def prospectData = extractProspectData(jsonResponse);
+// Trích xuất dữ liệu prospect
+def prospectData = extractProspectData(jsonResponse)
+logProspectInfo(prospectData)
 
-// Log thông tin prospect
-log.info(&quot;Prospect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;);
-prospectData.each { key, value -&gt;
-    log.info(&quot;${key}: ${value}&quot;);
-}
+// Ghi vào Excel
+writeToExcel(prospectData)
 
-// Ghi thông tin vào file CSV
-writeToCSV(prospectData);
+// =================== HÀM XỬ LÝ ===================
 
-// Hàm parse JSON
 def parseJson(String response) {
     try {
-        return new JsonSlurper().parseText(response);
+        return new JsonSlurper().parseText(response)
     } catch (Exception e) {
-        log.error(&quot;❌ Lỗi parse JSON: ${e.getMessage()}&quot;);
-        log.error(&quot;Full Response: \n${response}&quot;);
-        return null;
+        log.error(&quot;❌ Lỗi khi phân tích JSON: ${e.message}&quot;)
+        return null
     }
 }
 
-// Hàm trích xuất dữ liệu Prospect từ JSON response
 def extractProspectData(def jsonResponse) {
-    def payload = jsonResponse?.payload ?: [:];
+    def payload = jsonResponse?.payload ?: [:]
+    def kycState = payload?.kycState ?: [:]
+
     return [
-        &quot;Full Name&quot;           : payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
-        &quot;Phone Number&quot;        : payload?.phoneNumber ?: &quot;N/A&quot;,
-        &quot;ID Number&quot;           : payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
-        &quot;CIF Number&quot;          : payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
-        &quot;Vikki Account Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
-        &quot;HDBank CIF Number&quot;   : payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
-        &quot;Case ID&quot;             : payload?.caseId ?: &quot;N/A&quot;
+        &quot;Full Name&quot;: payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
+        &quot;Phone Number&quot;: payload?.phoneNumber ?: &quot;N/A&quot;,
+        &quot;ID Number&quot;: payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
+        &quot;CIF Number&quot;: payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
+        &quot;Vikki Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
+        &quot;HDB CIF&quot;: payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
+        &quot;Case ID&quot;: payload?.caseId ?: &quot;N/A&quot;,
+        &quot;Review Check&quot;: generateReviewCheckStr(kycState),
+        &quot;Note&quot;: &quot;&quot;
     ]
 }
 
-// Hàm ghi dữ liệu vào file CSV
-def writeToCSV(def prospectData) {
-    def filePath = &quot;${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}/${__BeanShell(File.separator,)}/prospect_data.csv&quot;;
-    def file = new File(filePath);
-
-    // Kiểm tra nếu file không tồn tại, tạo mới và thêm header
-    if (!file.exists()) {
-        file.createNewFile();
-        file.append(&quot;Prospect ID, Full Name, Phone Number, ID Number, CIF Number, Vikki Account Number, HDBank CIF Number, Case ID, Date\n&quot;);
-    }
-
-    // Convert dữ liệu thành chuỗi trước khi ghi vào CSV
-    def data = convertToCSVString(prospectData);
-
-    // Ghi dữ liệu vào file CSV
-    file.append(data);
+def generateReviewCheckStr(def kycState) {
+    return kycState.findAll { it.value != &quot;AUTO_APPROVED&quot; }
+        .collect { &quot;${it.key}:${it.value}&quot; }
+        .join(&quot;|&quot;) ?: &quot;KYC AUTO APPROVED&quot;
 }
 
-// Hàm chuyển đổi dữ liệu thành chuỗi CSV
-def convertToCSVString(def prospectData) {
-    def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;;
-    def fullName = prospectData[&quot;Full Name&quot;];
-    def phoneNumber = prospectData[&quot;Phone Number&quot;];
-    def idNumber = prospectData[&quot;ID Number&quot;];
-    def cifNumber = prospectData[&quot;CIF Number&quot;];
-    def vikkiAccountNumber = prospectData[&quot;Vikki Account Number&quot;];
-    def hdbCifNumber = prospectData[&quot;HDBank CIF Number&quot;];
-    def caseId = prospectData[&quot;Case ID&quot;];
+def logProspectInfo(def prospectData) {
+    log.info(&quot;\nProspect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;)
+    prospectData.each { key, value -&gt;
+        log.info(&quot;${key}: ${value}&quot;)
+    }
+}
 
-  // Lấy ngày giờ hiện tại (có hiển thị giây)
-    def dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  // Định dạng bao gồm giờ, phút và giây
-    def currentDate = dateFormat.format(new Date());  // Lấy ngày giờ hiện tại
+def writeToExcel(def prospectData) {
+    def filePath = getExcelFilePath()
+    def file = new File(filePath)
+    
+    Workbook workbook
+    Sheet sheet
 
-    // Tạo chuỗi CSV với ngày giờ
-    return &quot;&apos;${onboardingId},${fullName},${phoneNumber},${idNumber},${cifNumber},${vikkiAccountNumber},&apos;${hdbCifNumber},${caseId},${currentDate}\n&quot;;
+    if (file.exists() &amp;&amp; file.length() &gt; 0) {
+        file.withInputStream { fis -&gt;
+            workbook = WorkbookFactory.create(fis)
+            sheet = workbook.getSheetAt(0)
+        }
+    } else {
+        workbook = new XSSFWorkbook()
+        sheet = workbook.createSheet(&quot;Prospects&quot;)
+        createExcelHeader(sheet)
+    }
+
+    appendExcelRow(sheet, prospectData, workbook)
+
+    file.withOutputStream { fos -&gt;
+        workbook.write(fos)
+    }
+    
+    workbook.close()
+}
+
+def getExcelFilePath() {
+    return &quot;${FileServer.getFileServer().getBaseDir()}/conghoang_onboarding_data.xlsx&quot;
+}
+
+def createExcelHeader(Sheet sheet) {
+    Row headerRow = sheet.createRow(0)
+    String[] headers = [&quot;Prospect ID&quot;, &quot;Full Name&quot;, &quot;Phone Number&quot;, &quot;ID Number&quot;, &quot;CIF Number&quot;, 
+                        &quot;Vikki Number&quot;, &quot;HDB CIF&quot;, &quot;Case ID&quot;, &quot;Date&quot;, &quot;Review Check&quot;, &quot;Note&quot;]
+
+    Workbook workbook = sheet.getWorkbook()
+    CellStyle headerStyle = createHeaderCellStyle(workbook)
+
+    headers.eachWithIndex { header, index -&gt;
+        Cell cell = headerRow.createCell(index)
+        cell.setCellValue(header)
+        cell.setCellStyle(headerStyle)
+        sheet.setColumnWidth(index, index in [2, 3, 4, 5, 6] ? 4000 : 5000)
+    }
+}
+
+def appendExcelRow(Sheet sheet, def prospectData, Workbook workbook) {
+    int lastRowNum = sheet.getLastRowNum()
+    for (int i = lastRowNum; i &gt;= 1; i--) { 
+        Row oldRow = sheet.getRow(i)
+        Row newRow = sheet.createRow(i + 1)
+        
+        if (oldRow != null) {
+            newRow.setHeight(oldRow.getHeight())
+            for (int j = 0; j &lt; oldRow.getLastCellNum(); j++) {
+                Cell oldCell = oldRow.getCell(j)
+                if (oldCell != null) {
+                    Cell newCell = newRow.createCell(j)
+                    newCell.setCellValue(oldCell.toString())
+                    newCell.setCellStyle(oldCell.getCellStyle())
+                }
+            }
+        }
+    }
+
+    Row newRow = sheet.createRow(1)
+    def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;
+    def currentDate = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(new Date())
+
+    String[] values = [
+        onboardingId,
+        prospectData[&quot;Full Name&quot;],
+        prospectData[&quot;Phone Number&quot;],
+        prospectData[&quot;ID Number&quot;],
+        prospectData[&quot;CIF Number&quot;],
+        prospectData[&quot;Vikki Number&quot;],
+        prospectData[&quot;HDB CIF&quot;],
+        prospectData[&quot;Case ID&quot;],
+        currentDate,
+        prospectData[&quot;Review Check&quot;]
+    ]
+
+    CellStyle cellStyle = createCellStyle(workbook)
+    values.eachWithIndex { value, index -&gt;
+        Cell cell = newRow.createCell(index)
+        cell.setCellValue(value)
+        cell.setCellStyle(cellStyle)
+    }
+    newRow.setHeightInPoints(30.0f)
+
+    Cell noteCell = newRow.createCell(10)
+    noteCell.setCellValue(&quot;&quot;)
+    noteCell.setCellStyle(cellStyle)
+    sheet.setColumnWidth(10, 8000)
+
+//    log.info(&quot;✅ Dữ liệu đã ghi vào dòng đầu tiên sau header: ${values.join(&apos; | &apos;)}&quot;)
+}
+
+def createHeaderCellStyle(Workbook workbook) {
+    CellStyle style = createCellStyle(workbook)
+    Font font = workbook.createFont()
+    font.setBold(true)
+    font.setColor(IndexedColors.WHITE.getIndex())
+    style.setFont(font)
+    style.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex())
+    style.setFillPattern(FillPatternType.SOLID_FOREGROUND)
+    return style
+}
+
+def createCellStyle(Workbook workbook) {
+    CellStyle style = workbook.createCellStyle()
+    style.setAlignment(HorizontalAlignment.CENTER)
+    style.setVerticalAlignment(VerticalAlignment.CENTER)
+    style.setBorderTop(BorderStyle.THIN)
+    style.setBorderBottom(BorderStyle.THIN)
+    style.setBorderLeft(BorderStyle.THIN)
+    style.setBorderRight(BorderStyle.THIN)
+    style.setWrapText(true)
+    return style
 }
 </stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] Hyperverge OCR - Delete">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] Hyperverge OCR - Delete" enabled="false">
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.path">__admin/mappings/${idHyperVergeOCRNew}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
