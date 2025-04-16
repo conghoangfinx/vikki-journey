@@ -132,7 +132,7 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Onboarding">
         <stringProp name="ThreadGroup.num_threads">${__P(threads,1)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${__P(rampups, 30)}</stringProp>
         <stringProp name="ThreadGroup.duration">${__P(durations,600)}</stringProp>
@@ -1247,7 +1247,7 @@ log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account" enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -2301,7 +2301,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4432,7 +4432,7 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </hashTree>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="false">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
@@ -4570,6 +4570,273 @@ try {
 } catch (Exception e1) {
     log.error(&quot;❌ NOT FOUND YOUR INFO: &quot; + e1.getMessage());
 }</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to XLSX">
+            <intProp name="HTTPSampler.concurrentPool">6</intProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="x-request-id" elementType="Header">
+                  <stringProp name="Header.name">x-request-id</stringProp>
+                  <stringProp name="Header.value">dcb51815-7759-41d8-8fd6-46b32e241acf</stringProp>
+                </elementProp>
+                <elementProp name="gtw-authorization" elementType="Header">
+                  <stringProp name="Header.name">gtw-authorization</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="baggage" elementType="Header">
+                  <stringProp name="Header.name">baggage</stringProp>
+                  <stringProp name="Header.value">sentry-environment=uat,sentry-transaction=StartupScreen,sentry-public_key=a8650128baf78c0abc77876f8736238f,sentry-trace_id=ae79a0eed0354e439ab2d6820a04d617,sentry-sample_rate=0.85</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-GB,en-US;q=0.9,en;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="sentry-trace" elementType="Header">
+                  <stringProp name="Header.name">sentry-trace</stringProp>
+                  <stringProp name="Header.value">ae79a0eed0354e439ab2d6820a04d617-ae34fb51315f7476-1</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="x-open-id" elementType="Header">
+                  <stringProp name="Header.name">x-open-id</stringProp>
+                  <stringProp name="Header.value">7b0e270b-c4f4-4cc4-826c-f324bd2d6684</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Vikki%20Uat/1698985660 CFNetwork/1410.0.3 Darwin/22.6.0</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">X-KEY</stringProp>
+                  <stringProp name="Header.value">${adminKey}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper
+import org.apache.poi.ss.usermodel.*
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.*
+import java.text.SimpleDateFormat
+import java.util.Date
+import org.apache.jmeter.services.FileServer
+
+log.info(&quot;\n 2.15 ---------- GET ACCOUNT DETAILS ----------&quot;)
+
+// Lấy thông tin response
+def responseCode = prev.getResponseCode()
+def responseMessage = prev.getResponseMessage()
+def response = prev.getResponseDataAsString().trim()
+
+log.info(&quot;${prev.getURL()} | ${prev.getTime()}ms&quot;)
+
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ API Lỗi! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
+}
+
+// Phân tích JSON response
+def jsonResponse = parseJson(response)
+if (!jsonResponse) return
+
+// Trích xuất dữ liệu prospect
+def prospectData = extractProspectData(jsonResponse)
+logProspectInfo(prospectData)
+
+// Ghi vào Excel
+writeToExcel(prospectData)
+
+// =================== HÀM XỬ LÝ ===================
+
+def parseJson(String response) {
+    try {
+        return new JsonSlurper().parseText(response)
+    } catch (Exception e) {
+        log.error(&quot;❌ Lỗi khi phân tích JSON: ${e.message}&quot;)
+        return null
+    }
+}
+
+def extractProspectData(def jsonResponse) {
+    def payload = jsonResponse?.payload ?: [:]
+    def kycState = payload?.kycState ?: [:]
+
+    return [
+        &quot;Full Name&quot;: payload?.customerDetails?.fullName ?: &quot;N/A&quot;,
+        &quot;Phone Number&quot;: payload?.phoneNumber ?: &quot;N/A&quot;,
+        &quot;ID Number&quot;: payload?.customerDetails?.idNumber ?: &quot;N/A&quot;,
+        &quot;CIF Number&quot;: payload?.accountCreation?.cifNumber ?: &quot;N/A&quot;,
+        &quot;Vikki Number&quot;: payload?.accountCreation?.vikkiAccountNumber ?: &quot;N/A&quot;,
+        &quot;HDB CIF&quot;: payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
+        &quot;Case ID&quot;: payload?.caseId ?: &quot;N/A&quot;,
+        &quot;Review Check&quot;: generateReviewCheckStr(kycState),
+        &quot;Note&quot;: &quot;&quot;
+    ]
+}
+
+def generateReviewCheckStr(def kycState) {
+    return kycState.findAll { it.value != &quot;AUTO_APPROVED&quot; }
+        .collect { &quot;${it.key}:${it.value}&quot; }
+        .join(&quot;|&quot;) ?: &quot;KYC AUTO APPROVED&quot;
+}
+
+def logProspectInfo(def prospectData) {
+    log.info(&quot;\nProspect ID: ${vars.get(&apos;onboardingId&apos;)}&quot;)
+    prospectData.each { key, value -&gt;
+        log.info(&quot;${key}: ${value}&quot;)
+    }
+}
+
+def writeToExcel(def prospectData) {
+    def filePath = getExcelFilePath()
+    def file = new File(filePath)
+    
+    Workbook workbook
+    Sheet sheet
+
+    if (file.exists() &amp;&amp; file.length() &gt; 0) {
+        file.withInputStream { fis -&gt;
+            workbook = WorkbookFactory.create(fis)
+            sheet = workbook.getSheetAt(0)
+        }
+    } else {
+        workbook = new XSSFWorkbook()
+        sheet = workbook.createSheet(&quot;Prospects&quot;)
+        createExcelHeader(sheet)
+    }
+
+    appendExcelRow(sheet, prospectData, workbook)
+
+    file.withOutputStream { fos -&gt;
+        workbook.write(fos)
+    }
+    
+    workbook.close()
+}
+
+def getExcelFilePath() {
+    return &quot;${FileServer.getFileServer().getBaseDir()}/annguyen_onboarding_data.xlsx&quot;
+}
+
+def createExcelHeader(Sheet sheet) {
+    Row headerRow = sheet.createRow(0)
+    String[] headers = [&quot;Prospect ID&quot;, &quot;Full Name&quot;, &quot;Phone Number&quot;, &quot;ID Number&quot;, &quot;CIF Number&quot;, 
+                        &quot;Vikki Number&quot;, &quot;HDB CIF&quot;, &quot;Case ID&quot;, &quot;Date&quot;, &quot;Review Check&quot;, &quot;Note&quot;]
+
+    Workbook workbook = sheet.getWorkbook()
+    CellStyle headerStyle = createHeaderCellStyle(workbook)
+
+    headers.eachWithIndex { header, index -&gt;
+        Cell cell = headerRow.createCell(index)
+        cell.setCellValue(header)
+        cell.setCellStyle(headerStyle)
+        sheet.setColumnWidth(index, index in [2, 3, 4, 5, 6] ? 4000 : 5000)
+    }
+}
+
+def appendExcelRow(Sheet sheet, def prospectData, Workbook workbook) {
+    int lastRowNum = sheet.getLastRowNum()
+    for (int i = lastRowNum; i &gt;= 1; i--) { 
+        Row oldRow = sheet.getRow(i)
+        Row newRow = sheet.createRow(i + 1)
+        
+        if (oldRow != null) {
+            newRow.setHeight(oldRow.getHeight())
+            for (int j = 0; j &lt; oldRow.getLastCellNum(); j++) {
+                Cell oldCell = oldRow.getCell(j)
+                if (oldCell != null) {
+                    Cell newCell = newRow.createCell(j)
+                    newCell.setCellValue(oldCell.toString())
+                    newCell.setCellStyle(oldCell.getCellStyle())
+                }
+            }
+        }
+    }
+
+    Row newRow = sheet.createRow(1)
+    def onboardingId = vars.get(&quot;onboardingId&quot;) ?: &quot;N/A&quot;
+    def currentDate = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(new Date())
+
+    String[] values = [
+        onboardingId,
+        prospectData[&quot;Full Name&quot;],
+        prospectData[&quot;Phone Number&quot;],
+        prospectData[&quot;ID Number&quot;],
+        prospectData[&quot;CIF Number&quot;],
+        prospectData[&quot;Vikki Number&quot;],
+        prospectData[&quot;HDB CIF&quot;],
+        prospectData[&quot;Case ID&quot;],
+        currentDate,
+        prospectData[&quot;Review Check&quot;]
+    ]
+
+    CellStyle cellStyle = createCellStyle(workbook)
+    values.eachWithIndex { value, index -&gt;
+        Cell cell = newRow.createCell(index)
+        cell.setCellValue(value)
+        cell.setCellStyle(cellStyle)
+    }
+    newRow.setHeightInPoints(30.0f)
+
+    Cell noteCell = newRow.createCell(10)
+    noteCell.setCellValue(&quot;&quot;)
+    noteCell.setCellStyle(cellStyle)
+    sheet.setColumnWidth(10, 8000)
+
+//    log.info(&quot;✅ Dữ liệu đã ghi vào dòng đầu tiên sau header: ${values.join(&apos; | &apos;)}&quot;)
+}
+
+def createHeaderCellStyle(Workbook workbook) {
+    CellStyle style = createCellStyle(workbook)
+    Font font = workbook.createFont()
+    font.setBold(true)
+    font.setColor(IndexedColors.WHITE.getIndex())
+    style.setFont(font)
+    style.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex())
+    style.setFillPattern(FillPatternType.SOLID_FOREGROUND)
+    return style
+}
+
+def createCellStyle(Workbook workbook) {
+    CellStyle style = workbook.createCellStyle()
+    style.setAlignment(HorizontalAlignment.CENTER)
+    style.setVerticalAlignment(VerticalAlignment.CENTER)
+    style.setBorderTop(BorderStyle.THIN)
+    style.setBorderBottom(BorderStyle.THIN)
+    style.setBorderLeft(BorderStyle.THIN)
+    style.setBorderRight(BorderStyle.THIN)
+    style.setWrapText(true)
+    return style
+}
+</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>

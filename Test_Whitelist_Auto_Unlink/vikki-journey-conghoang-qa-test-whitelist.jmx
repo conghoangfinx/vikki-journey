@@ -10,7 +10,7 @@
       <stringProp name="TestPlan.user_define_classpath">./lib</stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -75,7 +75,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -117,13 +117,13 @@
           </elementProp>
           <elementProp name="phoneNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">phoneNumberOnboard</stringProp>
-            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.value">990010199</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Prefix must 9900</stringProp>
           </elementProp>
           <elementProp name="idNumberOnboard" elementType="Argument">
             <stringProp name="Argument.name">idNumberOnboard</stringProp>
-            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.value">001098034158</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc"></stringProp>
           </elementProp>
@@ -141,8 +141,8 @@
       </Arguments>
       <hashTree/>
       <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-        <intProp name="HTTPSampler.connect_timeout">50000</intProp>
-        <intProp name="HTTPSampler.response_timeout">50000</intProp>
+        <intProp name="HTTPSampler.connect_timeout">65000</intProp>
+        <intProp name="HTTPSampler.response_timeout">65000</intProp>
         <stringProp name="HTTPSampler.domain">${host}</stringProp>
         <stringProp name="HTTPSampler.port">443</stringProp>
         <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -193,21 +193,25 @@ def randomPart = String.format(&quot;%02d&quot;, rand.nextInt(100))  // 2 số n
 
 // ✅ Kiểm tra và tạo số điện thoại nếu chưa có giá trị
 //def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + randomPart + formattedTimeHHmm
-def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + String.format(&quot;%02d&quot;, threadNum) + formattedTimeHHmm
-//def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + formattedTimess + formattedTimeHHmm
+//def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + String.format(&quot;%02d&quot;, threadNum) + formattedTimeHHmm
+def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&quot; + formattedTimess + formattedTimeHHmm
 
 // ✅ Kiểm tra và tạo số căn cước nếu chưa có giá trị
 def idNumberOnboard = vars.get(&quot;idNumberOnboard&quot;) ?: String.format(&quot;%02d&quot;, threadNum) + formattedDate
 //def idNumberOnboard = vars.get(&quot;idNumberOnboard&quot;) ?: randomPart + formattedDate
 
+// ✅ Xử lý tạo biến idNumberOnboardProcessed từ phoneNumberOnboard (bỏ 3 ký tự đầu tiên)
+def idNumberOnboardProcessed = idNumberOnboard.substring(3)  // Bỏ 3 ký tự đầu tiên
+vars.put(&quot;idNumberOnboardProcessed&quot;, idNumberOnboardProcessed)
+
 // ✅ Gán lại giá trị vào biến JMeter
 vars.put(&quot;phoneNumberOnboard&quot;, phoneNumberOnboard)
 vars.put(&quot;idNumberOnboard&quot;, idNumberOnboard)
-
+log.info(&quot;idNumberOnboardProcessed: &quot; + idNumberOnboardProcessed)
 </stringProp>
         </JSR223PreProcessor>
         <hashTree/>
-        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Multiple" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE PHONE AND ID NUMBER - Multiple">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -242,13 +246,270 @@ def phoneNumberOnboard = vars.get(&quot;phoneNumberOnboard&quot;) ?: &quot;990&q
 def idNumberOnboard = vars.get(&quot;idNumberOnboard&quot;) ?: String.format(&quot;%02d&quot;, threadNum) + formattedDate
 //def idNumberOnboard = vars.get(&quot;idNumberOnboard&quot;) ?: randomPart + formattedDate
 
+// ✅ Xử lý tạo biến idNumberOnboardProcessed từ phoneNumberOnboard (bỏ 3 ký tự đầu tiên)
+def idNumberOnboardProcessed = idNumberOnboard.substring(3)  // Bỏ 3 ký tự đầu tiên
+vars.put(&quot;idNumberOnboardProcessed&quot;, idNumberOnboardProcessed)
+
 // ✅ Gán lại giá trị vào biến JMeter
 vars.put(&quot;phoneNumberOnboard&quot;, phoneNumberOnboard)
 vars.put(&quot;idNumberOnboard&quot;, idNumberOnboard)
-
+//log.info(&quot;idNumberOnboardProcessed: &quot; + idNumberOnboardProcessed)
 </stringProp>
         </JSR223PreProcessor>
         <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="GENERATE MRZ" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">// === Nhập số CCCD hoặc lấy từ biến JMeter ===
+def idNumber = vars.get(&quot;idNumberOnboard&quot;) ?: &quot;001098034158&quot;
+
+// === Các dữ liệu cố định hoặc giả định ===
+def countryCode = &quot;VNM&quot;
+def birthDate = &quot;981020&quot;    // YYMMDD
+def sex = &quot;M&quot;
+def expiryDate = &quot;381020&quot;   // YYMMDD
+def nationality = &quot;VNM&quot;
+def surname = &quot;HOANG&quot;
+def givenNames = &quot;CHI&lt;CONG&quot;
+
+// === Hàm tính check digit theo chuẩn ICAO Doc 9303 ===
+def computeCheckDigit = { input -&gt;
+    def weights = [7, 3, 1]
+    def total = 0
+    input.eachWithIndex { ch, i -&gt;
+        int value
+        if (ch &gt;= &apos;0&apos; &amp;&amp; ch &lt;= &apos;9&apos;) {
+            value = ch.toInteger()
+        } else if (ch &gt;= &apos;A&apos; &amp;&amp; ch &lt;= &apos;Z&apos;) {
+            value = ch.charAt(0) - &apos;A&apos;.charAt(0) + 10
+        } else if (ch == &apos;&lt;&apos;) {
+            value = 0
+        } else {
+            throw new IllegalArgumentException(&quot;Invalid character in MRZ: $ch&quot;)
+        }
+        total += value * weights[i % 3]
+    }
+    return (total % 10).toString()
+}
+
+// === MRZ dòng 1 ===
+def docType = &quot;ID&quot;
+def line1 = docType + countryCode + idNumber
+def checkDigit1 = computeCheckDigit(idNumber)
+line1 += checkDigit1 + &quot;&lt;&lt;&quot;
+line1 = line1.padRight(30, &apos;&lt;&apos;)
+
+// === MRZ dòng 2 ===
+def checkDigit2 = computeCheckDigit(birthDate)
+def checkDigit3 = computeCheckDigit(expiryDate)
+
+def line2 = birthDate + checkDigit2 + sex + expiryDate + checkDigit3 + nationality + &quot;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;
+def finalCheck = computeCheckDigit(idNumber + checkDigit1 + birthDate + checkDigit2 + expiryDate + checkDigit3)
+line2 += finalCheck
+line2 = line2.padRight(30, &apos;&lt;&apos;)
+
+// === MRZ dòng 3 ===
+def line3 = (surname + &quot;&lt;&lt;&quot; + givenNames).toUpperCase().replaceAll(&quot; &quot;, &quot;&lt;&quot;)
+line3 = line3.padRight(30, &apos;&lt;&apos;)
+
+// === Gán vào biến JMeter để sử dụng trong các HTTP Request khác ===
+vars.put(&quot;mrz_line1&quot;, line1)
+vars.put(&quot;mrz_line2&quot;, line2)
+vars.put(&quot;mrz_line3&quot;, line3)
+
+// === MRZ đầy đủ: nối 3 dòng lại, cách nhau bằng \n hoặc giữ nguyên định dạng dòng mới ===
+def mrz_full = &quot;${line1}${line2}${line3}&quot;
+vars.put(&quot;mrz_full&quot;, mrz_full)
+
+log.info(mrz_full);
+
+//log.info(&quot;=== MRZ Generated ===\n${line1}\n${line2}\n${line3}&quot;)
+</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clear/Unlink Card Debit" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Check nationalId">
+            <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
+            <stringProp name="HTTPSampler.port">8001</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">/wsruntime_ws/ws</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:wsin=&quot;http://www.openwaygroup.com/wsint&quot;&gt;&#xd;
+   &lt;soapenv:Header&gt;&#xd;
+      &lt;wsin:SessionContextStr&gt;?&lt;/wsin:SessionContextStr&gt;&#xd;
+      &lt;wsin:UserInfo&gt;officer=&quot;WX_ADMIN&quot;&lt;/wsin:UserInfo&gt;&#xd;
+      &lt;wsin:CorrelationId&gt;?&lt;/wsin:CorrelationId&gt;&#xd;
+   &lt;/soapenv:Header&gt;&#xd;
+   &lt;soapenv:Body&gt;&#xd;
+      &lt;wsin:GetClientByIdentityCardV2&gt;&#xd;
+         &lt;wsin:IdentityCardNumber&gt;001098034158&lt;/wsin:IdentityCardNumber&gt;&#xd;
+         &lt;wsin:UserInfo&gt;officer=&quot;WX_ADMIN&quot;&lt;/wsin:UserInfo&gt;&#xd;
+      &lt;/wsin:GetClientByIdentityCardV2&gt;&#xd;
+   &lt;/soapenv:Body&gt;&#xd;
+&lt;/soapenv:Envelope&gt;&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/xml</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.util.XmlSlurper
+
+log.info(&quot;\n\n=============== ✅ CHECK SOAP RESPONSE - GET CLIENT INFO ✅ ===============\n\n&quot;);
+
+// Lấy response
+def response = prev.getResponseDataAsString().trim()
+def responseCode = prev.getResponseCode().toString()
+def responseMessage = prev.getResponseMessage()
+def responseTime = prev.getTime()
+
+// Log URL và thời gian phản hồi
+log.info(&quot;${prev.getURL()} | ${responseTime}ms&quot;)
+
+// Kiểm tra mã phản hồi
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ API Error! Response Code: ${responseCode} | Message: ${responseMessage}&quot;)
+    log.error(&quot;Full Response: \n${response}&quot;)
+    return
+}
+
+// Parse XML từ response
+def xml
+try {
+    xml = new XmlSlurper().parseText(response)
+} catch (Exception e) {
+    log.error(&quot;❌ Error parsing XML: ${e.message}&quot;)
+    log.error(&quot;Full Response:\n${response}&quot;)
+    return
+}
+
+// Tìm ClientNumber
+def clientNumber = xml.&apos;**&apos;.find { it.name() == &apos;ClientNumber&apos; }?.text()
+
+if (clientNumber) {
+    vars.put(&quot;ClientNumber&quot;, clientNumber)
+    log.info(&quot;✅ Client Number Extracted: ${clientNumber}&quot;)
+} else {
+    log.warn(&quot;✅️ Client Number not found in response.&quot;)
+}
+
+// Optional: check RetCode
+def retCode = xml.&apos;**&apos;.find { it.name() == &apos;RetCode&apos; }?.text()
+if (retCode != &quot;0&quot;) {
+    log.warn(&quot;❌️ Warning! RetCode = ${retCode}&quot;)
+}
+</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Check nationalId if Exist and Unlink" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&quot;ClientNumber&quot;) != null)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Unlink nationalId with CIF">
+              <stringProp name="HTTPSampler.path">/api/way4-integration/v1/testing/cards/client</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">PATCH</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;metadata&quot;: {&#xd;
+    &quot;searchMethod&quot;: &quot;CIF_NUMBER&quot;,&#xd;
+    &quot;clientIdentifier&quot;: &quot;${ClientNumber}&quot;,&#xd;
+    &quot;reason&quot;: &quot;002&quot;&#xd;
+  },&#xd;
+  &quot;modification&quot;: {&#xd;
+    &quot;nationalId&quot;: &quot;${ClientNumber}&quot;&#xd;
+  }&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">import groovy.json.JsonSlurper
+
+log.info(&quot;\n\n=============== ✅ PATCH CLIENT RESULT ✅ ===============&quot;)
+
+def response = prev.getResponseDataAsString().trim()
+def responseCode = prev.getResponseCode()
+def responseTime = prev.getTime()
+
+log.info(&quot;${prev.getURL()} | ${responseTime}ms&quot;)
+
+if (responseCode != &quot;200&quot;) {
+    log.error(&quot;❌ PATCH failed! Response Code: ${responseCode}&quot;)
+    log.error(&quot;Response:\n${response}&quot;)
+    return
+}
+
+def json
+try {
+    json = new JsonSlurper().parseText(response)
+} catch (Exception e) {
+    log.error(&quot;❌ JSON Parse Error: ${e.message}&quot;)
+    log.error(&quot;Raw:\n${response}&quot;)
+    return
+}
+
+def statusCode = json?.status?.code
+if (statusCode == &quot;SUCCESS&quot;) {
+    log.info(&quot;✅ PATCH Client success!&quot;)
+} else {
+    log.warn(&quot;⚠️ PATCH Client responded with non-success code: ${statusCode}&quot;)
+}
+</stringProp>
+              </JSR223PostProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1. Check and Clear Account" enabled="true">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
@@ -1034,7 +1295,7 @@ log.info(&quot;✅ Clear CIF Number of Phone in Party Success!&quot;)
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account" enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2. Create new Account">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;phoneNumberOnboard&quot;) != null)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -1796,10 +2057,10 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM0980341588001098034158&lt;&lt;99810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM${idNumberOnboardProcessed}2${idNumberOnboard}&lt;&lt;39810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;9HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;001098034158&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
                                                 &quot;fullName&quot;: &quot;HOANG CHI CONG&quot;,&#xd;
                                                 &quot;gender&quot;: &quot;M&quot;,&#xd;
                                                 &quot;dateOfBirth&quot;: &quot;20-10-1998&quot;,&#xd;
@@ -2140,7 +2401,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2532,10 +2793,10 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM0980341588001098034158&lt;&lt;99810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM0980341588${idNumberOnboard}&lt;&lt;99810204M3810202VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8HOANG&lt;&lt;CHI&lt;CONG&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;001098034158&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
                                                 &quot;fullName&quot;: &quot;HOANG CHI CONG&quot;,&#xd;
                                                 &quot;gender&quot;: &quot;M&quot;,&#xd;
                                                 &quot;dateOfBirth&quot;: &quot;20-10-1998&quot;,&#xd;
@@ -3225,7 +3486,7 @@ if (hdbBiometricMockingId) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] HDB Check &amp; Fraud - FALSE Auto Approve" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="[MOCK] HDB Check &amp; Fraud - FALSE Auto Approve">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -11328,7 +11589,7 @@ def appendExcelRow(Sheet sheet, def prospectData) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to XLSX">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Write to XLSX" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
@@ -11390,7 +11651,7 @@ def appendExcelRow(Sheet sheet, def prospectData) {
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -11453,7 +11714,7 @@ def extractProspectData(def jsonResponse) {
         &quot;HDB CIF&quot;: payload?.hdb?.hdbCifNumber ?: &quot;N/A&quot;,
         &quot;Case ID&quot;: payload?.caseId ?: &quot;N/A&quot;,
         &quot;Review Check&quot;: generateReviewCheckStr(kycState),
-        &quot;Note&quot;: &quot;&quot;
+        &quot;&quot;: &quot;&quot;
     ]
 }
 
