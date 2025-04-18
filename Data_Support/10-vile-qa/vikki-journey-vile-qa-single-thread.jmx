@@ -40,7 +40,7 @@
           </elementProp>
           <elementProp name="hpvOcrMockingId" elementType="Argument">
             <stringProp name="Argument.name">hpvOcrMockingId</stringProp>
-            <stringProp name="Argument.value">d596264e-f918-4e4a-a7ee-1423481f18f8</stringProp>
+            <stringProp name="Argument.value">4e8ecfd3-4248-4b7b-89d9-9165db6f1f0e</stringProp>
             <stringProp name="Argument.desc">Wiremock ID</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -2006,10 +2006,10 @@ log.info(&quot;✅ Resume Point xử lý thành công!&quot;);</stringProp>
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM1960214393089196021439&lt;&lt;69601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM1960214393${idNumberOnboard}&lt;&lt;69601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;089196021439&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
                                                 &quot;fullName&quot;: &quot;LE THANH TRUC VI&quot;,&#xd;
                                                 &quot;gender&quot;: &quot;F&quot;,&#xd;
                                                 &quot;dateOfBirth&quot;: &quot;11-01-1996&quot;,&#xd;
@@ -2301,7 +2301,7 @@ if (idHyperVergeOCRNew) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 [MOCK] Hyperverge OCR - Update">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.domain">wiremock.sit.galaxyfinx.in</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2692,10 +2692,10 @@ if (idHyperVergeOCRNew) {
                                                 &quot;confidence&quot;: &quot;high&quot;&#xd;
                                             },&#xd;
                                             &quot;mrzString&quot;: {&#xd;
-                                                &quot;value&quot;: &quot;IDVNM1960214393089196021439&lt;&lt;69601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
+                                                &quot;value&quot;: &quot;IDVNM1960214393${idNumberOnboard}&lt;&lt;69601112F3601110VNM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;4LE&lt;&lt;THANH&lt;TRUC&lt;VI&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;,&#xd;
                                                 &quot;confidence&quot;: &quot;high&quot;,&#xd;
                                                 &quot;score&quot;: 100,&#xd;
-                                                &quot;idNumber&quot;: &quot;089196021439&quot;,&#xd;
+                                                &quot;idNumber&quot;: &quot;${idNumberOnboard}&quot;,&#xd;
                                                 &quot;fullName&quot;: &quot;LE THANH TRUC VI&quot;,&#xd;
                                                 &quot;gender&quot;: &quot;F&quot;,&#xd;
                                                 &quot;dateOfBirth&quot;: &quot;11-01-1996&quot;,&#xd;
@@ -4432,7 +4432,7 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </hashTree>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.14 Get Account Details - Prospect" enabled="true">
             <intProp name="HTTPSampler.concurrentPool">6</intProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/v3/onboarding/admin/prospect/${onboardingId}</stringProp>
@@ -4494,7 +4494,7 @@ vars.put(&quot;triggerReRunCreateAccount&quot;, &quot;false&quot;);</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
