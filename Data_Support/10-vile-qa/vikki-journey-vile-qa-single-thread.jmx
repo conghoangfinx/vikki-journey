@@ -10,7 +10,7 @@
       <stringProp name="TestPlan.user_define_classpath">./lib</stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - UAT" enabled="false">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -65,7 +65,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT" enabled="false">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defined Variables - SIT">
         <collectionProp name="Arguments.arguments">
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
@@ -95,7 +95,7 @@
           </elementProp>
           <elementProp name="hpvOcrMockingId" elementType="Argument">
             <stringProp name="Argument.name">hpvOcrMockingId</stringProp>
-            <stringProp name="Argument.value">d596264e-f918-4e4a-a7ee-1423481f18f8</stringProp>
+            <stringProp name="Argument.value">4e8ecfd3-4248-4b7b-89d9-9165db6f1f0e</stringProp>
             <stringProp name="Argument.desc">Wiremock ID</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
